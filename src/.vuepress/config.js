@@ -27,7 +27,6 @@ module.exports = {
     lastUpdated: 'Last updated',
     nav: [
       { text: 'Guide', link: '/guide/' },
-      { text: 'GitHub', link: 'https://github.com/aya-prover/aya-dev' },
     ],
     sidebarDepth: 2,
     sidebar: {
