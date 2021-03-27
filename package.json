@@ -1,0 +1,25 @@
+{
+  "name": "aya-prover-docs",
+  "version": "1.0.0",
+  "description": "The documentation site of the Aya prover.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vuepress dev src",
+    "build": "vuepress build src"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/re-xyr/aya-prover-docs.git"
+  },
+  "author": "Aya prover developers",
+  "license": "CC-BY-SA-4.0",
+  "bugs": {
+    "url": "https://github.com/re-xyr/aya-prover-docs/issues"
+  },
+  "homepage": "https://github.com/re-xyr/aya-prover-docs#readme",
+  "devDependencies": {
+    "katex": "^0.13.0",
+    "markdown-it": "^12.0.4",
+    "vuepress": "^1.8.2"
+  }
+}
