@@ -64,3 +64,5 @@ The type system of Aya features in homotopical features similar to [Arend],
 overlapping but confluent pattern matching, and abstraction over definitional equalities.
 
 Aya is under active development. Please be patient until future information is available.
+
+ [Arend]: https://arend-lang.github.io
