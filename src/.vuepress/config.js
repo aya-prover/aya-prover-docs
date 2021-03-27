@@ -20,7 +20,10 @@ module.exports = {
   themeConfig: {
     repo: 'aya-prover/aya-dev',
     logo: '/static/img/logo.svg',
-    docsDir: 'docs',
+    docsRepo: 'aya-prover/aya-prover-docs',
+    docsDir: 'src',
+    docsBranch: 'main',
+    editLinks: true,
     lastUpdated: 'Last updated',
     nav: [
       { text: 'Guide', link: '/guide/' },
