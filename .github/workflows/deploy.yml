@@ -1,0 +1,32 @@
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v2-beta
+      with:
+        node-version: 14.x
+    - name: Build
+      run: |
+        npm install
+        npm run build
+    - name: Deploy to GitHub Pages
+      env:
+        GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      run: |
+        cp CNAME src/.vuepress/dist/
+        cd src/.vuepress/dist
+        git init
+        git config user.email "trustq@qq.com"
+        git config user.name "Xy Ren's Bot via GitHub Actions"
+        git add *
+        git commit -m "GitHub Actions Automated Deploy"
+        git remote add origin "https://$GH_TOKEN@github.com/aya-prover/aya-prover.github.io.git"
+        git branch -M main
+        git push -f -u origin main
