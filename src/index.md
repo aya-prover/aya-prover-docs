@@ -1,4 +1,10 @@
-<div class="header-img"></div>
+<div class="header-img">
+  <div class="header-img-copyright">
+    <a href="https://www.pixiv.net/artworks/88666068">"夕"</a>
+    &copy; 2021
+    <a href="https://www.pixiv.net/users/17796967/artworks">PZY</a>.
+  </div>
+</div>
 
 <div class="spacer"></div>
 
@@ -10,10 +16,20 @@
   top: 0;
   width: 100%;
   height: 50%;
-  /* background-image: url('/static/img/background.jpg'); */
+  background-image: url('/static/img/index/header.jpg');
   background-size: cover;
+  background-position: center;
   text-align: center;
   padding: 0;
+}
+
+.header-img-copyright {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  opacity: 0.5;
+  color: white;
+  font-size: 10px;
 }
 
 .spacer {
