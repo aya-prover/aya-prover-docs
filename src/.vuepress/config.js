@@ -27,6 +27,7 @@ module.exports = {
     lastUpdated: 'Last updated',
     nav: [
       { text: 'Guide', link: '/guide/' },
+      { text: 'Publications', link: '/pubs.html' },
     ],
     sidebarDepth: 2,
     sidebar: {
