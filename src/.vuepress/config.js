@@ -2,7 +2,7 @@ const MarkdownIt = require('markdown-it')
 const Katex = require('katex')
 
 module.exports = {
-  title: 'Aya Prover Docs',
+  title: 'Aya Prover',
   description: '',
   head: [
     ['link', {
