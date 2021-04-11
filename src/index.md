@@ -8,8 +8,9 @@
 
 <div class="spacer"></div>
 
-<style>
+<!-- <div class="title">The Aya Prover</div> -->
 
+<style>
 .header-img {
   position: absolute;
   left: 0;
@@ -36,7 +37,22 @@
   position: relative;
   top: 0;
   left: 0;
-  height: 55vh;
+  height: /* 45vh */ 54vh;
+}
+
+.title {
+  position: relative;
+  z-index: 2;
+  background: #eee;
+  max-width: 15em;
+  font-size: 2em;
+  padding: 1em;
+}
+
+.code-example {
+  float: right;
+  width: 200px;
+  word-wrap: break-word;
 }
 </style>
 

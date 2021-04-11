@@ -1,2 +1,43 @@
-*
-  box-sizing: border-box
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Merriweather, serif;
+}
+
+.navbar .site-name {
+  display: none;
+}
+
+.search-box input {
+  border-radius: 5px !important;
+}
+
+.nav-item > a:not(.external):hover, .nav-item > a:not(.external).router-link-active {
+  border-bottom: 1px solid $accentColor !important;
+}
+
+.theme-default-content h1,
+.theme-default-content h2,
+.theme-default-content h3,
+.theme-default-content h4,
+.theme-default-content h5,
+.theme-default-content h6 {
+  border-bottom: 1px #ddd dotted;
+  font-weight: 300;
+  padding-bottom: 10px;
+}
+
+.theme-default-content a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+.theme-default-content a:hover {
+  color: $accentColor;
+}
+
+.theme-default-content a span {
+  display: none;
+}
