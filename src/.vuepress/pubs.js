@@ -8,7 +8,7 @@ module.exports = {
       items: [
         {
           title: 'A simpler encoding of indexed types',
-          conference: 'Proceedings of the 6th ACM SIGPLAN International Workshop on Type-Driven Development (TyDe ’21)',
+          venue: 'Proceedings of the 6th ACM SIGPLAN International Workshop on Type-Driven Development (TyDe ’21)',
           author: 'Tesla Zhang',
           links: [['arxiv', '2103.15408'], ['doi', '10.1145/3471875.3472991']],
         },

@@ -10,7 +10,7 @@
               <a :href="pubs.authors[item.author]">{{ item.author }}</a>
             </span>
           </div>
-          <div class="pubs-conf" v-if="'conference' in item">{{ item.conference }}</div>
+          <div class="pubs-venue" v-if="'venue' in item">{{ item.venue }}</div>
           <div class="pubs-links">
             (<span v-for="(link, lix) in item.links" :key="lix">
               <a :href="findLinkFormatter(link[0])(link[1])">{{ findLinkName(link[0]) }}</a><template v-if="lix != item.links.length - 1">, </template>
@@ -27,9 +27,9 @@
   font-size: 1.1em;
 }
 .pubs-title {
-  font-style: italic;
 }
-.pubs-conf {
+.pubs-venue {
+  font-style: italic;
   color: gray;
 }
 </style>
@@ -48,6 +48,10 @@ export default {
       doi: {
         name: 'doi',
         link: s => `https://doi.org/${s}`,
+      },
+      latest: {
+        name: 'latest version',
+        link: s => s,
       },
     },
   }),
