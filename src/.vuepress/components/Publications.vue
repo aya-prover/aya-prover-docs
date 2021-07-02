@@ -12,9 +12,9 @@
           </div>
           <div class="pubs-venue" v-if="'venue' in item">{{ item.venue }}</div>
           <div class="pubs-links">
-            (<span v-for="(link, lix) in item.links" :key="lix">
+            <span v-for="(link, lix) in item.links" :key="lix">
               <a :href="findLinkFormatter(link[0])(link[1])">{{ findLinkName(link[0]) }}</a><template v-if="lix != item.links.length - 1">, </template>
-            </span>)
+            </span>
           </div>
         </li>
       </ul>
