@@ -1,6 +1,6 @@
-module.exports = {
+export default {
   authors: {
-    'Tesla Zhang': 'https://personal.psu.edu/yqz5714'
+    'Tesla Zhang': 'https://personal.psu.edu/yqz5714',
   },
   entries: [
     {
@@ -21,8 +21,8 @@ module.exports = {
           title: 'Elegant elaboration with function invocation',
           author: 'Tesla Zhang',
           links: [['arxiv', '2105.14840'], ['latest', 'https://personal.psu.edu/yqz5714/defcall.pdf']],
-        }
-      ]
-    }
-  ]
+        },
+      ],
+    },
+  ],
 }

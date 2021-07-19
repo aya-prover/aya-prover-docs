@@ -26,8 +26,6 @@
 .pubs-headline {
   font-size: 1.1em;
 }
-.pubs-title {
-}
 .pubs-venue {
   font-style: italic;
   color: gray;
