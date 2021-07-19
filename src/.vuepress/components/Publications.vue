@@ -53,6 +53,10 @@ export default {
         name: 'latest version',
         link: s => s,
       },
+      conference: {
+        name: 'conference version',
+        link: s => s,
+      },
     },
   }),
   methods: {
