@@ -1,7 +1,8 @@
-const MarkdownIt = require('markdown-it')
-const Katex = require('katex')
+import { defaultTheme } from '@vuepress/theme-default'
+import MarkdownIt from 'markdown-it';
+import Katex from 'katex';
 
-module.exports = {
+export default {
   title: 'Aya Prover',
   description: '',
   head: [
@@ -20,15 +21,15 @@ module.exports = {
     }],
   ],
   base: '/',
-  themeConfig: {
+  theme: defaultTheme({
     repo: 'aya-prover/aya-dev',
     logo: '/static/img/logo.svg',
     docsRepo: 'aya-prover/aya-prover-docs',
     docsDir: 'src',
     docsBranch: 'main',
-    editLinks: true,
-    lastUpdated: 'Last updated',
-    nav: [
+    editLink: true,
+    lastUpdated: true,
+    navbar: [
       { text: 'Guide', link: '/guide/' },
       { text: 'Publications', link: '/pubs.html' },
     ],
@@ -36,7 +37,7 @@ module.exports = {
     sidebar: {
       // Add an entry if there is a new subdirectory created
       '/guide/': [{
-        title: 'Guide',
+        text: 'Guide',
         children: [
           // If a new file created under this subdirectory, add the filename without `.md` here
           // The order here will be that displayed on the sidebar
@@ -44,19 +45,17 @@ module.exports = {
         ],
       }],
     }
-  },
-  markdown: {
-    extendMarkdown(md) {
-      md.render = (src, env) =>
-        MarkdownIt.prototype.render.call(
-          md,
-          src
-            .replace(/(?<=[^\\])\$\$([^]+?)\$\$/mg, (_, str) =>
-              Katex.renderToString(str, { throwOnError: false, displayMode: true }))
-            .replace(/(?<=[^\\])\$([^]+?)\$/mg, (_, str) =>
-              Katex.renderToString(str, { throwOnError: false, displayMode: false })),
-          env)
-          .replace(/\\\$/g, '$')
-    },
+  }),
+  extendsMarkdown: (md) => {
+    md.render = (src, env) =>
+      MarkdownIt.prototype.render.call(
+        md,
+        src
+          .replace(/(?<=[^\\])\$\$([^]+?)\$\$/mg, (_, str) =>
+            Katex.renderToString(str, { throwOnError: false, displayMode: true }))
+          .replace(/(?<=[^\\])\$([^]+?)\$/mg, (_, str) =>
+            Katex.renderToString(str, { throwOnError: false, displayMode: false })),
+        env)
+        .replace(/\\\$/g, '$')
   },
 }
