@@ -16,7 +16,7 @@ The output files are under `/src/.vuepress/dist/`.
 
 All markdown files are under `/src/`. To add a page simply create a `.md` file in one subdirectory. GitHub flavored markdown and LaTeX are allowed.
 
-To have this page shown in the sidebar, edit `/src/.vuepress/config.js`. Say, creating a file `getting-started.md` in the subdirectory `/guide/` whould require changing like this:
+To have this page shown in the sidebar, edit `/src/.vuepress/config.ts`. Say, creating a file `getting-started.md` in the subdirectory `/guide/` would require changing like this:
 
 ```diff
 module.exports = {
@@ -46,7 +46,7 @@ module.exports = {
 
 Simply create a new subdirectory under `/src/` And add files. Each category must contain an `index.md` which will be its homepage.
 
-To have this category shown in the navbar, edit `/src/.vuepress/config.js`. E.g. creating a category `/api/` would require:
+To have this category shown in the navbar, edit `/src/.vuepress/config.ts`. E.g. creating a category `/api/` would require:
 
 ```diff
 module.exports = {

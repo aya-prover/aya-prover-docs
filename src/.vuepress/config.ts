@@ -1,8 +1,9 @@
-import { defaultTheme } from '@vuepress/theme-default'
+import { defaultTheme } from '@vuepress/theme-default';
+import { defineUserConfig } from 'vuepress';
 import MarkdownIt from 'markdown-it';
 import Katex from 'katex';
 
-export default {
+export default defineUserConfig({
   title: 'Aya Prover',
   description: '',
   head: [
@@ -58,4 +59,4 @@ export default {
         env)
         .replace(/\\\$/g, '$')
   },
-}
+})
