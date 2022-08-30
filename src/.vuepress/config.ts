@@ -1,5 +1,7 @@
 import { defaultTheme } from '@vuepress/theme-default';
-import { defineUserConfig } from 'vuepress';
+import { defineUserConfig } from '@vuepress/cli';
+import { viteBundler } from '@vuepress/bundler-vite';
+// import { palettePlugin } from '@vuepress/plugin-palette';
 import MarkdownIt from 'markdown-it';
 import Katex from 'katex';
 
@@ -59,4 +61,14 @@ export default defineUserConfig({
         env)
         .replace(/\\\$/g, '$')
   },
+  // plugins: [
+  //   palettePlugin({}),
+  // ],
+  bundler: viteBundler({
+    viteOptions: {
+      build: {
+        commonjsOptions: { include: [] },
+      }
+    }
+  }),
 })

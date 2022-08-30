@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/aya-prover/aya-prover-docs#readme",
   "devDependencies": {
+    "@vuepress/plugin-palette": "^2.0.0-beta.51",
     "katex": "^0.16.2",
     "markdown-it": "^13.0.1",
     "vuepress": "^2.0.0-beta.51"
