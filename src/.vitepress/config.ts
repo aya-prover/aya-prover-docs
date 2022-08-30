@@ -16,7 +16,7 @@ export default defineConfig({
     }],
     ['link', {
       rel: 'icon',
-      href: `/static/img/logo.svg`,
+      href: `/logo.svg`,
     }],
   ],
   themeConfig:{
@@ -25,7 +25,7 @@ export default defineConfig({
       { icon: 'github', link: 'https://github.com/aya-prover' },
     ],
     editLink: {
-      pattern: 'https://github.com/aya-prover/aya-prover-docs/tree/main/docs/:path',
+      pattern: 'https://github.com/aya-prover/aya-prover-docs/tree/main/src/:path',
       text: 'Suggest changes to this page',
     },
     nav: [
