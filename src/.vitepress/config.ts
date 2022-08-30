@@ -20,7 +20,7 @@ export default defineConfig({
       href: `/logo.svg`,
     }],
   ],
-  themeConfig:{
+  themeConfig: {
     logo: '/logo.svg',
     socialLinks: [
       { icon: 'github', link: 'https://github.com/aya-prover' },
@@ -32,18 +32,22 @@ export default defineConfig({
     nav: [
       { text: 'Guide', link: '/guide/' },
       { text: 'Publications', link: '/pubs/' },
-      { text: 'Blog', link: '/blog/redirect' },
+      { text: 'Blog', link: '/blog/' },
     ],
-    sidebar: {
-      sidebar: [
-        {
-          text: 'Guide',
-          items: [
-            { text: 'Introduction', link: '/guide/' },
-          ]
-        }
-      ]
-    }
+    sidebar: [
+      {
+        text: 'Blog',
+        items: [
+          // { text: 'Blog', link: '/blog/' },
+        ]
+      },
+      {
+        text: 'Guide',
+        items: [
+          { text: 'Get Started', link: '/guide/' },
+        ]
+      },
+    ]
   },
   // extendsMarkdown: (md) => {
   //   md.render = (src, env) =>
