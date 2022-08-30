@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import footnote from 'markdown-it-footnote'
-import Katex from 'katex';
+import markdownItKatex from 'markdown-it-katex'
 
 export default defineConfig({
   title: 'Aya Prover',
@@ -68,6 +68,7 @@ export default defineConfig({
   markdown: {
     config: (md) => {
       md.use(footnote)
+      md.use(markdownItKatex)
     }
   },
 })

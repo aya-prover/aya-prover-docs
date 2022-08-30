@@ -18,8 +18,11 @@
     "url": "https://github.com/aya-prover/aya-prover-docs/issues"
   },
   "homepage": "https://github.com/aya-prover/aya-prover-docs#readme",
+  "dependencies": {
+    "markdown-it-footnote": "^3.0.3",
+    "markdown-it-katex": "^2.0.3"
+  },
   "devDependencies": {
-    "katex": "^0.16.2",
     "vitepress": "1.0.0-alpha.12",
     "vue": "^3.2.37"
   },
@@ -31,8 +34,5 @@
         "react-dom"
       ]
     }
-  },
-  "dependencies": {
-    "markdown-it-footnote": "^3.0.3"
   }
 }

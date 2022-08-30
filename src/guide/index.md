@@ -7,4 +7,6 @@ overlapping but confluent pattern matching, and abstraction over definitional eq
 
 Aya is under active development. Please be patient until future information is available.
 
+$$ f(x) = a+b $$
+
 [Arend]: https://arend-lang.github.io
