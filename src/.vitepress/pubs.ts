@@ -1,4 +1,4 @@
-export const publications  = {
+export const publications = {
   authors: {
     'Tesla Zhang': 'https://personal.psu.edu/yqz5714',
   },
@@ -17,12 +17,17 @@ export const publications  = {
             ['latest', 'https://personal.psu.edu/yqz5714/gadt.pdf']
           ],
         },
+      ],
+    },
+    {
+      type: 'Preprints',
+      items: [
         {
           title: 'Elegant elaboration with function invocation',
           author: 'Tesla Zhang',
           links: [['arxiv', '2105.14840'], ['latest', 'https://personal.psu.edu/yqz5714/defcall.pdf']],
         },
       ],
-    },
+    }
   ],
 }

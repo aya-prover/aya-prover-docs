@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress'
 import footnote from 'markdown-it-footnote'
-import markdownItKatex from 'markdown-it-katex'
+import markdownItKatex from '@iktakahiro/markdown-it-katex'
 
 export default defineConfig({
   title: 'Aya Prover',
@@ -57,14 +57,6 @@ export default defineConfig({
   //       env)
   //       .replace(/\\\$/g, '$')
   // },
-  // markdown: {
-  //   config: (md) => {
-  //     md.use(Katex)
-  //   }
-  // },
-  // plugins: [
-  //   palettePlugin({}),
-  // ],
   markdown: {
     config: (md) => {
       md.use(footnote)

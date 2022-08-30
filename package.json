@@ -19,12 +19,13 @@
   },
   "homepage": "https://github.com/aya-prover/aya-prover-docs#readme",
   "dependencies": {
-    "markdown-it-footnote": "^3.0.3",
-    "markdown-it-katex": "^2.0.3"
+    "katex": "^0.16.2",
+    "@iktakahiro/markdown-it-katex": "^4.0.1",
+    "markdown-it-footnote": "^3.0.3"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-alpha.12",
-    "vue": "^3.2.37"
+    "vitepress": "1.0.0-alpha.13",
+    "vue": "^3.2.38"
   },
   "pnpm": {
     "peerDependencyRules": {
