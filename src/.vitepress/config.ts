@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import footnote from 'markdown-it-footnote'
 import Katex from 'katex';
 
 export default defineConfig({
@@ -64,4 +65,9 @@ export default defineConfig({
   // plugins: [
   //   palettePlugin({}),
   // ],
+  markdown: {
+    config: (md) => {
+      md.use(footnote)
+    }
+  },
 })
