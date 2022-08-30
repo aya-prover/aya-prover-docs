@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/re-xyr/aya-prover-docs.git"
+    "url": "git+https://github.com/aya-prover/aya-prover-docs.git"
   },
   "author": "Aya prover developers",
   "license": "CC-BY-SA-4.0",
   "bugs": {
-    "url": "https://github.com/re-xyr/aya-prover-docs/issues"
+    "url": "https://github.com/aya-prover/aya-prover-docs/issues"
   },
-  "homepage": "https://github.com/re-xyr/aya-prover-docs#readme",
+  "homepage": "https://github.com/aya-prover/aya-prover-docs#readme",
   "devDependencies": {
     "katex": "^0.16.2",
     "markdown-it": "^13.0.1",
