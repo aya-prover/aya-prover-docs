@@ -4,8 +4,9 @@
   "description": "The documentation site of the Aya prover.",
   "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev src",
-    "build": "vuepress build src"
+    "dev": "vitepress dev src",
+    "build": "vitepress build src",
+    "serve": "vitepress serve src"
   },
   "repository": {
     "type": "git",
@@ -18,9 +19,17 @@
   },
   "homepage": "https://github.com/aya-prover/aya-prover-docs#readme",
   "devDependencies": {
-    "@vuepress/plugin-palette": "^2.0.0-beta.51",
     "katex": "^0.16.2",
-    "markdown-it": "^13.0.1",
-    "vuepress": "^2.0.0-beta.51"
+    "vitepress": "1.0.0-alpha.12",
+    "vue": "^3.2.37"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "@types/react",
+        "react",
+        "react-dom"
+      ]
+    }
   }
 }

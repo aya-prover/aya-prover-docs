@@ -17,7 +17,7 @@
   top: 0;
   width: 100%;
   height: 50%;
-  background-image: url('/static/img/index/header.jpg');
+  background-image: url('/header.jpg');
   background-size: cover;
   background-position: center;
   text-align: center;

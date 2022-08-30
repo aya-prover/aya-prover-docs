@@ -1,4 +1,4 @@
-export default {
+export const publications  = {
   authors: {
     'Tesla Zhang': 'https://personal.psu.edu/yqz5714',
   },
