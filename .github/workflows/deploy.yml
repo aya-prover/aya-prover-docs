@@ -12,16 +12,21 @@ jobs:
       uses: actions/setup-node@v2-beta
       with:
         node-version: 16.x
+    - name: Setup pnpm for sane package management
+      uses: pnpm/action-setup@v2.2.2
+      with:
+        version: 6
     - name: Build
       run: |
-        npm install
-        npm run build
+        npm i pnpm
+        pnpm i
+        pnpm build
     - name: Deploy to GitHub Pages
       env:
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
-        cp CNAME src/.vuepress/dist/
-        cd src/.vuepress/dist
+        cp CNAME src/.vitepress/dist/
+        cd src/.vitepress/dist
         git init
         git config user.email "trustq@qq.com"
         git config user.name "Xy Ren's Bot via GitHub Actions"
