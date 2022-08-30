@@ -1,6 +1,6 @@
 import { EnhanceAppContext } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
-import {h} from 'vue'
+import { h } from 'vue'
 import './index.css'
 import Publications from '../components/Publications.vue'
 import AyaHeader from '../components/AyaHeader.vue'

@@ -9,4 +9,6 @@ Aya is under active development. Please be patient until future information is a
 
 $$ f(x) = a+b $$
 
+$$ \int^a_b f(x)dx $$
+
 [Arend]: https://arend-lang.github.io

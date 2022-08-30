@@ -45,11 +45,11 @@ const links = ref({
 })
 
 function findLinkFormatter(tag) {
-  if (tag in links.value) return this.links[tag].link
+  if (tag in links.value) return links.value[tag].link
   else return s => s
 }
 function findLinkName(tag) {
-  if (tag in links.value) return this.links[tag].name
+  if (tag in links.value) return links.value[tag].name
   else return tag
 }
 </script>
