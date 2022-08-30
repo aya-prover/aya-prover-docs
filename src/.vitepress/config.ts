@@ -39,6 +39,7 @@ export default defineConfig({
         text: 'Blog',
         items: [
           { text: 'Index unification?', link: '/blog/index-unification' },
+          { text: 'Language extensions?', link: '/blog/lang-exts' },
         ]
       },
       {
