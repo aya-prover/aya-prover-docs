@@ -38,7 +38,7 @@ export default defineConfig({
       {
         text: 'Blog',
         items: [
-          // { text: 'Blog', link: '/blog/' },
+          { text: 'Index unification?', link: '/blog/index-unification' },
         ]
       },
       {

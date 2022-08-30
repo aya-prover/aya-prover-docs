@@ -17,7 +17,7 @@ hero:
       text: Get Started
       link: /guide/
     - theme: alt
-      text: View on GitHub
+      text: GitHub
       link: https://github.com/aya-prover
 # Could add features description here
 # features:
