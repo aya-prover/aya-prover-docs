@@ -19,7 +19,6 @@
   --vp-c-brand-lighter: #DB5A6B;
   --vp-c-brand-dark: #DB5A6B;
   --vp-c-brand-darker: #DB5A6B;
-  --vp-c-text-1: black;
 }
 
 .dark {
@@ -89,8 +88,4 @@
 
  .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand) !important;
-}
-
-.VPNav{
-  background-color: var(--vp-c-bg);
 }

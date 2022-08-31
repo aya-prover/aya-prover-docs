@@ -14,6 +14,7 @@
 <style scoped>
 .header-img {
   position: absolute;
+  top: var(--vp-nav-height);
   width: 100%;
   height: 100vh;
   filter: brightness(50%);
