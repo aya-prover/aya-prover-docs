@@ -90,3 +90,7 @@
  .DocSearch {
   --docsearch-primary-color: var(--vp-c-brand) !important;
 }
+
+.VPNav{
+  background-color: var(--vp-c-bg);
+}
