@@ -16,9 +16,10 @@
   position: absolute;
   width: 100%;
   height: 100vh;
+  filter: brightness(50%);
   background-image: url('/header.jpg');
   background-size: cover;
-  background-position: center;
+  background-position: left;
 }
 
 .header-img-copyright {

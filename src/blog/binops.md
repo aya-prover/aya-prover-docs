@@ -18,3 +18,7 @@ Importing with renaming is an established feature, but changing associativity
 and precedence is not that popular (though implemented in Agda already).
 
 Here are some code examples:
+
+```
+def
+```
