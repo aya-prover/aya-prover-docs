@@ -4,7 +4,7 @@
   "description": "The documentation site of the Aya prover.",
   "main": "index.js",
   "scripts": {
-    "dev": "vitepress dev src",
+    "dev": "vitepress dev src --host",
     "build": "vitepress build src",
     "serve": "vitepress serve src"
   },

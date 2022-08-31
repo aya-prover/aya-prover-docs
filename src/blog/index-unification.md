@@ -1,4 +1,4 @@
-# Index unification in Aya
+# Index unification and forced patterns in Aya
 
 [#198]: https://github.com/aya-prover/aya-dev/pull/198
 
