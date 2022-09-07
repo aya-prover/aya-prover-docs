@@ -35,7 +35,7 @@ At least, we don't want this to happen to our language.
 
 [Kevin]: https://youtu.be/Dp-mQ3HxgDE?t=3934
 
-## org.aya.util.Decision
+## Aya's choice?
 
 So, we will not introduce any "feature" flags, and will have only one base library.
 Aya will be one language, its features are its features.

@@ -50,5 +50,5 @@ that I have to lookup the numbers (of existing operator precedences)
 every time I write a new operator.
 
 In the future, we plan to support prefix and postfix operators,
-and maybe mixfix (the current framework can support mixfix easily,
+and maybe mixfix as in Agda (the current framework can support mixfix easily,
 but abusing mixfix notations can harm readability).
