@@ -1,4 +1,4 @@
-import { h, defineComponent ,Fragment, PropType} from 'vue'
+import { h, defineComponent , PropType} from 'vue'
 import type { Publicaions } from '../../interface'
 import { publications } from '../../pubs'
 import './PubStyle.css'
