@@ -11,7 +11,7 @@ export interface PublicationItem {
 }
 
 export interface Publicaion {
-  type: 'Papers'|'Preprints'|'Theses'|'Talks'|'Workshops'|'Tutorials'|'Misc',
+  type: 'Papers'|'Preprints'|'Theses'|'Talks'|'Workshops'|'Tutorials'|'Misc'
   items: PublicationItem[]
 }
 
