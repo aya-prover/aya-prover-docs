@@ -8,7 +8,8 @@ export default defineComponent({
   props:{
     pubs: {
       type: Array as PropType<Publicaions>,
-      default: publications
+      reqiured: true
+      // default: publications
     }
   },
   setup(props) {
@@ -45,7 +46,7 @@ export default defineComponent({
   render() {
     return (
       <div>
-        {this.pubs.map(pub=>(
+        {this.pubs?.map(pub=>(
             <div>
               <h3>{pub.type}</h3>
               <ul>
