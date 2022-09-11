@@ -24,6 +24,10 @@ Here are some code examples (implementations are omitted for simplicity):
 def infixl + (x y : Nat) : Nat => {??}
 -- Left-associative, bind tighter than +
 def infixl * (x y : Nat) : Nat => {??} tighter +
+-- Prefix operator
+def fixl ! (x : Nat) : Nat => {??}
+-- Postfix operator
+def fixr ? (x : Nat) : Nat => {??}
 ```
 
 The `tighter` keyword works like this: when there are expressions like
@@ -35,7 +39,7 @@ With imports, it looks like this:
 
 ```
 open import Primitives using (
-  invol as infix ~ tighter =, \/, /\,
+  invol       as fixl  ~  tighter =, \/, /\,
   intervalMin as infix /\ tighter \/,
   intervalMax as infix \/,
 )
@@ -49,6 +53,5 @@ levels to address the issue, but I think it does not solve the essential problem
 that I have to lookup the numbers (of existing operator precedences)
 every time I write a new operator.
 
-In the future, we plan to support prefix and postfix operators,
-and maybe mixfix as in Agda (the current framework can support mixfix easily,
+In the future, we plan to support mixfix operators as in Agda (the current framework can support mixfix easily,
 but abusing mixfix notations can harm readability).
