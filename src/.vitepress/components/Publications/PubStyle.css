@@ -1,0 +1,28 @@
+
+.pubs-title {
+  font-size: 1.2em;
+}
+
+.pubs-author:hover {
+  border-bottom: 1px dashed #000;
+}
+
+.pubs-author::before {
+  content: ", by ";
+}
+
+.pubs-link {
+  font-size: 0.9em;
+  margin: 0.3em 0.3em 0.3em 0;
+  padding: 0.2em;
+}
+
+.pubs-link:hover {
+  border-bottom: 1px dashed #000;
+}
+
+.pubs-venue {
+  font-size: 0.95em;
+  font-style: italic;
+  color: gray;
+}

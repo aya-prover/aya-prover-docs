@@ -21,6 +21,4 @@ Simply create a new subdirectory under `/src/` And add files. Each category must
 
 To have this category shown in the navbar, edit `/src/.vuepress/config.ts`. see [VitePress navbar](https://vitepress.vuejs.org/guide/theme-nav#nav)
 
-```ts
-
 

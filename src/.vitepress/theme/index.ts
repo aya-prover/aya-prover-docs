@@ -2,7 +2,7 @@ import { EnhanceAppContext } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
 import { h } from 'vue'
 import './index.css'
-import Publications from '../components/Publications.vue'
+import {Publications} from '../components/Publications'
 import AyaHeader from '../components/AyaHeader.vue'
 
 export default {
