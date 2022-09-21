@@ -145,6 +145,7 @@ export const readings: Publications = [
       {
         title: 'Cubical Agda: A Dependently Typed Programming Language with Univalence and Higher Inductive Types',
         authors: [saizan, aa, andersMortberg],
+        venue: 'ICFP 2019',
         links: [
           ['doi', '10.1145/3341691'],
         ]

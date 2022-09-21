@@ -121,4 +121,4 @@ This has worked so far, with some unsolved problems (yet to be discussed):
   + Related issue: [530](https://github.com/aya-prover/aya-dev/issues/530)
   + A sort of "flattening"
 
-If you have any thoughts, feel free to reach out and thanks for reading.
+If you have any thoughts, feel free to reach out and thanks for reading!
