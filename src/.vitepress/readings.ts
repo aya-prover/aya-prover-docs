@@ -6,9 +6,29 @@ const akJR: Author = {
   name: 'András Kovács',
   link: 'https://andraskovacs.github.io',
 };
-const akaposi: Author = { 
+const akaposi: Author = {
   name: 'Ambrus Kaposi',
   link: 'https://akaposi.github.io'
+};
+const simonHuber: Author = {
+  name: 'Simon Huber',
+  link: 'https://simhu.github.io',
+};
+const guillaumeBrunerie: Author = {
+  name: 'Guillaume Brunerie',
+  link: 'https://guillaumebrunerie.github.io',
+};
+const aa: Author = {
+  name: 'Andreas Abel',
+  link: 'https://www.cse.chalmers.se/~abela',
+};
+const saizan: Author = {
+  name: 'Andrea Vezzosi',
+  link: 'https://saizan.github.io',
+};
+const andersMortberg: Author = {
+  name: 'Anders Mörtberg',
+  link: 'https://staff.math.su.se/anders.mortberg',
 };
 export const readings: Publications = [
   {
@@ -30,6 +50,19 @@ export const readings: Publications = [
         title: 'Generalized Universe Hierarchies and First-Class Universe Levels',
         authors: [akJR],
         links: [['arxiv', '2103.00223']],
+      },
+      {
+        title: 'Copatterns: programming infinite structures by observations',
+        authors: [aa,
+          { name: 'Brigitte Pientka' },
+          { name: 'David Thibodeau' },
+          { name: 'Anton Setzer' }
+        ],
+        venue: 'POPL 2013',
+        links: [
+          ['doi', '10.1145/2480359.2429075'],
+          ['online', 'https://www.cse.chalmers.se/~abela/popl13.pdf']
+        ]
       }
     ],
   },
@@ -54,12 +87,12 @@ export const readings: Publications = [
       {
         title: 'Syntax and models of Cartesian cubical type theory',
         authors: [
-          { name: 'Carlo Angiuli'},
-          { name: 'Guillaume Brunerie'},
+          { name: 'Carlo Angiuli' },
+          guillaumeBrunerie,
           thierryCoquand,
-          { name: 'Robert Harper'},
-          { name: 'Kuen-Bang Hou (Favonia)'},
-          { name: 'Daniel R. Licata'},
+          { name: 'Robert Harper' },
+          { name: 'Kuen-Bang Hou (Favonia)' },
+          { name: 'Daniel R. Licata' },
         ],
         venue: 'MSCS 2021',
         links: [
@@ -68,16 +101,17 @@ export const readings: Publications = [
       },
       {
         title: 'A cubical type theory for higher inductive types',
-        authors: [{ name: 'Simon Huber' }],
+        authors: [simonHuber],
         links: [['online', 'https://www.cse.chalmers.se/~simonhu/misc/hcomp.pdf']]
       },
       {
         title: 'Cubical Type Theory: a constructive interpretation of the univalence axiom',
-        authors:[
+        venue: 'TYPES 2015',
+        authors: [
           { name: 'Cyril Cohen' },
           thierryCoquand,
-          { name: 'Simon Huber' },
-          { name: 'Anders Mörtberg' },
+          simonHuber,
+          andersMortberg,
         ],
         links: [
           ['arxiv', '1611.02108'],
@@ -91,7 +125,7 @@ export const readings: Publications = [
     items: [
       {
         title: 'A Categorical Perspective on Pattern Unification',
-        authors: [{ name: 'Andrea Vezzosi' }, { name: 'Andreas Abel' }],
+        authors: [saizan, aa],
         links: [['online', 'https://saizan.github.io/papers/pattern-unif.pdf']],
       },
       {
@@ -108,6 +142,13 @@ export const readings: Publications = [
           ['doi', '10.1145/3408983'],
         ],
       },
+      {
+        title: 'Cubical Agda: A Dependently Typed Programming Language with Univalence and Higher Inductive Types',
+        authors: [saizan, aa, andersMortberg],
+        links: [
+          ['doi', '10.1145/3341691'],
+        ]
+      }
     ]
   },
   {
