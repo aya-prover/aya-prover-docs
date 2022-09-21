@@ -30,6 +30,10 @@ const andersMortberg: Author = {
   name: 'Anders Mörtberg',
   link: 'https://staff.math.su.se/anders.mortberg',
 };
+const agdakx: Author = {
+  name: 'Jesper Cockx',
+  link: 'https://jesper.sikanda.be',
+};
 export const readings: Publications = [
   {
     type: 'General Type Theory',
@@ -62,6 +66,16 @@ export const readings: Publications = [
         links: [
           ['doi', '10.1145/2480359.2429075'],
           ['online', 'https://www.cse.chalmers.se/~abela/popl13.pdf']
+        ]
+      },
+      {
+        title: 'Staged Compilation with Two-Level Type Theory',
+        authors: [akJR],
+        venue: 'ICFP 2022',
+        links: [
+          ['github', 'AndrasKovacs/staged'],
+          ['online', 'https://andraskovacs.github.io/pdfs/2ltt.pdf'],
+          ['doi', '10.1145/3547641'],
         ]
       }
     ],
@@ -149,6 +163,25 @@ export const readings: Publications = [
         links: [
           ['doi', '10.1145/3341691'],
         ]
+      },
+      {
+        title: 'Overlapping and Order-Independent Patterns',
+        links: [
+          ['online', 'https://jesper.sikanda.be/files/overlapping-and-order-independent-patterns.pdf']
+        ],
+        authors: [
+          agdakx,
+          { name: 'Dominique Devriese' },
+          { name: 'Frank Piessens' },
+        ]
+      },
+      {
+        title: 'Elaborating Dependent (Co)Pattern Matching',
+        links: [
+          ['doi', '10.1145/3236770']
+        ],
+        authors: [agdakx, aa],
+        venue: 'ICFP 2018',
       }
     ]
   },
