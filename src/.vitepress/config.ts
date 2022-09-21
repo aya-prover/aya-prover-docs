@@ -47,6 +47,7 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Get Started', link: '/guide/' },
+          { text: 'Recommended Reading', link: '/guide/readings' },
         ]
       },
     ]

@@ -6,6 +6,10 @@ const akJR: Author = {
   name: 'András Kovács',
   link: 'https://andraskovacs.github.io',
 };
+const akaposi: Author = { 
+  name: 'Ambrus Kaposi',
+  link: 'https://akaposi.github.io'
+};
 export const readings: Publications = [
   {
     type: 'General Type Theory',
@@ -39,12 +43,12 @@ export const readings: Publications = [
       },
       {
         title: 'A Syntax for Higher Inductive-Inductive Types',
-        authors: [{ name: 'Ambrus Kaposi' }, akJR],
+        authors: [akaposi, akJR],
         links: [['doi', '10.4230/LIPIcs.FSCD.2018.20']],
       },
       {
         title: 'Signatures and Induction Principles for Higher Inductive-Inductive Types',
-        authors: [{ name: 'Ambrus Kaposi' }, akJR],
+        authors: [akaposi, akJR],
         links: [['arxiv', '1902.00297']],
       },
       {
