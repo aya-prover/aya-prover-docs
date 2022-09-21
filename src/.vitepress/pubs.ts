@@ -1,4 +1,9 @@
-import type { Publications } from "./interface"
+import type { Publications, Author } from "./interface"
+
+const teslaZhang: Author = {
+  name: 'Tesla Zhang',
+  link: 'http://personal.psu.edu/yqz5714/'
+};
 export const publications: Publications = [
   {
     type: 'Papers',
@@ -6,10 +11,7 @@ export const publications: Publications = [
       {
         title: 'A simpler encoding of indexed types',
         venue: 'TyDe 2021',
-        authors: [{
-          name: 'Tesla Zhang',
-          link: 'http://personal.psu.edu/yqz5714/'
-        }],
+        authors: [teslaZhang],
         links: [
           ['arxiv', '2103.15408'],
           ['doi', '10.1145/3471875.3472991'],
@@ -24,10 +26,7 @@ export const publications: Publications = [
     items: [
       {
         title: 'Elegant elaboration with function invocation',
-        authors: [{
-          name: 'Tesla Zhang',
-          link: 'http://personal.psu.edu/yqz5714/'
-        }],
+        authors: [teslaZhang],
         links: [['arxiv', '2105.14840'], ['online', 'https://personal.psu.edu/yqz5714/defcall.pdf']],
       },
     ],

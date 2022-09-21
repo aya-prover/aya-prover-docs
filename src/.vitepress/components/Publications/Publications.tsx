@@ -31,6 +31,10 @@ export default defineComponent({
         name: 'conference version',
         link: (s: string) => s,
       },
+      github: {
+        name: 'github',
+        link: (s: string) => `https://github.com/${s}`,
+      }
     }
 
     function formattedLink(name: string, url: string): string {

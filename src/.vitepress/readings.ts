@@ -1,4 +1,11 @@
-import type { Publications } from "./interface"
+import type { Author, Publications } from "./interface"
+const thierryCoquand: Author = {
+  name: 'Thierry Coquand',
+};
+const akJR: Author = {
+  name: 'András Kovács',
+  link: 'https://andraskovacs.github.io',
+};
 export const readings: Publications = [
   {
     type: 'General Type Theory',
@@ -17,7 +24,7 @@ export const readings: Publications = [
       },
       {
         title: 'Generalized Universe Hierarchies and First-Class Universe Levels',
-        authors: [{ name: 'András Kovács' }],
+        authors: [akJR],
         links: [['arxiv', '2103.00223']],
       }
     ],
@@ -32,12 +39,12 @@ export const readings: Publications = [
       },
       {
         title: 'A Syntax for Higher Inductive-Inductive Types',
-        authors: [{ name: 'Ambrus Kaposi' }, { name: 'András Kovács' }],
+        authors: [{ name: 'Ambrus Kaposi' }, akJR],
         links: [['doi', '10.4230/LIPIcs.FSCD.2018.20']],
       },
       {
         title: 'Signatures and Induction Principles for Higher Inductive-Inductive Types',
-        authors: [{ name: 'Ambrus Kaposi' }, { name: 'András Kovács' }],
+        authors: [{ name: 'Ambrus Kaposi' }, akJR],
         links: [['arxiv', '1902.00297']],
       },
       {
@@ -45,7 +52,7 @@ export const readings: Publications = [
         authors: [
           { name: 'Carlo Angiuli'},
           { name: 'Guillaume Brunerie'},
-          { name: 'Thierry Coquand'},
+          thierryCoquand,
           { name: 'Robert Harper'},
           { name: 'Kuen-Bang Hou (Favonia)'},
           { name: 'Daniel R. Licata'},
@@ -64,7 +71,7 @@ export const readings: Publications = [
         title: 'Cubical Type Theory: a constructive interpretation of the univalence axiom',
         authors:[
           { name: 'Cyril Cohen' },
-          { name: 'Thierry Coquand' },
+          thierryCoquand,
           { name: 'Simon Huber' },
           { name: 'Anders Mörtberg' },
         ],
@@ -82,7 +89,21 @@ export const readings: Publications = [
         title: 'A Categorical Perspective on Pattern Unification',
         authors: [{ name: 'Andrea Vezzosi' }, { name: 'Andreas Abel' }],
         links: [['online', 'https://saizan.github.io/papers/pattern-unif.pdf']],
-      }
+      },
+      {
+        title: 'The "Elaboration Zoo"',
+        authors: [akJR],
+        links: [['github', 'AndrasKovacs/elaboration-zoo']],
+      },
+      {
+        title: 'Elaboration with First-Class Implicit Function Types',
+        authors: [akJR],
+        venue: "ICFP 2020",
+        links: [
+          ['github', 'AndrasKovacs/implicit-fun-elaboration'],
+          ['doi', '10.1145/3408983'],
+        ],
+      },
     ]
   },
   {
