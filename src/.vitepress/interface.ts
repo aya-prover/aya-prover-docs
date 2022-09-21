@@ -1,6 +1,6 @@
 export interface Author {
   name: string
-  link: string,
+  link?: string,
 }
 
 export interface PublicationItem {
@@ -10,9 +10,9 @@ export interface PublicationItem {
   links: [string,string][]
 }
 
-export interface Publicaion {
+export interface Publication {
   type: 'Papers'|'Preprints'|'Theses'|'Talks'|'Workshops'|'Tutorials'|'Misc'
   items: PublicationItem[]
 }
 
-export type Publicaions = Publicaion[]
+export type Publications = Publication[]

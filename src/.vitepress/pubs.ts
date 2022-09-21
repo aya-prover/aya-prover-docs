@@ -1,11 +1,11 @@
-import type { Publicaions } from "./interface"
-export const publications:Publicaions = [
+import type { Publications } from "./interface"
+export const publications:Publications = [
   {
     type: 'Papers',
     items: [
       {
         title: 'A simpler encoding of indexed types',
-        venue: 'Proceedings of the 6th ACM SIGPLAN International Workshop on Type-Driven Development (TyDe ’21)',
+        venue: 'TyDe 2021',
         author: {
           name: 'Tesla Zhang',
           link: 'http://personal.psu.edu/yqz5714/'
