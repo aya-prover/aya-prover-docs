@@ -16,8 +16,6 @@ jobs:
         node-version: 16.x
     - name: Setup pnpm for sane package management
       uses: pnpm/action-setup@v2.2.2
-      with:
-        version: 6
     - name: Build
       run: |
         pnpm i

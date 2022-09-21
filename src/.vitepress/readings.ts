@@ -50,6 +50,7 @@ export const readings: Publications = [
           { name: 'Kuen-Bang Hou (Favonia)'},
           { name: 'Daniel R. Licata'},
         ],
+        venue: 'MSCS 2021',
         links: [
           ['doi', '10.1017/S0960129521000347'],
           ['online', 'https://www.cs.cmu.edu/~cangiuli/papers/abcfhl.pdf']],
