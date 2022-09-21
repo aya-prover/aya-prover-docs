@@ -2,6 +2,8 @@ import { h, defineComponent, PropType } from 'vue'
 import type { Publications } from '../../interface'
 import './PubStyle.css'
 
+const interleave = <T,>(arr: T[], thing: T) =>
+  arr.flatMap(n => [n, thing]).slice(0, -1);
 export default defineComponent({
   name: 'Publications',
   props: {
@@ -21,8 +23,8 @@ export default defineComponent({
         name: 'doi',
         link: (s: string) => `https://doi.org/${s}`,
       },
-      latest: {
-        name: 'latest version',
+      online: {
+        name: 'online',
         link: (s: string) => s,
       },
       conference: {
@@ -43,43 +45,35 @@ export default defineComponent({
     }
   },
   render() {
-    return (
+    return (<div>{this.pubs?.map(pub => (
       <div>
-        {this.pubs?.map(pub => (
+        <h3>{pub.type}</h3>
+        <ul>{pub.items.map(item => (<li>
           <div>
-            <h3>{pub.type}</h3>
-            <ul>
-              {pub.items.map(item =>
-              (
-                <li>
-                  <div>
-                    <span class="pubs-title">{item.title}</span>
-                    <span class="pubs-author">
-                      {item.author.link ?
-                        (<a href={item.author.link}>{item.author.name}</a>)
-                        : (item.author.name)
-                      }
-                    </span>
-                  </div>
-                  {item.venue ? <div class="pubs-venue">{item.venue}</div> : null}
-                  <div>
-                    {item.links.map(link => (
-                      <a
-                        class="pubs-link"
-                        href={this.formattedLink(link[0], link[1])}
-                      >
-                        {this.getLinkName(link[0])}
-                      </a>
-                    ))}
-                  </div>
-                </li>
-              )
-              )}
-            </ul>
+            <span class="pubs-title">{item.title}</span>
+            <span>, by </span>
+            {interleave(item.authors.map(author => (
+              <span class="pubs-author">
+                {author.link ?
+                  (<a href={author.link}>{author.name}</a>) : (author.name)
+                }
+              </span>)), <span>, </span>)}
           </div>
-        )
-        )}
+          {item.venue ? <div class="pubs-venue">{item.venue}</div> : null}
+          <div>
+            {item.links.map(link => (<a
+              class="pubs-link"
+              href={this.formattedLink(link[0], link[1])}
+            > {this.getLinkName(link[0])}
+            </a>
+            ))}
+          </div>
+        </li>
+        ))}
+        </ul>
       </div>
+    ))}
+    </div>
     )
   }
 })

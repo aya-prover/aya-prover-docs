@@ -7,9 +7,9 @@
   border-bottom: 1px dashed #000;
 }
 
-.pubs-author::before {
+/* .pubs-author::before {
   content: ", by ";
-}
+} */
 
 .pubs-link {
   font-size: 0.9em;

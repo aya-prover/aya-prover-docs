@@ -4,14 +4,14 @@ export interface Author {
 }
 
 export interface PublicationItem {
-  author: Author
+  authors: Author[]
   title: string
   venue?: string
   links: [string,string][]
 }
 
 export interface Publication {
-  type: 'Papers'|'Preprints'|'Theses'|'Talks'|'Workshops'|'Tutorials'|'Misc'
+  type: string,
   items: PublicationItem[]
 }
 
