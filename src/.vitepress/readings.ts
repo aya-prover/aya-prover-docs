@@ -130,6 +130,15 @@ export const readings: Publications = [
         authors: [akaposi, akJR],
         links: [['arxiv', '1902.00297']],
       },
+      {
+        title: 'Contributions to Multimode and Presheaf Type Theory',
+        authors: [{
+          name: 'Andreas Nuyts',
+        }],
+        links: [
+          ['online', 'https://lirias.kuleuven.be/retrieve/581985']
+        ],
+      }
     ]
   },
 
@@ -259,6 +268,24 @@ export const readings: Publications = [
           ['online', 'https://www.cs.princeton.edu/~appel/papers/ecosystem.pdf'],
           ['doi', '10.1145/3497775.3503951'],
         ]
+      },
+      {
+        title: 'The End of History? Using a Proof Assistant to Replace Language Design with Library Design',
+        authors: [
+          { name: 'Adam Chlipala' },
+          { name: 'Benjamin Delaware' },
+          { name: 'Samuel Duchovni' },
+          { name: 'Jason Gross' },
+          { name: 'Clément Pit-Claudel' },
+          { name: 'Sorawit Suriyakarn' },
+          { name: 'Peng Wang' },
+          { name: 'Katherine Ye' },
+        ],
+        venue: 'SNAPL 2017',
+        links: [
+          ['doi', '10.4230/LIPIcs.SNAPL.2017.3'],
+          ['online', 'https://drops.dagstuhl.de/opus/volltexte/2017/7123/pdf/LIPIcs-SNAPL-2017-3.pdf']
+        ],
       }
     ]
   }
