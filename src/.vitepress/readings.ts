@@ -1,6 +1,16 @@
 import type { Author, Publications } from "./interface"
-const thierryCoquand: Author = {
+const mb: Author = {
+  name: 'Conor McBride',
+  // Doesn't support https
+  link: 'http://strictlypositive.org',
+};
+const coquand: Author = {
   name: 'Thierry Coquand',
+  link: 'https://www.cse.chalmers.se/~coquand',
+};
+const cohen: Author = {
+  name: 'Cyril Cohen',
+  link: 'https://perso.crans.org/cohen'
 };
 const akJR: Author = {
   name: 'András Kovács',
@@ -14,7 +24,7 @@ const simonHuber: Author = {
   name: 'Simon Huber',
   link: 'https://simhu.github.io',
 };
-const guillaumeBrunerie: Author = {
+const brunerie: Author = {
   name: 'Guillaume Brunerie',
   link: 'https://guillaumebrunerie.github.io',
 };
@@ -34,6 +44,7 @@ const agdakx: Author = {
   name: 'Jesper Cockx',
   link: 'https://jesper.sikanda.be',
 };
+
 export const readings: Publications = [
   {
     type: 'General Type Theory',
@@ -49,11 +60,6 @@ export const readings: Publications = [
           ['doi', '10.1145/3498693'],
           ['conference', 'https://dl.acm.org/doi/pdf/10.1145/3498693']
         ],
-      },
-      {
-        title: 'Generalized Universe Hierarchies and First-Class Universe Levels',
-        authors: [akJR],
-        links: [['arxiv', '2103.00223']],
       },
       {
         title: 'Copatterns: programming infinite structures by observations',
@@ -80,6 +86,31 @@ export const readings: Publications = [
       }
     ],
   },
+
+  {
+    type: 'Universes',
+    items: [
+      {
+        title: 'Crude but Effective Stratification',
+        authors: [mb],
+        links: [['online', 'https://personal.cis.strath.ac.uk/conor.mcbride/Crude.pdf']],
+      },
+      {
+        title: 'Generalized Universe Hierarchies and First-Class Universe Levels',
+        authors: [akJR],
+        links: [['arxiv', '2103.00223']],
+      },
+      {
+        title: 'Dependently typed lambda calculus with a lifting operator',
+        authors: [{
+          name: 'Damien Rouhling',
+          link: 'https://www-sop.inria.fr/members/Damien.Rouhling'
+        }],
+        links: [['online', 'https://www-sop.inria.fr/members/Damien.Rouhling/data/internships/M1Report.pdf']],
+      }
+    ]
+  },
+
   {
     type: 'Univalent Type Theory',
     items: [
@@ -102,8 +133,8 @@ export const readings: Publications = [
         title: 'Syntax and models of Cartesian cubical type theory',
         authors: [
           { name: 'Carlo Angiuli' },
-          guillaumeBrunerie,
-          thierryCoquand,
+          brunerie,
+          coquand,
           { name: 'Robert Harper' },
           { name: 'Kuen-Bang Hou (Favonia)' },
           { name: 'Daniel R. Licata' },
@@ -122,8 +153,8 @@ export const readings: Publications = [
         title: 'Cubical Type Theory: a constructive interpretation of the univalence axiom',
         venue: 'TYPES 2015',
         authors: [
-          { name: 'Cyril Cohen' },
-          thierryCoquand,
+          cohen,
+          coquand,
           simonHuber,
           andersMortberg,
         ],
@@ -134,6 +165,7 @@ export const readings: Publications = [
       }
     ]
   },
+
   {
     type: 'Implementation',
     items: [
@@ -162,6 +194,18 @@ export const readings: Publications = [
         venue: 'ICFP 2019',
         links: [
           ['doi', '10.1145/3341691'],
+          ['online', 'https://staff.math.su.se/anders.mortberg/papers/cubicalagda2.pdf']
+        ]
+      },
+      {
+        title: 'Higher-Order Constraint Simplification In Dependent Type Theory',
+        authors: [{
+          name: 'Jason Reed',
+        }],
+        venue: 'LFMTP 2009',
+        links: [
+          ['doi', '10.1145/1577824.1577832'],
+          ['online', 'https://www.cs.cmu.edu/~jcreed/papers/csl08-hocs.pdf']
         ]
       },
       {
@@ -185,6 +229,7 @@ export const readings: Publications = [
       }
     ]
   },
+
   {
     type: 'Miscellaneous',
     items: [
