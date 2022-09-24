@@ -93,7 +93,7 @@ export const readings: Publications = [
       {
         title: 'Crude but Effective Stratification',
         authors: [mb],
-        links: [['online', 'https://personal.cis.strath.ac.uk/conor.mcbride/Crude.pdf']],
+        links: [['slides', 'https://personal.cis.strath.ac.uk/conor.mcbride/Crude.pdf']],
       },
       {
         title: 'Generalized Universe Hierarchies and First-Class Universe Levels',
@@ -122,12 +122,37 @@ export const readings: Publications = [
       {
         title: 'A Syntax for Higher Inductive-Inductive Types',
         authors: [akaposi, akJR],
+        venue: 'FSCD 2018',
         links: [['doi', '10.4230/LIPIcs.FSCD.2018.20']],
       },
       {
         title: 'Signatures and Induction Principles for Higher Inductive-Inductive Types',
         authors: [akaposi, akJR],
         links: [['arxiv', '1902.00297']],
+      },
+    ]
+  },
+
+  {
+    type: 'Cubical Type Theory',
+    items: [
+      {
+        title: 'Cubical Agda: A Dependently Typed Programming Language with Univalence and Higher Inductive Types',
+        authors: [saizan, aa, andersMortberg],
+        venue: 'ICFP 2019',
+        links: [
+          ['doi', '10.1145/3341691'],
+          ['online', 'https://staff.math.su.se/anders.mortberg/papers/cubicalagda2.pdf']
+        ]
+      },
+      {
+        title: 'Automating Kan composition',
+        authors: [{
+          name: 'Maximilian Doré',
+        }],
+        links: [
+          ['slides', 'https://europroofnet.github.io/assets/wg6/stockholm-kickoff-slides/dore-europroofnet-stockholm-slides.pdf'],
+        ],
       },
       {
         title: 'Syntax and models of Cartesian cubical type theory',
@@ -187,15 +212,6 @@ export const readings: Publications = [
           ['github', 'AndrasKovacs/implicit-fun-elaboration'],
           ['doi', '10.1145/3408983'],
         ],
-      },
-      {
-        title: 'Cubical Agda: A Dependently Typed Programming Language with Univalence and Higher Inductive Types',
-        authors: [saizan, aa, andersMortberg],
-        venue: 'ICFP 2019',
-        links: [
-          ['doi', '10.1145/3341691'],
-          ['online', 'https://staff.math.su.se/anders.mortberg/papers/cubicalagda2.pdf']
-        ]
       },
       {
         title: 'Higher-Order Constraint Simplification In Dependent Type Theory',
