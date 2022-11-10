@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitepress'
-import footnote from 'markdown-it-footnote'
-import markdownItKatex from '@iktakahiro/markdown-it-katex'
+import { defineConfig } from 'vitepress';
+import footnote from 'markdown-it-footnote';
+import markdownItKatex from '@iktakahiro/markdown-it-katex';
 
 export default defineConfig({
   title: 'Aya Prover',
@@ -48,6 +48,7 @@ export default defineConfig({
         text: 'Guide',
         items: [
           { text: 'Get Started', link: '/guide/' },
+          { text: 'Install', link: '/guide/install' },
           { text: 'Recommended Reading', link: '/guide/readings' },
         ]
       },
