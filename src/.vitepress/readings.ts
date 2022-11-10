@@ -44,6 +44,18 @@ const agdakx: Author = {
   name: 'Jesper Cockx',
   link: 'https://jesper.sikanda.be',
 };
+const bob: Author = {
+  name: 'Robert Harper',
+  link: 'https://www.cs.cmu.edu/~rwh',
+};
+const carlo: Author = {
+  name: 'Carlo Angiuli',
+  link: 'https://www.cs.cmu.edu/~cangiuli',
+};
+const jon: Author = {
+  name: 'Jon Sterling',
+  link: 'https://www.jonmsterling.com',
+};
 
 export const readings: Publications = [
   {
@@ -155,6 +167,17 @@ export const readings: Publications = [
         ]
       },
       {
+        title: 'Normalization for Cubical Type theory',
+        authors: [jon, carlo],
+        venue: 'LICS 2020',
+        links: [
+          ['doi', '10.1109/LICS52264.2021.9470719'],
+          ['arxiv', '2101.11479'],
+          ['online', 'https://www.jonmsterling.com/papers/sterling-angiuli-2021.pdf'],
+          ['slides', 'https://www.jonmsterling.com/slides/sterling-angiuli-2021.pdf']
+        ]
+      },
+      {
         title: 'Automating Kan composition',
         authors: [{
           name: 'Maximilian Doré',
@@ -166,10 +189,7 @@ export const readings: Publications = [
       {
         title: 'Syntax and models of Cartesian cubical type theory',
         authors: [
-          { name: 'Carlo Angiuli' },
-          brunerie,
-          coquand,
-          { name: 'Robert Harper' },
+          carlo, brunerie, coquand, bob,
           { name: 'Kuen-Bang Hou (Favonia)' },
           { name: 'Daniel R. Licata' },
         ],
