@@ -22,8 +22,13 @@ export const publications: Publications = [
     ],
   },
   {
-    type: 'Preprints',
+    type: 'Notes',
     items: [
+      {
+        title: 'A tutorial on implementing De Morgan cubical type theory',
+        authors: [teslaZhang],
+        links: [['arxiv', '2210.08232']],
+      },
       {
         title: 'Elegant elaboration with function invocation',
         authors: [teslaZhang],
