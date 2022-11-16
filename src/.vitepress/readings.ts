@@ -56,6 +56,10 @@ const jon: Author = {
   name: 'Jon Sterling',
   link: 'https://www.jonmsterling.com',
 };
+const loic: Author = {
+  name: 'Loïc Pujet',
+  link: 'https://pujet.fr',
+};
 
 export const readings: Publications = [
   {
@@ -65,7 +69,7 @@ export const readings: Publications = [
         title: 'Observational Equality: Now for Good',
         venue: 'POPL 2022',
         authors: [
-          { name: 'Loïc Pujet' },
+          loic,
           { name: 'Nicolas Tabareau' },
         ],
         links: [
@@ -129,7 +133,7 @@ export const readings: Publications = [
       {
         title: 'Separating Path and Identity Types in Presheaf Models of Univalent Type Theory',
         authors: [{ name: 'Andrew Swan' }],
-        links: [['arxiv', 'https://arxiv.org/abs/1808.00920']],
+        links: [['arxiv', '1808.00920']],
       },
       {
         title: 'A Syntax for Higher Inductive-Inductive Types',
@@ -139,8 +143,12 @@ export const readings: Publications = [
       },
       {
         title: 'Signatures and Induction Principles for Higher Inductive-Inductive Types',
+        venue: 'LMCS 2020',
         authors: [akaposi, akJR],
-        links: [['arxiv', '1902.00297']],
+        links: [
+          ['arxiv', '1902.00297'],
+          ['doi', '10.23638/LMCS-16(1:10)2020']
+        ],
       },
       {
         title: 'Contributions to Multimode and Presheaf Type Theory',
@@ -215,6 +223,19 @@ export const readings: Publications = [
         links: [
           ['arxiv', '1611.02108'],
           ['doi', '10.4230/LIPIcs.TYPES.2015.5'],
+        ]
+      },
+      {
+        title: 'On Higher Inductive Types in Cubical Type Theory',
+        venue: 'LICS 2018',
+        authors: [
+          coquand,
+          simonHuber,
+          andersMortberg,
+        ],
+        links: [
+          ['arxiv', '1802.01170'],
+          ['doi', '10.1145/3209108.3209197']
         ]
       }
     ]
