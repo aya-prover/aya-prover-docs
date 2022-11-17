@@ -2,6 +2,9 @@
 
 At this stage of development, we recommend using the nightly version of Aya.
 Go to [GitHub Release], there will be a plenty of files.
+It's updated per-commit in the `main` branch,
+but the release date displayed is very old and is an issue of GitHub itself.
+
 Checking the section below that fits your platform.
 After the installation, run `aya --help` for general instructions and
 `aya -i` to start an interactive REPL.
@@ -10,12 +13,13 @@ After the installation, run `aya --help` for general instructions and
 
 ## If you already have Java 19 runtime...
 
-Very cool! Now you can try the prebuilt binary or build from source.
+Very cool! Now you can try the prebuilt jars (much smaller and platform-independent)
+or build Aya from source.
 
 ### Prebuilt binary
 
-Download the jar version of [cli][cli-jar] (for using command line)
-and [lsp][lsp-jar] (for using VSCode) and run it with `java -jar [file name].jar`.
+Download the jar version of [cli][cli-jar] (for using command line) and [lsp][lsp-jar]
+(for using VSCode) and run it with `java --enable-preview -jar [file name].jar`.
 
 [lsp-jar]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/lsp-fatjar.jar
 [cli-jar]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/cli-fatjar.jar

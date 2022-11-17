@@ -49,6 +49,7 @@ export default defineConfig({
         items: [
           { text: 'Get Started', link: '/guide/' },
           { text: 'Install', link: '/guide/install' },
+          { text: 'Tutorial for Haskellers', link: '/guide/haskeller-tutorial' },
           { text: 'Recommended Reading', link: '/guide/readings' },
         ]
       },
