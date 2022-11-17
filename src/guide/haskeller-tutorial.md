@@ -69,7 +69,7 @@ data Nat = Zero | Suc Nat
 
 In Aya:
 
-```aya
+```
 data Nat | zero | suc Nat
 ```
 
@@ -93,7 +93,7 @@ infixl 6 <+>
 
 In Aya (remember the numeric literal thing?):
 
-```aya
+```
 def infixl <+> Nat Nat : Nat
 | 0, n => n
 | suc m, n => suc (m <+> n)
@@ -108,7 +108,7 @@ We do not use a number to denote precedence, but a partial order.
 This allows arbitrary insertion of new precedence level into previously defined ones.
 Say you want `<+>` to have a lower precedence than `<*>`, you can do:
 
-```aya
+```
 def infixl <+> Nat Nat : Nat
 /// .... omitted
 looser <*>
@@ -119,19 +119,19 @@ You also have `tighter`, with the obvious meaning.
 The parameters and the return type are separated using `:`. The parameter types can
 be written directly, without `->`. Aya allow naming the parameters like this:
 
-```aya
+```
 def oh (x : Nat) : Nat
 ```
 
 These names can be used for one-linear function bodies:
 
-```aya
+```
 def oh (x : Nat) : Nat => x
 ```
 
 For easily inferrable types, you can replace it with `_` and hope:
 
-```aya
+```
 def oh (x : _) : Nat => x
 ```
 
@@ -146,7 +146,7 @@ id x = x
 
 In Aya:
 
-```aya
+```
 def id {A : Type} (x : A) => x
 ```
 
@@ -161,7 +161,7 @@ Observations:
 Type constructors are like `{F : Type -> Type}` (and yes, the `->` denotes function types,
 works for both values and types), very obvious. Definition of `Maybe` in Aya:
 
-```aya
+```
 data Maybe (A : Type) | nothing | just A
 ```
 
@@ -171,7 +171,7 @@ Here, `(A : Type)` is an explicit parameter, because you write `Maybe Nat`, not 
 
 In Aya, type families are functions. Consider the following code:
 
-```aya
+```
 // Unit type
 open data Unit | unit
 
