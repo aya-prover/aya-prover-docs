@@ -24,7 +24,11 @@ by `:normalize` followed by `NF`, `WHNF`, or `NULL` (means don't normalize).
 
 To work multiline, use the pair `:{` and `:}` -- same as GHCi.
 
-## Programming in Aya
+Aya supports pretty-printing of **any** terms, including ✨lambdas✨.
+Note that Aya does not automatically support generic lambdas, so typing
+`\x => x` would not work. You need to specify the type of `x`, like `\(x : Int) => x`.
+
+## Aya Package
 
 An Aya project consists of a directory with a `aya.json` file (project metadata)
 and a `src` directory for source code. Here's a sample `aya.json`:
@@ -53,7 +57,11 @@ About modules:
 + Aya supports renamed import `open import X using (x as y)` and the meaning is obvious.
 + To re-export, use a `public open`.
 
-Ok, natural numbers. In Haskell:
+Ok, let's write some code!
+
+## Programming in Aya
+
+Natural numbers. In Haskell:
 
 ```haskell
 data Nat = Zero | Suc Nat
@@ -107,3 +115,75 @@ looser <*>
 ```
 
 You also have `tighter`, with the obvious meaning.
+
+The parameters and the return type are separated using `:`. The parameter types can
+be written directly, without `->`. Aya allow naming the parameters like this:
+
+```aya
+def oh (x : Nat) : Nat
+```
+
+These names can be used for one-linear function bodies:
+
+```aya
+def oh (x : Nat) : Nat => x
+```
+
+For easily inferrable types, you can replace it with `_` and hope:
+
+```aya
+def oh (x : _) : Nat => x
+```
+
+## Type-level programming
+
+In Haskell:
+
+```haskell
+id :: a -> a
+id x = x
+```
+
+In Aya:
+
+```aya
+def id {A : Type} (x : A) => x
+```
+
+Observations:
+
++ Type parameters have to be explicitly qualified using curly braces.
++ Curly braces denote parameters that are omitted (and will be inferred by type checker)
+  in the pattern matching and invocations.
+  So, parentheses denote parameters that are **not** omitted.
++ Apart from `Type`, we also have `Set`, `Prop`, and `ISet`. For now, don't use the others.
+
+Type constructors are like `{F : Type -> Type}` (and yes, the `->` denotes function types,
+works for both values and types), very obvious. Definition of `Maybe` in Aya:
+
+```aya
+data Maybe (A : Type) | nothing | just A
+```
+
+Here, `(A : Type)` is an explicit parameter, because you write `Maybe Nat`, not just `Maybe`.
+
+## Dependent types
+
+In Aya, type families are functions. Consider the following code:
+
+```aya
+// Unit type
+open data Unit | unit
+
+// A type family
+def FromJust {A : Type} (x : Maybe A) : Type
+| just a => A
+| nothing => Unit
+
+// A function that uses the type family
+def fromJust {A : Type} (x : Maybe A) : FromJust x
+| just a => a
+| nothing => unit
+```
+
+And `fromJust (just a)` will evaluate to `a`.
