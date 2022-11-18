@@ -12,10 +12,13 @@ If you chose the jlink version, the `bin` folder contains the executable scripts
 
 [GitHub Release]: https://github.com/aya-prover/aya-dev/releases/tag/nightly-build
 
-## If you already have Java 19 runtime...
+## If you already have Java runtime...
 
 Very cool! Now you can try the prebuilt jars (much smaller and platform-independent)
 or build Aya from source.
+
+We will always be using the latest release of Java.
+Not that we do not stay on LTS releases.
 
 ### Prebuilt binary
 
@@ -27,7 +30,31 @@ Download the jar version of [cli][cli-jar] (for using command line) and [lsp][ls
 
 ### Build from source
 
-Clone the repository and following the instructions in `.github/README.md`.
+Clone the repository. Then, run build with `./gradlew` followed by a task name.
+If you have problems downloading dependencies (like you are in China),
+check out [how to][proxy] let gradle use a proxy.
+
+[proxy]: https://docs.gradle.org/current/userguide/build_environment.html#sec:accessing_the_web_via_a_proxy
+
+```bash
+# build Aya and its language server as applications to lsp/build/image
+# the image is usable in Java-free environments 
+./gradlew jlink --rerun-tasks
+# build Aya and its language server as executable
+# jars to <project>/build/libs/<project>-<version>-fat.jar
+./gradlew fatJar
+# build a platform-dependent installer for Aya and its language
+# server with the jlink artifacts to lsp/build/jpackage
+# requires https://wixtoolset.org/releases on Windows
+./gradlew jpackage
+# run tests and generate coverage report to build/reports
+./gradlew testCodeCoverageReport
+# (Windows only) show the coverage report in your default browser
+./gradlew showCCR
+```
+
+Gradle supports short-handed task names, so you can run `./gradlew fJ` to invoke `fatJar`,
+`tCCR` to invoke `testCodeCoverageReport`, and so on.
 
 ## Windows
 
