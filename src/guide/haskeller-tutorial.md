@@ -167,23 +167,77 @@ data Maybe (A : Type) | nothing | just A
 
 Here, `(A : Type)` is an explicit parameter, because you write `Maybe Nat`, not just `Maybe`.
 
+There is a way to automagically insert the implicit parameters -- the `variable` keyword.
+
+```
+variable A : Type
+
+// Now, since you are using A, so Aya inserts {A : Type}
+def id (x : A) => x
+```
+
 ## Dependent types
 
-In Aya, type families are functions. Consider the following code:
+In Aya, type families are functions. Consider the following code
+(they are using the `variable A` defined above):
 
 ```
 // Unit type
 open data Unit | unit
 
 // A type family
-def FromJust {A : Type} (x : Maybe A) : Type
+def FromJust (x : Maybe A) : Type
 | just a => A
 | nothing => Unit
 
 // A function that uses the type family
-def fromJust {A : Type} (x : Maybe A) : FromJust x
+def fromJust (x : Maybe A) : FromJust x
 | just a => a
 | nothing => unit
 ```
 
 And `fromJust (just a)` will evaluate to `a`.
+In Haskell, you need to use some language extensions alongside some scary keywords.
+These functions are available in constructors, too:
+
+```
+data Example (A : Type)
+| cons (x : Maybe A) (FromJust x)
+```
+
+It is recommended to play with it in the REPL to get a feel of it.
+
+There is a famous example of dependent types in Haskell -- the sized vector type:
+
+```haskell
+{-# LANGUAGE GADTs #-}
+{-# LANGUAGE DataKinds #-}
+-- Maybe you need more, but I don't recall. Sorry.
+
+data Vec :: Nat -> Type -> Type where
+  Nil :: Vec Zero a
+  (:<) :: a -> Vec n a -> Vec (Suc n) a
+infixr :<
+```
+
+In Aya, we have a better syntax:
+
+```
+data Vec (n : Nat) (A : Type)
+| 0, A => nil
+| suc n, A => infixr :< A (Vec n A)
+```
+
+The `:<` constructor is defined as a right-associative infix operator.
+And yes, you can define like vector append painlessly:
+
+```
+variable n : Nat
+
+def infixr ++ (Vec n A) (Vec m A) : Vec (n + m) A
+| nil, ys => ys
+| x :< xs, ys => x :< xs ++ ys
+tighter :<
+```
+
+Imagine how much work this is in Haskell.
