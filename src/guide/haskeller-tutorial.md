@@ -47,6 +47,9 @@ and a `src` directory for source code. Here's a sample `aya.json`:
 }
 ```
 
+To build a project, run `aya --make <parent dir of aya.json>` (incremental).
+For force-rebuilding, replace `--make` with `--remake`.
+
 About modules:
 
 + Aya module names are separated by `::`, not `.`.
@@ -234,10 +237,27 @@ And yes, you can define like vector append painlessly:
 ```
 variable n : Nat
 
-def infixr ++ (Vec n A) (Vec m A) : Vec (n + m) A
+def infixr ++ (Vec n A) (Vec m A) : Vec (n <+> m) A
 | nil, ys => ys
 | x :< xs, ys => x :< xs ++ ys
 tighter :<
 ```
 
 Imagine how much work this is in Haskell.
+
+<!--
+There is one more bonus: in Aya, you may modify the definition of `<+>` to be:
+
+```
+def overlap infixl <+> Nat Nat : Nat
+| 0, n => n
+| n, 0 => n
+| suc m, n => suc (m <+> n)
+```
+
+Then we may add the following clause to `++`:
+
+```
+| xs, nil => xs
+```
+-->
