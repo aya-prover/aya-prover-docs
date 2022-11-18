@@ -1,4 +1,4 @@
-# Well, so you know some Haskell
+# So you know some Haskell
 
 Great. I expect you to know something about GHCi and algebraic data types.
 If you find a bug, open an issue on GitHub!
@@ -20,7 +20,7 @@ java --enable-preview -jar cli-fatjar.jar -i
 
 In the REPL, you can use `:l` to load a file, `:q` to quit, and `:?` to get help.
 Use `:t` to show the type. Since it's dependent type, you can toggle normalization levels
-by `:normalize` followed by `NF`, `WHNF`, or `NULL` (means don't normalize).
+by `:normalize` followed by `NF`, `WHNF`, or `NULL` (don't normalize).
 
 To work multiline, use the pair `:{` and `:}` -- same as GHCi.
 
