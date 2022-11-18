@@ -28,27 +28,11 @@ Aya supports pretty-printing of **any** terms, including ✨lambdas✨.
 Note that Aya does not automatically support generic lambdas, so typing
 `\x => x` would not work. You need to specify the type of `x`, like `\(x : Int) => x`.
 
-## Aya Package
+## Working with projects
 
-An Aya project consists of a directory with a `aya.json` file (project metadata)
-and a `src` directory for source code. Here's a sample `aya.json`:
-
-```json
-{
-  "ayaVersion": "0.23",
-  "name": "<project name>",
-  "version": "<project version>",
-
-  "dependency": {
-    "<name of dependency>": { "file": "<directory to your dependency>" },
-    // We plan to support other sources of dependencies, but you know,
-    // we do not have money to host a package repository.
-  }
-}
-```
-
-To build a project, run `aya --make <parent dir of aya.json>` (incremental).
-For force-rebuilding, replace `--make` with `--remake`.
+Read [project-tutorial](project-tutorial), it is very short.
+It is recommended to practice the following with an Aya project in VSCode,
+see [vscode-tutorial](vscode-tutorial).
 
 About modules:
 

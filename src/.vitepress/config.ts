@@ -49,7 +49,9 @@ export default defineConfig({
         items: [
           { text: 'Get Started', link: '/guide/' },
           { text: 'Install', link: '/guide/install' },
-          { text: 'Tutorial for Haskellers', link: '/guide/haskeller-tutorial' },
+          { text: 'So you know Haskell', link: '/guide/haskeller-tutorial' },
+          { text: 'VSCode', link: '/guide/vscode-tutorial' },
+          { text: 'Aya Packages', link: '/guide/project-tutorial' },
           { text: 'Recommended Reading', link: '/guide/readings' },
         ]
       },

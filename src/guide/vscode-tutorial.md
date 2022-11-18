@@ -1,0 +1,17 @@
+# So you are using VSCode
+
+Go to [GitHub Actions], click the latest successful run,
+scroll down to the bottom of the page, download the "aya-prover-vscode-extension", and unzip it.
+Then, follow [VSCode docs](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) to install the extension.
+
+[GitHub Actions]: https://github.com/aya-prover/aya-vscode/actions/workflows/vsix.yml
+
+Then, open a directory that is an Aya project (see [project-tutorial](project-tutorial)).
+Open any `.aya` file, you should see some basic highlight (keywords, comments, etc.).
+Wait for VSCode to activate the extension, and hit `Ctrl+L Ctrl+L` to load the file.
+At this point, you should see advanced highlight (type names, constructors, etc.),
+with clickable definitions.
+
+The rest of the features should be quite discoverable for regular programmers,
+such as hovering a red or a yellow wavy line to see the error message, etc.
+Please create issues and discuss ideas on how to improve the error reports.
