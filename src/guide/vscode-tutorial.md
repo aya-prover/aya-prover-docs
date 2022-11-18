@@ -6,6 +6,14 @@ Then, follow [VSCode docs](https://code.visualstudio.com/docs/editor/extension-m
 
 [GitHub Actions]: https://github.com/aya-prover/aya-vscode/actions/workflows/vsix.yml
 
+It remains to configure the Aya language server. There are two ways to use the server.
+First, open settings, search for "Aya path", you should see a text box. Then, you have a choice:
+
+1. Use a jar file. Put your `lsp-fatjar.jar` file path there. Make sure you have a `java`
+   executable in the Path (recommended) or in `java.home` key in the settings json.
+2. Use the jlink version of Aya. Put the `aya-lsp` (or `aya-lsp.bat` if you are on Windows)
+   file path there, which is under the `bin` folder of the jlink distribution.
+
 Then, open a directory that is an Aya project (see [project-tutorial](project-tutorial)).
 Open any `.aya` file, you should see some basic highlight (keywords, comments, etc.).
 Wait for VSCode to activate the extension, and hit `Ctrl+L Ctrl+L` to load the file.

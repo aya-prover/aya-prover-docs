@@ -8,6 +8,7 @@ but the release date displayed is very old and is an issue of GitHub itself.
 Checking the section below that fits your platform.
 After the installation, run `aya --help` for general instructions and
 `aya -i` to start an interactive REPL.
+If you chose the jlink version, the `bin` folder contains the executable scripts.
 
 [GitHub Release]: https://github.com/aya-prover/aya-dev/releases/tag/nightly-build
 
