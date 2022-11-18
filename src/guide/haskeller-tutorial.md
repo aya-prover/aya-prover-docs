@@ -1,6 +1,7 @@
 # So you know some Haskell
 
 Great. I expect you to know something about GHCi and algebraic data types.
+This is an Aya tutorial for Haskell programmers.
 If you find a bug, open an issue on GitHub!
 
 ## Working with the REPL
@@ -126,7 +127,9 @@ def oh (x : _) : Nat => x
 ```
 
 Aya supports a painless version of the section syntax, where the top-level does
-not need parentheses. See the following REPL output.
+not need parentheses. See the following REPL output (the underscored names
+are internally generated variable names. If you have an idea on how to make them
+better, open an issue and let's discuss!).
 
 ```
 > 1 <+>
