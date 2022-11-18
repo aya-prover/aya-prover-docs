@@ -97,6 +97,7 @@ infixl 6 <+>
 In Aya (remember the numeric literal thing?):
 
 ```
+open Nat
 def infixl <+> Nat Nat : Nat
 | 0, n => n
 | suc m, n => suc (m <+> n)
