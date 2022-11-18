@@ -103,6 +103,8 @@ def infixl <+> Nat Nat : Nat
 | suc m, n => suc (m <+> n)
 ```
 
+There are plenty of differences. Let's go through them one by one.
+
 The `infixl` declares `<+>` to be a left-associative infix operator.
 Other options include `infix`, `infixr`, `fixl`, and `fixr`.
 Without it, the function will work the same as normal function.
@@ -137,6 +139,26 @@ For easily inferrable types, you can replace it with `_` and hope:
 
 ```
 def oh (x : _) : Nat => x
+```
+
+Aya supports a painless version of the section syntax, where the top-level does
+not need parentheses. See the following REPL output.
+
+```
+> 1 <+>
+suc
+
+> <+> 1
+λ _7 ⇒ _7 <+> 1
+
+> 1 <+> 1
+suc 1
+
+> 2 <+>
+λ _5 ⇒ suc (suc _5)
+
+> <+> 2
+λ _7 ⇒ _7 <+> 2
 ```
 
 ## Type-level programming
