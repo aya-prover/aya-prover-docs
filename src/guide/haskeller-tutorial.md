@@ -148,6 +148,17 @@ suc 1
 λ _7 ⇒ _7 <+> 2
 ```
 
+Aya also supports pattern matching expressions -- using the `match` keyword.
+Example:
+
+```
+def pred (x : Nat) : Nat =>
+  match x {
+  | suc a => a
+  | 0 => 0
+  }
+```
+
 ## Type-level programming
 
 In Haskell:
@@ -175,7 +186,9 @@ Type constructors are like `{F : Type -> Type}` (and yes, the `->` denotes funct
 works for both values and types), very obvious. Definition of `Maybe` in Aya:
 
 ```
-data Maybe (A : Type) | nothing | just A
+open data Maybe (A : Type)
+| nothing
+| just A
 ```
 
 Here, `(A : Type)` is an explicit parameter, because you write `Maybe Nat`, not just `Maybe`.
@@ -189,7 +202,22 @@ variable A : Type
 def id (x : A) => x
 ```
 
-## Dependent types
+Aya supports type aliases as functions. For example, we may define the type of binary
+operators as a function:
+
+```
+def BinOp (A : Type) => A -> A -> A
+```
+
+Then, we can define `<+>` as:
+
+```
+def infixl <+> : BinOp Nat
+| 0, n => n
+| suc m, n => suc (m <+> n)
+```
+
+## Type families
 
 In Aya, type families are functions. Consider the following code
 (they are using the `variable A` defined above):
