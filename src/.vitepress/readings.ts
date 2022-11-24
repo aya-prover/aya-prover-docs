@@ -60,6 +60,14 @@ const loic: Author = {
   name: 'Loïc Pujet',
   link: 'https://pujet.fr',
 };
+const tabareau: Author = {
+  name: 'Nicolas Tabareau',
+  link: 'https://tabareau.fr'
+};
+const favonia: Author = {
+  name: 'Kuen-Bang Hou (Favonia)',
+  link: 'https://favonia.org',
+};
 
 export const readings: Publications = [
   {
@@ -68,10 +76,7 @@ export const readings: Publications = [
       {
         title: 'Observational Equality: Now for Good',
         venue: 'POPL 2022',
-        authors: [
-          loic,
-          { name: 'Nicolas Tabareau' },
-        ],
+        authors: [loic, tabareau],
         links: [
           ['doi', '10.1145/3498693'],
           ['conference', 'https://dl.acm.org/doi/pdf/10.1145/3498693']
@@ -123,6 +128,27 @@ export const readings: Publications = [
           link: 'https://www-sop.inria.fr/members/Damien.Rouhling'
         }],
         links: [['online', 'https://www-sop.inria.fr/members/Damien.Rouhling/data/internships/M1Report.pdf']],
+      },
+      {
+        title: 'An Order-Theoretic Analysis of Universe Polymorphism',
+        venue: 'POPL 2023',
+        authors: [
+          favonia, carlo,
+          { name: 'Reed Mullanix' },
+        ],
+        links: [
+          ['online', 'https://favonia.org/files/mugen.pdf'],
+          ['doi', '10.1145/3571250'],
+        ]
+      },
+      {
+        title: 'Impredicative Observational Equality',
+        authors: [tabareau, loic],
+        venue: 'POPL 2023',
+        links: [
+          ['online', 'https://hal.inria.fr/hal-03857705'],
+          ['doi', '10.1145/3571739']
+        ]
       }
     ]
   },
@@ -197,8 +223,7 @@ export const readings: Publications = [
       {
         title: 'Syntax and models of Cartesian cubical type theory',
         authors: [
-          carlo, brunerie, coquand, bob,
-          { name: 'Kuen-Bang Hou (Favonia)' },
+          carlo, brunerie, coquand, bob, favonia,
           { name: 'Daniel R. Licata' },
         ],
         venue: 'MSCS 2021',
