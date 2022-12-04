@@ -5,9 +5,10 @@
   "description": "The documentation site of the Aya prover.",
   "main": "index.js",
   "scripts": {
-    "dev": "vitepress dev src --host",
-    "build": "vitepress build src",
-    "serve": "vitepress serve src"
+    "dev": "pnpm run build-aya && vitepress dev src --host",
+    "build": "pnpm run build-aya && vitepress build src",
+    "serve": "pnpm run build-aya && vitepress serve src",
+    "build-aya": "node scripts/build-aya.js"
   },
   "repository": {
     "type": "git",

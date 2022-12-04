@@ -7,3 +7,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 dist
+build-aya/
+
+src/guide/haskeller-tutorial.md

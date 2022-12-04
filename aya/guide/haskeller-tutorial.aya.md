@@ -57,7 +57,7 @@ data Nat = Zero | Suc Nat
 
 In Aya:
 
-```
+```aya
 data Nat | zero | suc Nat
 ```
 
@@ -81,7 +81,7 @@ infixl 6 <+>
 
 In Aya (remember the numeric literal thing?):
 
-```
+```aya
 open Nat
 def infixl <+> Nat Nat : Nat
 | 0, n => n
@@ -116,14 +116,8 @@ def oh (x : Nat) : Nat
 
 These names can be used for one-linear function bodies:
 
-```
+```aya
 def oh (x : Nat) : Nat => x
-```
-
-For easily inferrable types, you can replace it with `_` and hope:
-
-```
-def oh (x : _) : Nat => x
 ```
 
 Aya supports a painless version of the section syntax, where the top-level does
@@ -151,7 +145,7 @@ suc 1
 Aya also supports pattern matching expressions -- using the `match` keyword.
 Example:
 
-```
+```aya
 def pred (x : Nat) : Nat =>
   match x {
   | suc a => a
@@ -170,7 +164,7 @@ id x = x
 
 In Aya:
 
-```
+```aya
 def id {A : Type} (x : A) => x
 ```
 
@@ -185,7 +179,7 @@ Observations:
 Type constructors are like `{F : Type -> Type}` (and yes, the `->` denotes function types,
 works for both values and types), very obvious. Definition of `Maybe` in Aya:
 
-```
+```aya
 open data Maybe (A : Type)
 | nothing
 | just A
@@ -195,24 +189,24 @@ Here, `(A : Type)` is an explicit parameter, because you write `Maybe Nat`, not 
 
 There is a way to automagically insert the implicit parameters -- the `variable` keyword.
 
-```
+```aya
 variable A : Type
 
 // Now, since you are using A, so Aya inserts {A : Type}
-def id (x : A) => x
+example def id (x : A) => x
 ```
 
 Aya supports type aliases as functions. For example, we may define the type of binary
 operators as a function:
 
-```
+```aya
 def BinOp (A : Type) => A -> A -> A
 ```
 
 Then, we can define `<+>` as:
 
-```
-def infixl <+> : BinOp Nat
+```aya
+example def infixl <+> : BinOp Nat
 | 0, n => n
 | suc m, n => suc (m <+> n)
 ```
@@ -222,7 +216,7 @@ def infixl <+> : BinOp Nat
 In Aya, type families are functions. Consider the following code
 (they are using the `variable A` defined above):
 
-```
+```aya
 // Unit type
 open data Unit | unit
 
@@ -241,7 +235,7 @@ And `fromJust (just a)` will evaluate to `a`.
 In Haskell, you need to use some language extensions alongside some scary keywords.
 These functions are available in constructors, too:
 
-```
+```aya
 data Example (A : Type)
 | cons (x : Maybe A) (FromJust x)
 ```
@@ -263,8 +257,8 @@ infixr :<
 
 In Aya, we have a better syntax:
 
-```
-data Vec (n : Nat) (A : Type)
+```aya
+open data Vec (n : Nat) (A : Type)
 | 0, A => nil
 | suc n, A => infixr :< A (Vec n A)
 ```
@@ -272,8 +266,8 @@ data Vec (n : Nat) (A : Type)
 The `:<` constructor is defined as a right-associative infix operator.
 And yes, you can define like vector append painlessly:
 
-```
-variable n : Nat
+```aya
+variable m n : Nat
 
 def infixr ++ (Vec n A) (Vec m A) : Vec (n <+> m) A
 | nil, ys => ys
