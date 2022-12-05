@@ -14,6 +14,8 @@ jobs:
       uses: actions/setup-node@v2-beta
       with:
         node-version: 16.x
+    - name: Setup Aya
+      uses: aya-prover/setup-aya@latest
     - name: Setup pnpm for sane package management
       uses: pnpm/action-setup@v2.2.2
     - name: Build
