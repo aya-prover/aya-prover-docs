@@ -39,7 +39,7 @@ the type checker will not believe that an instance of `Pi (x : Prop) x -> x`{}
 is definitionally equal to the identity function.
 
 So, you have looked up the internet, and you have found inductive types!
-We now redefine natural numbers as an inductive type. As a side effect,
+We now redefine natural numbers as an inductive type `Nat`{}. As a side effect,
 we will also assume a Coq (or (vanilla) Agda, or Lean, or Idris) style intensional equality type.
 
 ```aya
@@ -218,8 +218,8 @@ example def overlap ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 ```
 
 It is harder to prove because in the induction step, one need to show that
-`cast (↑ pmap (\n => Vec n A) (+-assoc {n} {m} {o}))`{} is equivalent to the identity function
-in order to use the induction hypothesis.
+`cast (↑ pmap (\n => Vec n A) (+-assoc {n} {m} {o}))`{implicitArgs=false}
+is equivalent to the identity function in order to use the induction hypothesis.
 
 Cubical provides a pleasant way of working with heterogeneous equality:
 
