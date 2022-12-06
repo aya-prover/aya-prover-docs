@@ -205,8 +205,8 @@ counterexample def overlap ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 ```
 
 However, this definition is not well-typed.
-The type of `(xs ++ ys) ++ zs` is `Vec ((n + m) + o) A`,
-while the type of `xs ++ (ys ++ zs)` is `Vec (n + (m + o)) A`.
+The type of `(xs ++ ys) ++ zs` is `Vec ((n + m) + o) A`{},
+while the type of `xs ++ (ys ++ zs)` is `Vec (n + (m + o)) A`{}.
 They are not the same, but only up to propositional equality.
 Here's a lame definition that is well-typed in pre-cubical type theory,
 and is also harder to prove:
@@ -218,10 +218,10 @@ example def overlap ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 ```
 
 It is harder to prove because in the induction step, one need to show that
-`cast (pmap (\n => Vec n A) +-assoc)` is equivalent to the identity function
+`cast (↑ pmap (\n => Vec n A) (+-assoc {n} {m} {o}))`{} is equivalent to the identity function
 in order to use the induction hypothesis.
 
-Cubical proves a pleasant way of working with heterogeneous equality:
+Cubical provides a pleasant way of working with heterogeneous equality:
 
 ```aya
 def Path (A : I -> Type) (a : A 0) (b : A 1) => [| i |] A i { i := b | ~ i := a }
