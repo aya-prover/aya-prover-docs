@@ -15,7 +15,7 @@ prim intervalInv
 def inline ~ => intervalInv
 variable A B : Type
 def infix = (a b : A) => [| i |] A { i := b | ~ i := a }
-def refl {a : A} : a = a => \i => a
+def refl {a : A} : a = a => λ i => a
 ```
 
 ## A journey begins
@@ -27,8 +27,8 @@ Here is an example definition of natural numbers:
 module IP {
 def Nat => Pi (P : Prop) (P -> P) P -> P
 
-def zero : Nat => \P s z => z
-def suc (x : Nat) : Nat => \P s z => s (x P s z)
+def zero : Nat => λ P s z => z
+def suc (x : Nat) : Nat => λ P s z => s (x P s z)
 }
 ```
 
@@ -61,7 +61,7 @@ def not Bool : Bool
 
 def id (x : Bool) => x
 
-def Goal => (\x => not (not x)) = id
+def Goal => (λ x => not (not x)) = id
 
 // And yes, below is the syntax for typed holes in Aya:
 // def question : Goal => {??}
