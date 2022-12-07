@@ -197,8 +197,8 @@ def +-assoc {a b c : Nat} : (a + b) + c = a + (b + c)
 
 It is tempting to use the below definition:
 
-```aya
-counterexample def overlap ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
+```
+def overlap ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
   : (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
 | nil, ys, zs => refl
 | x :< xs, ys, zs => pmap (x :<) (++-assoc xs ys zs)
