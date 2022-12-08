@@ -2,6 +2,7 @@
 
 In this tutorial, we introduce a simple extension to the traditional "path type"
 in cubical type theory -- the extension type.
+Basic knowledge on cubical type theory is assumed.
 Some primitive definitions:
 
 ```aya
@@ -129,3 +130,47 @@ example def traditional
   : Path (\i => line1 i = line1 i) line2 line2
   => \i => face i
 ```
+
+For the record, one may also work with the HoTT-book definition of torus:
+
+```aya
+example data Torus
+| pt
+| l1 (i : I) { ∂ i := pt }
+| l2 (i : I) { ∂ i := pt }
+| tub (i j : I) { ~ i := concat l1 l2 j
+                  | i := concat l2 l1 j }
+```
+
+But this is less pleasant to work with, because the boundaries
+are using `concat` which is a complicated definition.
+
+## Off-topic interesting results
+
+There is a higher inductive type that is essentially the same as the
+interval type:
+
+```aya
+open data Interval
+| left | right
+| line (i : I) { ~ i := left | i := right }
+```
+
+The elimination rule of `Interval`{} implies function extensionality.
+To avoid cheating, we will not use path application or path abstraction
+in the proof, to imitate pure MLTT with HITs.
+
+```aya
+private def lemma (f g : A → B) (∀ x → f x = g x) : Interval -> A -> B
+| f, _, _, left, a => f a
+| _, g, _, right, a => g a
+| _, _, p, line i, a => p a i
+
+def funExtFromInterval (f g : A → B) (p : ∀ x → f x = g x) : f = g =>
+  pmap (lemma f g p) line
+```
+
+Note that even though we are using equation combinators like `pmap`{} which
+are implemented using path application and abstraction,
+it is not considered cheating because these are already theorems in MLTT anyway.
+One may also prove them by path induction in cubical type theory, but why bother!
