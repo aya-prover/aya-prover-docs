@@ -37,6 +37,8 @@ For instance, it is difficult to derive the predecessor function for `IP::Nat`{}
 More fatally, there is no 'eta law' for impredicative encoded types --
 the type checker will not believe that an instance of `Pi (x : Prop) x -> x`{}
 is definitionally equal to the identity function.
+It is also impossible to show that `IP::zero`{} is unequal to `IP::suc IP::zero`{}.
+This is too bad for doing mathematics.
 
 So, you have looked up the internet, and you have found inductive types!
 We now redefine natural numbers as an inductive type `Nat`{}. As a side effect,
@@ -74,7 +76,7 @@ However, you are very smart and realized you can instead show the following:
 def Goal' (x : Bool) => not (not x) = id x
 ```
 
-This is pretty much the same!
+This is pretty much the same theorem!
 
 Now, suppose we need to show a propositional equality between two records.
 This means we have to show they're memberwise equal.
@@ -114,7 +116,7 @@ def sym {a b : A} (p : a = b) : b = a => \i => p (~ i)
 
 However, we cannot yet define transitivity of equality because we do not have the
 traditional elimination rule of the equality type -- the `J` rule.
-This will need some advanced proving techniques that is beyond the scope of this
+This will need some advanced proving techniques that are beyond the scope of this
 simple tutorial, so I'll skim them. First, we need type-safe coercion:
 
 ```aya
@@ -146,8 +148,11 @@ example def infix + Nat Nat : Nat
 | suc m, n => suc (m + n)
 ```
 
-It is tempting to have `| n, 0 => n` as a computation rule as well.
-In fact, you _can_ do that in Aya. You may also add the other lemma as well.
+And then you prove that `a + 0 = a` and `a + suc b = suc (a + b)`.
+It is tempting to have `| n, 0 => n` as a computation rule as well,
+but this is incompatible with the usual semantics of pattern matching,
+which is compiled to elimination principles during type checking.
+However, you _can_ do that in Aya. You may also add the other lemma as well.
 
 ```aya
 def overlap infix + Nat Nat : Nat
@@ -187,14 +192,6 @@ def overlap infixr ++ (Vec n A) (Vec m A) : Vec (n + m) A
 tighter :< =
 ```
 
-We need to show that natural numbers addition is associative:
-
-```aya
-def +-assoc {a b c : Nat} : (a + b) + c = a + (b + c)
-| {0} => refl
-| {suc _} => pmap suc +-assoc
-```
-
 It is tempting to use the below definition:
 
 ```
@@ -207,12 +204,22 @@ def overlap ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 However, this definition is not well-typed.
 The type of `(xs ++ ys) ++ zs` is `Vec ((n + m) + o) A`{},
 while the type of `xs ++ (ys ++ zs)` is `Vec (n + (m + o)) A`{}.
-They are not the same, but only up to propositional equality.
-Here's a lame definition that is well-typed in pre-cubical type theory,
-and is also harder to prove:
+They are not the same!
+Fortunately, we can prove that they are propositionally equal.
+We need to show that natural number addition is associative,
+which is the key lemma of this propositional equality:
 
 ```aya
-def castRefl (a : A) : cast ↑ refl a = a => sym ((\i => A).coeFill a)
+def +-assoc {a b c : Nat} : (a + b) + c = a + (b + c)
+| {0} => refl
+| {suc _} => pmap suc +-assoc
+```
+
+Now we can work on the proof of `++-assoc`.
+Here's a lame definition that is well-typed in pre-cubical type theory,
+and is also hard to prove -- we `cast`{} one side of the equation to be other side:
+
+```aya
 example def overlap ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
   => cast (↑ pmap (\n => Vec n A) +-assoc) ((xs ++ ys) ++ zs) = xs ++ (ys ++ zs)
 ```
@@ -220,7 +227,13 @@ example def overlap ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 It is harder to prove because in the induction step, one need to show that
 `cast (↑ pmap (\n => Vec n A) (+-assoc {n} {m} {o}))`{implicitArgs=false}
 is equivalent to the identity function in order to use the induction hypothesis.
+For the record, here's the proof:
 
+```aya
+def castRefl (a : A) : cast ↑ refl a = a => sym ((\i => A).coeFill a)
+```
+
+But still, with this lemma it is still hard.
 Cubical provides a pleasant way of working with heterogeneous equality:
 
 ```aya
@@ -237,4 +250,4 @@ def ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
   => Path (\i => Vec (+-assoc i) A) ((xs ++ ys) ++ zs) (xs ++ (ys ++ zs))
 ```
 
-The proof is omitted (try!).
+The proof is omitted (try yourself!).
