@@ -1,5 +1,8 @@
 # Aya Prover Docs
 
+[![.github/workflows/deploy.yml](https://github.com/aya-prover/aya-prover-docs/actions/workflows/deploy.yml/badge.svg)](https://github.com/aya-prover/aya-prover-docs/actions/workflows/deploy.yml)
+[![github pages](https://github.com/aya-prover/aya-prover.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/aya-prover/aya-prover.github.io/actions/workflows/pages/pages-build-deployment)
+
 The documentation and dev blog for the [Aya Prover].
 
 ## Build

@@ -2,6 +2,8 @@
 
 + [Installation Guide](install)
 + [Tutorial for Haskellers](haskeller-tutorial) (should also work for Idris users)
++ [Tutorial for Dependent Type users](anqur-story)
++ [Tutorial for the "extension type"](ext-types)
 + [Tutorial for VSCode extension](vscode-tutorial)
 
 Aya is a programming language _and_ an interactive proof assistant designed for type-directed programming _and_ formalizing math.
