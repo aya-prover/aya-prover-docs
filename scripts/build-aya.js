@@ -27,7 +27,7 @@ process.chdir("aya");
 // For each file, we call aya compiler
 walk(".", (file) => {
   console.log("Compiling: " + file);
-  child_process.execSync("aya --pretty-stage=literate --pretty-format=markdown --pretty-dir=../build-aya " + file,
+  child_process.execSync("aya --pretty-no-code-style --pretty-stage=literate --pretty-format=markdown --pretty-dir=../build-aya " + file,
     (err) => {
       if (err) throw err;
     });

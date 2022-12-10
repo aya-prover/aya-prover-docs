@@ -9,6 +9,48 @@
 }
 
 /**
+ * Aya Syntax Highlighting
+ * -------------------------------------------------------------------------- */
+
+/* TODO: support dark theme */
+
+:root {
+    --Aya-Fn: #0000ff;
+    --Aya-Constructor: #a021ef;
+    --Aya-Struct: #218c21;
+    --Aya-Generalized: #0000ff;
+    --Aya-Data: #218c21;
+    --Aya-Primitive: #0000ff;
+    --Aya-Keyword: #ff6d00;
+    --Aya-Field: #008c8c;
+}
+.Aya .Fn {
+    color: var(--Aya-Fn);
+}
+.Aya .Constructor {
+    color: var(--Aya-Constructor);
+}
+.Aya .Struct {
+    color: var(--Aya-Struct);
+}
+.Aya .Generalized {
+    color: var(--Aya-Generalized);
+}
+.Aya .Data {
+    color: var(--Aya-Data);
+}
+.Aya .Primitive {
+    color: var(--Aya-Primitive);
+}
+.Aya .Keyword {
+    font-weight: bold;
+    color: var(--Aya-Keyword);
+}
+.Aya .Field {
+    color: var(--Aya-Field);
+}
+
+/**
  * Colors
  * -------------------------------------------------------------------------- */
 
