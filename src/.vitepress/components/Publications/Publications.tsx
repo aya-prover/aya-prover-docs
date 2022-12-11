@@ -1,6 +1,6 @@
 import { h, defineComponent, PropType } from 'vue'
 import type { Publications } from '../../interface'
-import './PubStyle.css'
+import './PubStyle.css?inline'
 
 const interleave = <T,>(arr: T[], thing: T) =>
   arr.flatMap(n => [n, thing]).slice(0, -1);
@@ -39,14 +39,10 @@ export default defineComponent({
         name: 'github',
         link: (s: string) => `https://github.com/${s}`,
       }
-    }
+    };
 
-    function formattedLink(name: string, url: string): string {
-      return links[name].link(url)
-    }
-    function getLinkName(name: string): string {
-      return links[name].name
-    }
+    const formattedLink = (name: string, url: string) => links[name].link(url);
+    const getLinkName = (name: string) => links[name].name;
     return {
       formattedLink,
       getLinkName,

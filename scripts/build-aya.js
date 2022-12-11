@@ -19,7 +19,7 @@ function walk(dir, callback) {
 }
 
 // Create output directory
-fs.mkdir("build-aya", {recursive: true}, (err) => {
+if (!fs.existsSync("build-aya")) fs.mkdir("build-aya", {recursive: true}, (err) => {
   if (err) throw err;
 });
 // Switch to source directory
