@@ -38,6 +38,7 @@ export default defineConfig({
       {
         text: 'Blog',
         items: [
+          { text: 'Path constructor elaboration', link: '/blog/pathcon-elab' },
           { text: 'Path type elaboration', link: '/blog/path-elab' },
           { text: 'Binary operators', link: '/blog/binops' },
           { text: 'Index unification?', link: '/blog/index-unification' },
