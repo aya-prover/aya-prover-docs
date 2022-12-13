@@ -72,6 +72,28 @@ Gradle supports short-handed task names, so you can run `./gradlew fJ` to invoke
 [linux-zip]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover-jlink-ubuntu-latest_x86-64.zip
 [linux-exe]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-native-ubuntu-latest_x86-64
 
+Here's a hands-on script I wrote to (re)install Aya to `/etc/aya`:
+
+```bash
+#!/bin/bash
+sudo mkdir -p /etc/aya
+sudo chown $USER /etc/aya
+rm -rf /etc/aya/*
+cd /etc/aya
+wget https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover-jlink-ubuntu-latest_x86-64.zip
+unzip aya-prover-jlink-ubuntu-latest_x86-64.zip
+rm aya-prover-jlink-ubuntu-latest_x86-64.zip
+cd -
+```
+
+If it's the first time you install Aya, you may want to do
+(or replace `~/.bashrc` with your shell's rc file):
+
+```bash
+echo 'export PATH="/etc/aya/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
 ## Apple macOS
 
 + The [zip][mac-zip] version of Aya runs in a JVM (built with jlink).

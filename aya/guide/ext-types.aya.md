@@ -98,6 +98,15 @@ example def Refl {a : A} => [| i |] A { ∂ i := a }
 The simplest example is the definition of circles:
 
 ```aya
+example open data S¹
+| base
+| loop : base = base
+```
+
+Aya will slightly analyze the definition and transform `loop : base = base`
+into `loop (i : I)` where either $i = 0$ or $i = 1$ makes it reduce to `base`:
+
+```aya
 open data S¹
 | base
 | loop (i : I) { ∂ i := base }
@@ -136,10 +145,9 @@ For the record, one may also work with the HoTT-book definition of torus:
 ```aya
 example data Torus
 | pt
-| l1 (i : I) { ∂ i := pt }
-| l2 (i : I) { ∂ i := pt }
-| tub (i j : I) { ~ i := concat l1 l2 j
-                  | i := concat l2 l1 j }
+| l1 : pt = pt
+| l2 : pt = pt
+| tub : concat l1 l2 = concat l2 l1
 ```
 
 But this is less pleasant to work with, because the boundaries
@@ -153,7 +161,7 @@ interval type:
 ```aya
 open data Interval
 | left | right
-| line (i : I) { ~ i := left | i := right }
+| line : left = right
 ```
 
 The elimination rule of `Interval`{} implies function extensionality.

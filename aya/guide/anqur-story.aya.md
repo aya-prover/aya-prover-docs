@@ -201,9 +201,11 @@ def overlap ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 | x :< xs, ys, zs => pmap (x :<) (++-assoc xs ys zs)
 ```
 
-However, this definition is not well-typed.
-The type of `(xs ++ ys) ++ zs` is `Vec ((n + m) + o) A`{},
-while the type of `xs ++ (ys ++ zs)` is `Vec (n + (m + o)) A`{}.
+However, this definition is not well-typed:
+
++ `(xs ++ ys) ++ zs` is of type `Vec ((n + m) + o) A`{}
++ `xs ++ (ys ++ zs)` is of type `Vec (n + (m + o)) A`{}.
+
 They are not the same!
 Fortunately, we can prove that they are propositionally equal.
 We need to show that natural number addition is associative,
