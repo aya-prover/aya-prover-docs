@@ -15,13 +15,13 @@ Content below assumes knowledge on cubical type theory, for example the extensio
 Used in higher inductive type elaboration.
 
 $$
-\newcommand{\Gvdash}{\Gamma\vdash}
 \newcommand{\flattenOp}[1]{\textsf{flatten}(#1)}
 \cfrac{A \ne [\overline i] X\set{\cdots} \quad A\ne \Pi(x:X)\to Y}
 {\flattenOp{A} := A}
 $$
 
 $$
+\newcommand{\flattenOp}[1]{\textsf{flatten}(#1)}
 \cfrac
 {\flattenOp{X}:=[\overline j] Y\set{\overline{\phi'\mapsto u'}}}
 {\flattenOp{[\overline i] X\set{\overline{\phi\mapsto u}}}
@@ -30,6 +30,7 @@ $$
 $$
 
 $$
+\newcommand{\flattenOp}[1]{\textsf{flatten}(#1)}
 \cfrac{}
 {\flattenOp{\Pi(x:X)\to Y}:=\Pi(x:X)\to \flattenOp{Y}}
 $$
@@ -53,7 +54,7 @@ $$
 \end{align*}
 $$
 
-And $\flattenOp{\textsf{isSet}(A)}$ is:
+And $\textsf{flattenOp}(\textsf{isSet}(A))$ is:
 
 $$
 \begin{align*}
