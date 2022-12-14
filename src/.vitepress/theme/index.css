@@ -22,6 +22,7 @@
     --Aya-Struct: #218c21;
     --Aya-Field: #a021ef;
     --Aya-PlainText: var(--vp-c-text-1);
+    --Aya-HoverBg: #edebfc;
 }
 
 .dark {
@@ -34,7 +35,12 @@
     --Aya-Struct: #33d333;
     --Aya-Field: #d2a8ff;
     --Aya-PlainText: var(--vp-c-text-1);
+    --Aya-HoverBg: #344134;
 }
+
+/* Overwrite the hover background for dark mode */
+.Aya a[href]:hover { background-color: var(--Aya-HoverBg) !important; }
+.Aya [href].hover-highlight { background-color: var(--Aya-HoverBg) !important; }
 
 .Aya a {
     color: var(--Aya-PlainText);
