@@ -12,17 +12,32 @@
  * Aya Syntax Highlighting
  * -------------------------------------------------------------------------- */
 
-/* TODO: support dark theme */
-
 :root {
-    --Aya-Fn: #0000ff;
+    --Aya-Keyword: #ff6d00;
+    --Aya-Generalized: #8b5d5d;
+    --Aya-Fn: #005dac;
+    --Aya-Primitive: #005dac;
+    --Aya-Data: #218c21;
     --Aya-Constructor: #a021ef;
     --Aya-Struct: #218c21;
-    --Aya-Generalized: #0000ff;
-    --Aya-Data: #218c21;
-    --Aya-Primitive: #0000ff;
+    --Aya-Field: #a021ef;
+    --Aya-PlainText: var(--vp-c-text-1);
+}
+
+.dark {
     --Aya-Keyword: #ff6d00;
-    --Aya-Field: #008c8c;
+    --Aya-Generalized: #ffbfbf;
+    --Aya-Fn: #79c0ff;
+    --Aya-Primitive: #79c0ff;
+    --Aya-Data: #33d333;
+    --Aya-Constructor: #d2a8ff;
+    --Aya-Struct: #33d333;
+    --Aya-Field: #d2a8ff;
+    --Aya-PlainText: var(--vp-c-text-1);
+}
+
+.Aya a {
+    color: var(--Aya-PlainText);
 }
 .Aya .Fn {
     color: var(--Aya-Fn);
