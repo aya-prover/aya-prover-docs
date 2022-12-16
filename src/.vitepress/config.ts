@@ -1,6 +1,7 @@
 import { defineConfig } from 'vitepress';
 import footnote from 'markdown-it-footnote';
 import markdownItKatex from '@iktakahiro/markdown-it-katex';
+import useJsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
   title: 'Aya Prover',
@@ -78,4 +79,8 @@ export default defineConfig({
       md.use(markdownItKatex)
     }
   },
+  lastUpdated: true,
+  vite: {
+    plugins: [useJsx()],
+  }
 })

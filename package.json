@@ -25,12 +25,13 @@
     "markdown-it-footnote": "^3.0.3"
   },
   "devDependencies": {
-    "vitepress": "1.0.0-alpha.30",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "vitepress": "1.0.0-alpha.32",
     "vue": "^3.2.45"
   },
   "pnpm": {
     "overrides": {
-      "katex": "^0.16.2"
+      "katex": "^0.16.4"
     },
     "peerDependencyRules": {
       "ignoreMissing": [
