@@ -85,7 +85,7 @@ The Agda-style syntax is working in progress.
 We first introduce a convenient function for "both boundaries":
 
 ```aya
-def inline ∂ (i : I) => intervalMax i (~ i)
+inline def ∂ (i : I) => intervalMax i (~ i)
 ```
 
 This function should be used when opposite boundaries are equal,
