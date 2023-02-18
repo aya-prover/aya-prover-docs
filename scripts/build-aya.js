@@ -1,5 +1,7 @@
 // aya --pretty-stage=literate --pretty-format=markdown --pretty-dir=..\testout .\guide\haskeller-tutorial.aya.md
 
+const ayaProg = "aya";
+
 const fs = require('fs');
 const path = require('path');
 const child_process = require('child_process');
@@ -27,7 +29,7 @@ process.chdir("aya");
 // For each file, we call aya compiler
 walk(".", (file) => {
   console.log("Compiling: " + file);
-  child_process.execSync("aya --pretty-no-code-style --pretty-stage=literate --pretty-format=markdown --pretty-dir=../build-aya " + file,
+  child_process.execSync(ayaProg + " --pretty-no-code-style --pretty-stage=literate --pretty-format=markdown --pretty-dir=../build-aya " + file,
     (err) => {
       if (err) throw err;
     });
