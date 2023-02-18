@@ -12,7 +12,7 @@ Here's a little prelude, which you do not need to understand now.
 ```aya
 prim I prim coe prim coeFill
 prim intervalInv
-def inline ~ => intervalInv
+inline def ~ => intervalInv
 variable A B : Type
 def infix = (a b : A) => [| i |] A { i := b | ~ i := a }
 def refl {a : A} : a = a => λ i => a
@@ -21,21 +21,22 @@ def refl {a : A} : a = a => λ i => a
 ## A journey begins
 
 System F supports encoding inductive types using impredicative polymorphism.
-Here is an example definition of natural numbers:
+Here is an example definition of natural numbers, without using an actual impredicative
+universe (which is not supported in Aya intentionally -- an explanation will be given in another post):
 
 ```aya
 module IP {
-def Nat => Pi (P : Prop) (P -> P) P -> P
+  def Nat => Pi (P : Type) (P -> P) P -> P
 
-def zero : Nat => λ P s z => z
-def suc (x : Nat) : Nat => λ P s z => s (x P s z)
+  def zero : Nat => λ P s z => z
+  def suc (x : Nat) : Nat => λ P s z => s (x P s z)
 }
 ```
 
 This seems very powerful, but certain properties are not available.
 For instance, it is difficult to derive the predecessor function for `IP::Nat`{}.
 More fatally, there is no 'eta law' for impredicative encoded types --
-the type checker will not believe that an instance of `Pi (x : Prop) x -> x`{}
+the type checker will not believe that an instance of `Pi (x : Type) x -> x`{}
 is definitionally equal to the identity function.
 It is also impossible to show that `IP::zero`{} is unequal to `IP::suc IP::zero`{}.
 This is too bad for doing mathematics.
@@ -155,7 +156,7 @@ which is compiled to elimination principles during type checking.
 However, you _can_ do that in Aya. You may also add the other lemma as well.
 
 ```aya
-def overlap infix + Nat Nat : Nat
+overlap def infix + Nat Nat : Nat
 | 0, n => n
 | n, 0 => n
 | suc m, n => suc (m + n)
@@ -185,7 +186,7 @@ variable n m o : Nat
 open data Vec (n : Nat) (A : Type)
 | 0, A => nil
 | suc n, A => infixr :< A (Vec n A)
-def overlap infixr ++ (Vec n A) (Vec m A) : Vec (n + m) A
+overlap def infixr ++ (Vec n A) (Vec m A) : Vec (n + m) A
 | nil, ys => ys
 | ys, nil => ys
 | x :< xs, ys => x :< xs ++ ys
@@ -195,7 +196,7 @@ tighter :< =
 It is tempting to use the below definition:
 
 ```
-def overlap ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
+overlap def ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
   : (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
 | nil, ys, zs => refl
 | x :< xs, ys, zs => pmap (x :<) (++-assoc xs ys zs)
@@ -222,7 +223,7 @@ Here's a lame definition that is well-typed in pre-cubical type theory,
 and is also hard to prove -- we `cast`{} one side of the equation to be other side:
 
 ```aya
-example def overlap ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
+example overlap def ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
   => cast (↑ pmap (\n => Vec n A) +-assoc) ((xs ++ ys) ++ zs) = xs ++ (ys ++ zs)
 ```
 

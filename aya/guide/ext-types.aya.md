@@ -9,7 +9,7 @@ Some primitive definitions:
 prim I prim coe prim coeFill
 prim intervalInv
 prim intervalMax
-def inline ~ => intervalInv
+inline def ~ => intervalInv
 variable A B : Type
 def Path (A : I -> Type) (a : A 0) (b : A 1)
    => [| i |] A i { i := b | ~ i := a }

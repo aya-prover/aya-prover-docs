@@ -26,8 +26,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue-jsx": "^3.0.0",
-    "vitepress": "1.0.0-alpha.32",
-    "vue": "^3.2.45"
+    "vitepress": "1.0.0-alpha.46",
+    "vue": "^3.2.47"
   },
   "pnpm": {
     "overrides": {
