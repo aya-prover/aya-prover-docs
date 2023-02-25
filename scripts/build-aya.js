@@ -1,6 +1,11 @@
 // aya --pretty-stage=literate --pretty-format=markdown --pretty-dir=..\testout .\guide\haskeller-tutorial.aya.md
 
 const ayaProg = "aya";
+const opts = "--pretty-ssr\
+  --pretty-no-code-style\
+  --pretty-stage=literate\
+  --pretty-format=markdown\
+  --pretty-dir=../build-aya";
 
 const fs = require('fs');
 const path = require('path');
@@ -21,7 +26,7 @@ function walk(dir, callback) {
 }
 
 // Create output directory
-if (!fs.existsSync("build-aya")) fs.mkdir("build-aya", {recursive: true}, (err) => {
+if (!fs.existsSync("build-aya")) fs.mkdir("build-aya", { recursive: true }, (err) => {
   if (err) throw err;
 });
 // Switch to source directory
@@ -29,7 +34,7 @@ process.chdir("aya");
 // For each file, we call aya compiler
 walk(".", (file) => {
   console.log("Compiling: " + file);
-  child_process.execSync(ayaProg + " --pretty-no-code-style --pretty-stage=literate --pretty-format=markdown --pretty-dir=../build-aya " + file,
+  child_process.execSync(ayaProg + " " + opts + " " + file,
     (err) => {
       if (err) throw err;
     });
@@ -39,7 +44,7 @@ process.chdir("../build-aya");
 walk(".", (file) => {
   console.log("Moving: " + file);
   const dest = path.resolve("../src", file);
-  fs.mkdir(path.dirname(dest), {recursive: true}, (err) => {
+  fs.mkdir(path.dirname(dest), { recursive: true }, (err) => {
     if (err) throw err;
     fs.copyFile(file, dest, (err) => {
       if (err) throw err;

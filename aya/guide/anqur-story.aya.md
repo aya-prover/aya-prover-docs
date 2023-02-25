@@ -15,7 +15,7 @@ prim intervalInv
 inline def ~ => intervalInv
 variable A B : Type
 def infix = (a b : A) => [| i |] A { i := b | ~ i := a }
-def refl {a : A} : a = a => λ i => a
+def refl {a : A} : a = a => fn i => a
 ```
 
 ## A journey begins
@@ -26,17 +26,17 @@ universe (which is not supported in Aya intentionally -- an explanation will be 
 
 ```aya
 module IP {
-  def Nat => Pi (P : Type) (P -> P) P -> P
+  def Nat => Fn (P : Type) (P -> P) P -> P
 
-  def zero : Nat => λ P s z => z
-  def suc (x : Nat) : Nat => λ P s z => s (x P s z)
+  def zero : Nat => fn P s z => z
+  def suc (x : Nat) : Nat => fn P s z => s (x P s z)
 }
 ```
 
 This seems very powerful, but certain properties are not available.
 For instance, it is difficult to derive the predecessor function for `IP::Nat`{}.
 More fatally, there is no 'eta law' for impredicative encoded types --
-the type checker will not believe that an instance of `Pi (x : Type) x -> x`{}
+the type checker will not believe that an instance of `Fn (x : Type) x -> x`{}
 is definitionally equal to the identity function.
 It is also impossible to show that `IP::zero`{} is unequal to `IP::suc IP::zero`{}.
 This is too bad for doing mathematics.
@@ -64,7 +64,7 @@ def not Bool : Bool
 
 def id (x : Bool) => x
 
-def Goal => (λ x => not (not x)) = id
+def Goal => (fn x => not (not x)) = id
 
 // And yes, below is the syntax for typed holes in Aya:
 // def question : Goal => {??}

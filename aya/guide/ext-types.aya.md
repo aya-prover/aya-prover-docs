@@ -15,8 +15,8 @@ def Path (A : I -> Type) (a : A 0) (b : A 1)
    => [| i |] A i { i := b | ~ i := a }
 //     ^^^^^^^^^^^^^^^^^^^^^^
 //    this is an extension type
-def infix = {A : Type} => Path (λ x => A)
-def refl {a : A} : a = a => λ i => a
+def infix = {A : Type} => Path (fn x => A)
+def refl {a : A} : a = a => fn i => a
 ```
 
 The extension type is essentially a generalized version of the path type,

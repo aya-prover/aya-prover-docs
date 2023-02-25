@@ -29,6 +29,10 @@ Aya supports pretty-printing of **any** terms, including ✨lambdas✨.
 Note that Aya does not automatically support generic lambdas, so typing
 `\x => x` would not work. You need to specify the type of `x`, like `\(x : Int) => x`.
 
+Aya support `fn` as an alias to `\` instead of `λ`, similar to Coq and Lean (but not Agda).
+This is because users (especially mathematicians) are likely to use `λ` as a variable name.
+Similarly, we used `Fn` over `Pi` or `Π` for the same reason.
+
 ## Working with projects
 
 Read [project-tutorial](project-tutorial), it is very short.
