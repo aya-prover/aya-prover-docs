@@ -16,43 +16,13 @@ inline def ~ => intervalInv
 variable A B : Type
 def infix = (a b : A) => [| i |] A { i := b | ~ i := a }
 def refl {a : A} : a = a => fn i => a
+
+open data Nat
+| zero
+| suc Nat
 ```
 
 ## A journey begins
-
-System F supports encoding inductive types using impredicative polymorphism.
-Here is an example definition of natural numbers, without using an actual impredicative
-universe (which is not supported in Aya intentionally -- an explanation will be given in another post):
-
-```aya
-module IP {
-  def Nat => Fn (P : Type) (P -> P) P -> P
-
-  def zero : Nat => fn P s z => z
-  def suc (x : Nat) : Nat => fn P s z => s (x P s z)
-}
-```
-
-This seems very powerful, but certain properties are not available.
-For instance, it is difficult to derive the predecessor function for `IP::Nat`{}.
-More fatally, there is no 'eta law' for impredicative encoded types --
-the type checker will not believe that an instance of `Fn (x : Type) x -> x`{}
-is definitionally equal to the identity function.
-It is also impossible to show that `IP::zero`{} is unequal to `IP::suc IP::zero`{}.
-This is too bad for doing mathematics.
-
-So, you have looked up the internet, and you have found inductive types!
-We now redefine natural numbers as an inductive type `Nat`{}. As a side effect,
-we will also assume a Coq (or (vanilla) Agda, or Lean, or Idris) style intensional equality type.
-
-```aya
-open data Nat | zero | suc Nat
-def pred Nat : Nat
-| 0 => 0
-| suc n => n
-```
-
-## Half-way through
 
 You went to a website and a random person has asked the following question:
 
@@ -223,7 +193,7 @@ Here's a lame definition that is well-typed in pre-cubical type theory,
 and is also hard to prove -- we `cast`{} one side of the equation to be other side:
 
 ```aya
-example overlap def ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
+example def ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
   => cast (↑ pmap (\n => Vec n A) +-assoc) ((xs ++ ys) ++ zs) = xs ++ (ys ++ zs)
 ```
 

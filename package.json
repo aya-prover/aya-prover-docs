@@ -1,7 +1,7 @@
 {
   "name": "aya-prover-docs",
   "version": "1.0.0",
-  "packageManager": "pnpm@7.17.0",
+  "packageManager": "pnpm@7.30.3",
   "description": "The documentation site of the Aya prover.",
   "main": "index.js",
   "scripts": {
@@ -25,8 +25,8 @@
     "markdown-it-footnote": "^3.0.3"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue-jsx": "^3.0.0",
-    "vitepress": "1.0.0-alpha.47",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "vitepress": "1.0.0-alpha.61",
     "vue": "^3.2.47"
   },
   "pnpm": {
