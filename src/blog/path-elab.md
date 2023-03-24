@@ -72,6 +72,8 @@ Now, how to implement this type? We have decided to overload lambdas
 and expressions as Cubical Agda did, but we have encountered several problems.
 Here's the story, in chronological order.
 
+Below, we use "type checking" and we actually mean "elaboration".
+
 ## First attempt
 
 **Principle**: do not annotate the terms (including variable references) with types, because this is going to harm efficiency and the code that tries to generate terms (now they'll have to generate the types as well, pain!).
@@ -79,12 +81,12 @@ Here's the story, in chronological order.
 **Problem**: reduction of path application is type-directed, like `p 1` will reduce according to the type of `p`.
 
 **Solution**: annotate the path applications instead.
-Every time we do type checking and we get a term of path type,
+Every time we do type checking & we get a term of path type,
 we "η-expand" it into a normal lambda expression with a path application inside.
 This secures the reduction of path applications.
 
-**New Problem**: we expand too much. In case we want to unify the type of term
-with a path type, the term is actually η-expanded and has a _Π-type_.
+**New Problem**: we expand too much. In case we want to check the type of term
+against a path type, the term is actually η-expanded and has a _Π-type_.
 So, we have the manually write path lambdas everywhere, e.g. given `p : Path A a b`,
 and only `λ i → p i` is a valid term of type `Path A a b`, not `p` (which is internally a lambda).
 
@@ -121,4 +123,19 @@ This has worked so far, with some unsolved problems (yet to be discussed):
   + Related issue: [530](https://github.com/aya-prover/aya-dev/issues/530)
   + A sort of "flattening"
 
-If you have any thoughts, feel free to reach out and thanks for reading!
+If you have any thoughts, feel free to reach out :\)
+
+## Update (2023-03-24)
+
+The implementation has been updated to solve some the above problems partially.
+Essentially, we need to do one thing: coercive subtyping. Since the type checking already respects
+the type (say, does not change the type), it remains to insert an η-expansion when the subtyping is invoked.
+We also need to store the boundary information in the path application term to have
+simple normalization algorithm.
+
+Carlo Angiuli told me that in cooltt, the path type is _decoded_
+(in the sense of the universe à la Tarski `el` operator)
+into a Π-type that returns a cubical subtype, and since `el` is not required to be injective,
+this should be fine. At first, I was worried about the fibrancy of the path type,
+because a Π-type into a subtype is not fibrant, but it turns out that this is unrelated.
+We don't talk about the fibrancy of the types, but only the fibrancy of the type _codes_.
