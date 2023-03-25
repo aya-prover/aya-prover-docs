@@ -26,7 +26,7 @@ regarding termination. You don't have to read it, I'll paraphrase the example.
 
 It makes sense to define the following type:
 
-```idris
+```haskell
 data BrouwerTree
   = Leaf Bool
   | Branch (Nat -> BrouwerTree)
