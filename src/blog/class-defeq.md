@@ -7,6 +7,9 @@ We want a class system with the following basic capabilities:
 + Subtyping is available and uses coercion. This will be discussed in another post.
 
 To add more flexibility to it, we want the following feature.
+
+## Anonymous extensions
+
 Suppose we have a class `Precat` for precategories (written in pseudocode):
 
 ```
@@ -20,7 +23,9 @@ class Precat
 
 Suppose the syntax for creating an instance of a class is `new Precat { Ob := .., Hom := .., ... }`.
 
-Then, I want the following:
+## Definitional projection
+
+Further, I want the following:
 
 + `Precat` is the type for all instances of the class `Precat`.
 + `Precat { Ob := Group }` is the type for all instances of the class `Precat` whose `Ob` field is (definitionally) `Group`.
@@ -37,6 +42,8 @@ We further want *definitional projection*:
 This concludes the basic features of the class system.
 To implement this, it may seem that we need to have access to types in the normalizer,
 which makes it very heavy (in contrast to the lightweight normalizer you can have for plain MLTT).
+
+## Implementation
 
 A uniform implementation of this definitional projection requires the definitional equality to commute with substitution, say, we may have
 
@@ -74,3 +81,6 @@ we don't even have a chance to touch the bare `A` (not being projected) in the c
 and anything of a class type is _always_ in an introduction form.
 
 This should implement the definitional projection feature without even modifying the MLTT normalizer.
+
+The idea of this feature comes from the treatment of extension types inspired from cooltt,
+see [relevant post](./path-elab).

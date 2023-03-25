@@ -39,6 +39,7 @@ export default defineConfig({
       {
         text: 'Blog',
         items: [
+          { text: 'Inductive Props', link: '/blog/ind-prop' },
           { text: 'Def. projection in classes', link: '/blog/class-defeq' },
           { text: 'Path constructor elaboration', link: '/blog/pathcon-elab' },
           { text: 'Path type elaboration', link: '/blog/path-elab' },
