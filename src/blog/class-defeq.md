@@ -22,10 +22,7 @@ class Precat
 ```
 
 Suppose the syntax for creating an instance of a class is `new Precat { Ob := .., Hom := .., ... }`.
-
-## Definitional projection
-
-Further, I want the following:
+I want the following:
 
 + `Precat` is the type for all instances of the class `Precat`.
 + `Precat { Ob := Group }` is the type for all instances of the class `Precat` whose `Ob` field is (definitionally) `Group`.
@@ -34,6 +31,9 @@ Further, I want the following:
 
 This is called *anonymous class extension*, already implemented in the Arend language.
 As a syntactic sugar, we may write `Precat { Ob := Group }` as `Precat Group`, where the application is ordered the same as the fields in the class definition.
+
+## Definitional projection
+
 We further want *definitional projection*:
 
 + Suppose `A : Precat Group`, then `A.Ob` is *definitionally* equal to `Group`.
