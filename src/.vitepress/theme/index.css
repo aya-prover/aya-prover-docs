@@ -126,9 +126,9 @@
   );
   --vp-home-hero-image-filter: blur(30px); */
 }
-.main .text {
-  color: #b4ad20 !important;
-}
+/* .main .text { */
+/*   color: #b4ad20 !important; */
+/* } */
 .tagline {
   color: white !important;
 }
