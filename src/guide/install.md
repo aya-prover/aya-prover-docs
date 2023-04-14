@@ -12,6 +12,52 @@ If you chose the jlink version, the `bin` folder contains the executable scripts
 
 [GitHub Release]: https://github.com/aya-prover/aya-dev/releases/tag/nightly-build
 
+## Download from GitHub Release
+
+Aya is available for Windows, Linux, and macOS, as listed below.
+
+| Platform | Architecture | JLink                    | Native               |
+|----------|--------------|--------------------------|----------------------|
+| Windows  | x64          | [zip][win-zip-x64]       | [exe][win-exe-x64]   |
+| Linux    | x64          | [zip][linux-zip-x64]     | [exe][linux-exe-x64] |
+| macOS    | x64          | [zip][macos-zip-x64]     | [exe][macos-exe-x64] |
+| Windows  | aarch64      | [zip][win-zip-aarch64]   | Unavailable yet      |
+| Linux    | aarch64      | [zip][linux-zip-aarch64] | Unavailable yet      |
+| macOS    | aarch64      | [zip][macos-zip-aarch64] | Unavailable yet      |
+
+[win-zip-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_windows-x64.zip
+[win-exe-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_native_windows-x64.exe
+[linux-zip-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_linux-x64.zip
+[linux-exe-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_native_linux-x64
+[macos-zip-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_macos-x64.zip
+[macos-exe-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_native_macos-x64
+
+[win-zip-aarch64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_windows-aarch64.zip
+[linux-zip-aarch64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_linux-aarch64.zip
+[macos-zip-aarch64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_macos-aarch64.zip
+
+Here's a hands-on script I wrote to (re)install Aya to `/etc/aya` on Linux x64:
+
+```bash
+#!/bin/bash
+sudo mkdir -p /etc/aya
+sudo chown $USER /etc/aya
+rm -rf /etc/aya/*
+cd /etc/aya
+wget https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_linux-x64.zip
+unzip aya-prover_jlink_linux-x64.zip
+rm aya-prover_jlink_linux-x64.zip
+cd -
+```
+
+If it's the first time you install Aya, you may want to do
+(or replace `~/.bashrc` with your shell's rc file):
+
+```bash
+echo 'export PATH="/etc/aya/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
 ## If you already have Java runtime...
 
 Very cool! Now you can try the prebuilt jars (much smaller and platform-independent)
@@ -37,14 +83,14 @@ check out [how to][proxy] let gradle use a proxy.
 [proxy]: https://docs.gradle.org/current/userguide/build_environment.html#sec:accessing_the_web_via_a_proxy
 
 ```bash
-# build Aya and its language server as applications to lsp/build/image
+# build Aya and its language server as applications to `ide-lsp/build/image/current`
 # the image is usable in Java-free environments 
-./gradlew jlink --rerun-tasks
+./gradlew jlinkAya --rerun-tasks
 # build Aya and its language server as executable
 # jars to <project>/build/libs/<project>-<version>-fat.jar
 ./gradlew fatJar
 # build a platform-dependent installer for Aya and its language
-# server with the jlink artifacts to lsp/build/jpackage
+# server with the jlink artifacts to ide-lsp/build/jpackage
 # requires https://wixtoolset.org/releases on Windows
 ./gradlew jpackage
 # run tests and generate coverage report to build/reports
@@ -55,49 +101,3 @@ check out [how to][proxy] let gradle use a proxy.
 
 Gradle supports short-handed task names, so you can run `./gradlew fJ` to invoke `fatJar`,
 `tCCR` to invoke `testCodeCoverageReport`, and so on.
-
-## Windows
-
-+ The [zip][win-zip] version of Aya runs in a JVM (built with jlink).
-+ The [exe][win-exe] version of Aya is packed as a GraalVM Native Image.
-
-[win-zip]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover-jlink-windows-latest_x86-64.zip
-[win-exe]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-native-windows-latest_x86-64.exe
-
-## Ubuntu Linux
-
-+ The [zip][linux-zip] version of Aya runs in a JVM (built with jlink).
-+ The [executable][linux-exe] version of Aya is packed as a GraalVM Native Image.
-
-[linux-zip]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover-jlink-ubuntu-latest_x86-64.zip
-[linux-exe]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-native-ubuntu-latest_x86-64
-
-Here's a hands-on script I wrote to (re)install Aya to `/etc/aya`:
-
-```bash
-#!/bin/bash
-sudo mkdir -p /etc/aya
-sudo chown $USER /etc/aya
-rm -rf /etc/aya/*
-cd /etc/aya
-wget https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover-jlink-ubuntu-latest_x86-64.zip
-unzip aya-prover-jlink-ubuntu-latest_x86-64.zip
-rm aya-prover-jlink-ubuntu-latest_x86-64.zip
-cd -
-```
-
-If it's the first time you install Aya, you may want to do
-(or replace `~/.bashrc` with your shell's rc file):
-
-```bash
-echo 'export PATH="/etc/aya/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-```
-
-## Apple macOS
-
-+ The [zip][mac-zip] version of Aya runs in a JVM (built with jlink).
-+ The [executable][mac-exe] version of Aya is packed as a GraalVM Native Image.
-
-[mac-zip]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover-jlink-macos-latest_x86-64.zip
-[mac-exe]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-native-macos-latest_x86-64
