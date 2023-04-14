@@ -58,6 +58,23 @@ echo 'export PATH="/etc/aya/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+## Use Aya in GitHub Actions
+
+If you want to use Aya in your GitHub Actions workflow, you can use [aya-prover/setup-aya][setup-aya] like
+
+```yaml
+- name: Setup Aya
+  uses: aya-prover/setup-aya@latest
+  with:
+    version: 'nightly-build'
+```
+
+The step above will install the latest version of Aya to `PATH`.
+You can find the complete example [here][aya-action-example].
+
+[setup-aya]: https://github.com/aya-prover/setup-aya
+[aya-action-example]: https://github.com/aya-prover/setup-aya/blob/main/.github/workflows/test-setup-nightly.yml
+
 ## If you already have Java runtime...
 
 Very cool! Now you can try the prebuilt jars (much smaller and platform-independent)
