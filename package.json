@@ -35,7 +35,7 @@
       "@docsearch/react": "portal:./scripts",
       "@docsearch/js": "portal:./scripts",
       "@docsearch/css": "portal:./scripts",
-      "katex": "^0.16.4"
+      "katex": "^0.16.6"
     },
     "peerDependencyRules": {
       "ignoreMissing": [
