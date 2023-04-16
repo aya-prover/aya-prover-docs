@@ -75,5 +75,10 @@ export default defineConfig({
   lastUpdated: true,
   vite: {
     plugins: [useJsx()],
+    build: {
+      rollupOptions: {
+        external: 'NonExistingPath',
+      },
+    },
   }
 })
