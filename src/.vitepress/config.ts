@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import footnote from 'markdown-it-footnote';
-import markdownItKatex from '@iktakahiro/markdown-it-katex';
+import markdownItKatex from '@vscode/markdown-it-katex';
 import useJsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
@@ -63,18 +63,6 @@ export default defineConfig({
       },
     ]
   },
-  // extendsMarkdown: (md) => {
-  //   md.render = (src, env) =>
-  //     MarkdownIt.prototype.render.call(
-  //       md,
-  //       src
-  //         .replace(/(?<=[^\\])\$\$([^]+?)\$\$/mg, (_, str) =>
-  //           Katex.renderToString(str, { throwOnError: false, displayMode: true }))
-  //         .replace(/(?<=[^\\])\$([^]+?)\$/mg, (_, str) =>
-  //           Katex.renderToString(str, { throwOnError: false, displayMode: false })),
-  //       env)
-  //       .replace(/\\\$/g, '$')
-  // },
   markdown: {
     config: (md) => {
       md.use(footnote)
