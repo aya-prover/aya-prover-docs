@@ -9,7 +9,7 @@ export default defineConfig({
   head: [
     ['link', {
       rel: 'stylesheet',
-      href: "https://cdn.jsdelivr.net/npm/katex@0.16.2/dist/katex.min.css",
+      href: "https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css",
       crossorigin: "anonymous",
     }],
     ['link', {
@@ -35,6 +35,9 @@ export default defineConfig({
       { text: 'Publications', link: '/pubs/' },
       { text: 'Blog', link: '/blog/' },
     ],
+    search: {
+      provider: 'local',
+    },
     sidebar: [
       {
         text: 'Blog',
