@@ -31,13 +31,15 @@
   },
   "pnpm": {
     "overrides": {
+      "@docsearch/react": "portal:./scripts",
+      "@docsearch/js": "portal:./scripts",
+      "@docsearch/css": "portal:./scripts",
       "katex": "^0.16.4"
     },
     "peerDependencyRules": {
       "ignoreMissing": [
         "@types/react",
         "react",
-        "@algolia/client-search",
         "react-dom"
       ]
     }
