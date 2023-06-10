@@ -6,7 +6,7 @@ Basic knowledge on cubical type theory is assumed.
 Some primitive definitions:
 
 ```aya
-prim I prim coe prim coeFill
+prim I prim coe
 prim intervalInv
 prim intervalMax
 inline def ~ => intervalInv
@@ -42,14 +42,14 @@ The extension type reduces the unification burden.
 This is a traditional definition of path symmetry:
 
 ```aya
-example def sym {a b : A} (p : a = b) : b = a => \i => p (~ i)
+example def sym {a b : A} (p : a = b) : b = a => fn i => p (~ i)
 ```
 
 Note that it has two implicit arguments, which will be figured out by the type checker.
 However, with the extension type, we do not have to specify the boundaries!
 
 ```aya
-def sym (p : [| i |] A) : p 1 = p 0 => \i => p (~ i)
+def sym (p : [| i |] A) : p 1 = p 0 => fn i => p (~ i)
 ```
 
 Yes, by that we have inverted the path!
@@ -57,22 +57,22 @@ This also happens to `cong`, which is renamed to `pmap`{} in Aya:
 
 ```aya
 def pmap (f : A -> B) (p : [| i |] A) : f (p 0) = f (p 1)
-   => \i => f (p i)
+   => fn i => f (p i)
 ```
 
 Now, let's take a look at the transitivity of paths:
 
 ```aya
-def cast (p : A ↑ = B) : A -> B => (\i => p i).coe
+def cast (p : A ↑ = B) : A -> B => coe 0 1 (fn i => p i)
 example def concat {a b c : A} (p : a = b) (q : b = c) : a = c =>
-  cast (\i => a = q i) p
+  cast (fn i => a = q i) p
 ```
 
 We can make `p` boundary-free, and use `p 1` as a replacement of `b`:
 
 ```aya
 def concat (p : [| i |] A) (q : [| i |] A { ~ i := p 1 }) : p 0 = q 1
-   => cast (\i => p 0 = q i) p
+   => cast (fn i => p 0 = q i) p
 ```
 
 Now we can say bye bye to these implicit arguments!
@@ -137,7 +137,7 @@ The traditional type still works
 ```aya
 example def traditional
   : Path (\i => line1 i = line1 i) line2 line2
-  => \i => face i
+  => fn i => face i
 ```
 
 For the record, one may also work with the HoTT-book definition of torus:

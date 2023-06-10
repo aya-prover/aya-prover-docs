@@ -10,7 +10,7 @@ I hope those are sufficiently intuitive, or you can look up [this tutorial](hask
 Here's a little prelude, which you do not need to understand now.
 
 ```aya
-prim I prim coe prim coeFill
+prim I prim coe
 prim intervalInv
 inline def ~ => intervalInv
 variable A B : Type
@@ -67,7 +67,7 @@ Here's the proof of function extensionality in Aya:
 
 ```aya
 def funExt (f g : A -> B) (p : ∀ a -> f a = g a) : f = g
-   => \i a => p a i
+   => fn i a => p a i
 ```
 
 This is because Aya has a "cubical" equality type that is not inductively defined.
@@ -76,13 +76,13 @@ renamed to `pmap`{} to avoid a potential future naming clash:
 
 ```aya
 def pmap (f : A -> B) {a b : A} (p : a = b) : f a = f b
-   => \i => f (p i)
+   => fn i => f (p i)
 ```
 
 We may also invert a path:
 
 ```aya
-def sym {a b : A} (p : a = b) : b = a => \i => p (~ i)
+def sym {a b : A} (p : a = b) : b = a => fn i => p (~ i)
 ```
 
 However, we cannot yet define transitivity of equality because we do not have the
@@ -91,7 +91,7 @@ This will need some advanced proving techniques that are beyond the scope of thi
 simple tutorial, so I'll skim them. First, we need type-safe coercion:
 
 ```aya
-def cast (p : A ↑ = B) : A -> B => (\i => p i).coe
+def cast (p : A ↑ = B) : A -> B => coe 0 1 (fn i => p i)
 ```
 
 Then, from `q : b = c` we construct the equivalence `(a = b) = (a = c)`
@@ -194,7 +194,7 @@ and is also hard to prove -- we `cast`{} one side of the equation to be other si
 
 ```aya
 example def ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
-  => cast (↑ pmap (\n => Vec n A) +-assoc) ((xs ++ ys) ++ zs) = xs ++ (ys ++ zs)
+  => cast (↑ pmap (fn n => Vec n A) +-assoc) ((xs ++ ys) ++ zs) = xs ++ (ys ++ zs)
 ```
 
 It is harder to prove because in the induction step, one need to show that
@@ -203,7 +203,7 @@ is equivalent to the identity function in order to use the induction hypothesis.
 For the record, here's the proof:
 
 ```aya
-def castRefl (a : A) : cast ↑ refl a = a => sym ((\i => A).coeFill a)
+def castRefl (a : A) : cast ↑ refl a = a => fn i => coe i 1 (fn j => A) a
 ```
 
 But still, with this lemma it is still hard.
@@ -220,7 +220,7 @@ We may then use the following type signature:
 
 ```aya
 def ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
-  => Path (\i => Vec (+-assoc i) A) ((xs ++ ys) ++ zs) (xs ++ (ys ++ zs))
+  => Path (fn i => Vec (+-assoc i) A) ((xs ++ ys) ++ zs) (xs ++ (ys ++ zs))
 ```
 
 The proof is omitted (try yourself!).
