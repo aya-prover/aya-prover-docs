@@ -1,10 +1,10 @@
 # So you are using VSCode
 
-Go to [GitHub Actions], click the latest successful run,
+Go to [GitHub Releases], click the latest successful run,
 scroll down to the bottom of the page, download the "aya-prover-vscode-extension", and unzip it.
 Then, follow [VSCode docs](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix) to install the extension.
 
-[GitHub Actions]: https://github.com/aya-prover/aya-vscode/actions/workflows/vsix.yml
+[GitHub Releases]: https://github.com/aya-prover/aya-vscode/releases/tag/nightly-build
 
 It remains to configure the Aya language server. There are two ways to use the server.
 First, open settings, search for "Aya path", you should see a text box. Then, you have a choice:
