@@ -262,6 +262,14 @@ export const readings: Publications = [
           ['arxiv', '1802.01170'],
           ['doi', '10.1145/3209108.3209197']
         ]
+      },
+      {
+        title: 'Computational Semantics of Cartesian Cubical Type Theory',
+        venue: 'TODO!!',
+        authors: [carlo],
+        links; [
+          ['online', 'https://carloangiuli.com/papers/thesis.pdf']
+        ]
       }
     ]
   },
