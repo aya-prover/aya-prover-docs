@@ -265,7 +265,7 @@ export const readings: Publications = [
       },
       {
         title: 'Computational Semantics of Cartesian Cubical Type Theory',
-        venue: 'TODO!!',
+        venue: 'PhD thesis',
         authors: [carlo],
         links: [
           ['online', 'https://carloangiuli.com/papers/thesis.pdf']
