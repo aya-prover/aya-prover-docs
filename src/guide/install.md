@@ -37,14 +37,14 @@ Aya is available for Windows, Linux, and macOS, as listed below.
 [macos-zip-aarch64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_macos-aarch64.zip
 
 Here's a hands-on script I wrote to (re)install Aya to `$AYA_PREFIX`
-(replace with your preferred prefix, e.g. `/opt/aya`) on Linux x64:
+(define the variable somewhere or replace with your preferred prefix, e.g. `/opt/aya`) on Linux x64:
 
 ```bash
 #!/bin/bash
-sudo mkdir -p $AYA_PREFIX
-sudo chown $USER $AYA_PREFIX
-rm -rf $AYA_PREFIX/*
-cd $AYA_PREFIX
+sudo mkdir -p ${AYA_PREFIX:-/tmp}
+sudo chown $USER ${AYA_PREFIX:-/tmp}
+rm -rf ${AYA_PREFIX:-/tmp}/*
+cd ${AYA_PREFIX:-/tmp}
 wget https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_linux-x64.zip
 unzip aya-prover_jlink_linux-x64.zip
 rm aya-prover_jlink_linux-x64.zip
