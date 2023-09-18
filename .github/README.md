@@ -7,10 +7,9 @@ The documentation and dev blog for the [Aya Prover].
 
 ## Build
 
-Please use a modern Node.js (version >= 16) and `pnpm`. See:
+Please use a modern Node.js (version >= 18) and `pnpm`. See:
 
-+ <https://deb.nodesource.com/setup_16.x>
-+ <https://deb.nodesource.com/setup_19.x> (latest when this doc is written)
++ <https://deb.nodesource.com/setup_20.x> (latest when this doc is written)
 + <https://pnpm.io/installation>
 
 ```sh
