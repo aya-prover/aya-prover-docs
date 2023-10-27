@@ -2,7 +2,7 @@ import type { Publications, Author } from "./interface"
 
 const teslaZhang: Author = {
   name: 'Tesla Zhang',
-  link: 'http://personal.psu.edu/yqz5714/'
+  link: 'https://ice1000.org'
 };
 export const publications: Publications = [
   {
@@ -14,9 +14,7 @@ export const publications: Publications = [
         authors: [teslaZhang],
         links: [
           ['arxiv', '2103.15408'],
-          ['doi', '10.1145/3471875.3472991'],
-          ['conference', 'https://personal.psu.edu/yqz5714/gadt-cr.pdf'],
-          ['online', 'https://personal.psu.edu/yqz5714/gadt.pdf']
+          ['doi', '10.1145/3471875.3472991']
         ],
       },
     ],
