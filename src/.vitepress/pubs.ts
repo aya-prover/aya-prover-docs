@@ -25,6 +25,11 @@ export const publications: Publications = [
     type: 'Notes',
     items: [
       {
+        title: 'Two tricks to trivialize higher-indexed families',
+        authors: [teslaZhang],
+        links: [['arxiv', '2309.14187']],
+      },
+      {
         title: 'A tutorial on implementing De Morgan cubical type theory',
         authors: [teslaZhang],
         links: [['arxiv', '2210.08232']],
@@ -32,7 +37,7 @@ export const publications: Publications = [
       {
         title: 'Elegant elaboration with function invocation',
         authors: [teslaZhang],
-        links: [['arxiv', '2105.14840'], ['online', 'https://personal.psu.edu/yqz5714/defcall.pdf']],
+        links: [['arxiv', '2105.14840']],
       },
     ],
   }
