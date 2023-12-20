@@ -5,6 +5,7 @@
 + [Tutorial for Dependent Type users](anqur-story)
 + [Tutorial for the "extension type"](ext-types)
 + [Tutorial for VSCode extension](vscode-tutorial)
++ [Tutorial for the fake literate mode](fake-literate)
 
 Aya is a programming language _and_ an interactive proof assistant designed for type-directed programming _and_ formalizing math.
 

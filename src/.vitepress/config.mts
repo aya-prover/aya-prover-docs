@@ -57,11 +57,12 @@ export default defineConfig({
           { text: 'Get Started', link: '/guide/' },
           { text: 'Install', link: '/guide/install' },
           { text: 'Know Haskell?', link: '/guide/haskeller-tutorial' },
-          { text: 'Evolve Story?', link: '/guide/anqur-story' },
+          { text: 'Fake literate mode', link: '/guide/fake-literate' },
+          { text: 'Evolve story?', link: '/guide/anqur-story' },
           { text: 'Extension types', link: '/guide/ext-types' },
           { text: 'VSCode', link: '/guide/vscode-tutorial' },
-          { text: 'Aya Packages', link: '/guide/project-tutorial' },
-          { text: 'Related Papers', link: '/guide/readings' },
+          { text: 'Aya packages', link: '/guide/project-tutorial' },
+          { text: 'Related papers', link: '/guide/readings' },
         ]
       },
     ]
