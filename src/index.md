@@ -7,7 +7,7 @@ titleTemplate: A proof assistant designed for formalizing math and type-directed
 hero:
   name: Aya Prover
   text:
-  tagline: A univalent proof assistant designed for formalizing math and type-directed programming.
+  tagline: A proof assistant designed for formalizing math and type-directed programming.
 
   # actions:
   #   - theme: brand
