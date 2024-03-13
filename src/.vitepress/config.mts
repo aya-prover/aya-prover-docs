@@ -70,7 +70,7 @@ export default defineConfig({
   markdown: {
     config: (md) => {
       md.use(footnote)
-      md.use(markdownItKatex)
+      md.use(markdownItKatex.default)
     }
   },
   lastUpdated: true,
