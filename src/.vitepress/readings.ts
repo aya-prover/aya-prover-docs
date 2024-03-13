@@ -50,7 +50,11 @@ const bob: Author = {
 };
 const carlo: Author = {
   name: 'Carlo Angiuli',
-  link: 'https://www.cs.cmu.edu/~cangiuli',
+  link: 'https://carloangiuli.com',
+};
+const danielGratzer: Author = {
+  name: 'Daniel Gratzer',
+  link: 'https://www.danielgratzer.com',
 };
 const jon: Author = {
   name: 'Jon Sterling',
@@ -269,6 +273,24 @@ export const readings: Publications = [
         authors: [carlo],
         links: [
           ['online', 'https://carloangiuli.com/papers/thesis.pdf']
+        ]
+      },
+      {
+        title: 'A Cubical Language for Bishop Sets',
+        venue: 'LMCS 2022',
+        authors: [jon, carlo, danielGratzer],
+        links: [
+          ['arxiv', '2003.01491'],
+          ['doi', '10.46298/lmcs-18%281%3A43%292022']
+        ]
+      },
+      {
+        title: 'Cubical Syntax for Reflection-Free Extensional Equality',
+        venue: 'FSCD 2019',
+        authors: [jon, carlo, danielGratzer],
+        links: [
+          ['arxiv', '1904.08562'],
+          ['doi', '10.4230/LIPIcs.FSCD.2019.31']
         ]
       }
     ]

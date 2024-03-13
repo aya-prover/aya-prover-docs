@@ -219,7 +219,7 @@ equality between `a` and `b` nicely.
 We may then use the following type signature:
 
 ```aya
-def ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
+def ++-assoc-type (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
   => Path (fn i => Vec (+-assoc i) A) ((xs ++ ys) ++ zs) (xs ++ (ys ++ zs))
 ```
 
