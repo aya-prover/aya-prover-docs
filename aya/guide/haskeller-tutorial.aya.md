@@ -251,7 +251,7 @@ There is a famous example of dependent types in Haskell -- the sized vector type
 ```haskell
 {-# LANGUAGE GADTs #-}
 {-# LANGUAGE DataKinds #-}
--- Maybe you need more, but I don't recall. Sorry.
+-- Maybe you need more, I don't remember exactly
 
 data Vec :: Nat -> Type -> Type where
   Nil :: Vec Zero a

@@ -23,6 +23,11 @@ export const publications: Publications = [
     type: 'Notes',
     items: [
       {
+        title: '(Co)conditions hit the path',
+        authors: [teslaZhang],
+        links: [['arxiv', '2405.12994']],
+      },
+      {
         title: 'Two tricks to trivialize higher-indexed families',
         authors: [teslaZhang],
         links: [['arxiv', '2309.14187']],

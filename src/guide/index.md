@@ -9,9 +9,9 @@
 
 Aya is a programming language _and_ an interactive proof assistant designed for type-directed programming _and_ formalizing math.
 
-The type system of Aya features in the following:
+The type system of Aya has the following highlights:
 
-+ Univalent features similar to Cubical [Agda], [redtt], and [Arend],
++ Set-level cubical features so `funExt` and quotients are available without axioms (like [Agda], [redtt], and [Arend] but not higher-dimensional),
 + Overlapping and order-independent pattern matching,
 + Practical functional programming features similar to [Haskell] and [Idris].
 
