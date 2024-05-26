@@ -9,18 +9,18 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
         ref: 'main'
     - name: Setup Node.js environment
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: 20.x
     - name: Setup Aya
       uses: aya-prover/setup-aya@latest
     - name: Setup pnpm for sane package management
-      uses: pnpm/action-setup@v2.4.0
+      uses: pnpm/action-setup@v4
     - name: Build
       run: |
         pnpm i
