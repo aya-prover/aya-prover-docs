@@ -223,3 +223,60 @@ def ++-assoc-type (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 ```
 
 The proof is omitted (try yourself!).
+
+## Quotient inductive types
+
+Quotient types are types that equates their instances in a non-trivial way.
+In Aya, they are defined using the following syntax:
+
+```aya
+open inductive Interval
+| left
+| right
+| line : left = right
+```
+
+This is an uninteresting quotient type, that is basically `Bool`{} but saying its two values are equal,
+so it's really just `Unit`.
+What's interesting about this type, is that its elimination implies function extensionality:
+
+```aya
+private def lemma
+  (f g : A → B) (p : ∀ x → f x = g x)
+  (i : Interval) (a : A) : B elim i
+| left ⇒ f a
+| right ⇒ g a
+| line j ⇒ p a j
+
+example def funExt' (f g : A -> B) (p : ∀ a -> f a = g a) : f = g =>
+  pmap (lemma f g p) (fn i => line i)
+```
+
+Note that even though we are using equation combinators like `pmap`{} which
+are implemented using path application and abstraction,
+it is not considered cheating because these are already theorems in MLTT anyway.
+
+We can define other interesting quotients such as a symmetric integer:
+
+```aya
+open inductive Int
+| pos Nat | neg Nat
+| zro : pos 0 = neg 0
+```
+
+Some operations on `Int`{}:
+
+```aya
+def succ Int : Int
+| pos n => pos (S n)
+| neg 0 => pos 1
+| neg (S n) => neg n
+| zro i => pos 1
+
+def abs Int : Nat
+| pos n => n
+| neg n => n
+| zro _ => 0
+```
+
+TODO: explain
