@@ -59,10 +59,10 @@ Natural numbers. In Haskell:
 data Nat = Zero | Suc Nat
 ```
 
-In Aya:
+In Aya (we replaced the keyword `data` with `inductive` because we want to use it as a package name):
 
 ```aya
-data Nat | zero | suc Nat
+inductive Nat | zero | suc Nat
 ```
 
 We don't enforce capitalization of constructors.
@@ -73,7 +73,7 @@ to unqualify the constructors.
 Bonus: if you define a data type that _looks like_ `Nat`, then you can use numeric literals.
 
 Functions are defined with `def`, followed by pattern matching.
-Consider this natural number addition in Haskell:
+Consider this natural number addition in Haskell (intentionally not called `+` to avoid name clash with Prelude):
 
 ```haskell
 (<+>) :: Nat -> Nat -> Nat
@@ -146,15 +146,12 @@ suc 1
 λ _7 ⇒ _7 <+> 2
 ```
 
-Aya also supports pattern matching expressions -- using the `match` keyword.
-Example:
+When we only need to pattern match on a subset of the parameters, we can use the `elim` keyword:
 
 ```aya
-def pred (x : Nat) : Nat =>
-  match x {
-  | suc a => a
-  | 0 => 0
-  }
+example def infixl [+] (a n : Nat) : Nat elim a
+| 0 => n
+| suc m => suc (m [+] n)
 ```
 
 ## Type-level programming
@@ -178,13 +175,13 @@ Observations:
 + Curly braces denote parameters that are omitted (and will be inferred by type checker)
   in the pattern matching and invocations.
   So, parentheses denote parameters that are **not** omitted.
-+ Apart from `Type`, we also have `Set`, `Prop`, and `ISet`. For now, don't use the others.
++ Apart from `Type`, we also have `Set`, and `ISet`. For now, don't use the others.
 
 Type constructors are like `{F : Type -> Type}` (and yes, the `->` denotes function types,
 works for both values and types), very obvious. Definition of `Maybe` in Aya:
 
 ```aya
-open data Maybe (A : Type)
+open inductive Maybe (A : Type)
 | nothing
 | just A
 ```
@@ -200,20 +197,20 @@ variable A : Type
 example def id (x : A) => x
 ```
 
-Aya supports type aliases as functions. For example, we may define the type of binary
+<!-- Aya supports type aliases as functions. For example, we may define the type of binary
 operators as a function:
 
 ```aya
-def BinOp (A : Type) => A -> A -> A
+// def BinOp (A : Type) => A -> A -> A
 ```
 
 Then, we can define `<+>` as:
 
 ```aya
-example def infixl <+> : BinOp Nat
-| 0, n => n
-| suc m, n => suc (m <+> n)
-```
+// example def infixl <+> : BinOp Nat
+// | 0, n => n
+// | suc m, n => suc (m <+> n)
+``` -->
 
 ## Type families
 
@@ -222,7 +219,7 @@ In Aya, type families are functions. Consider the following code
 
 ```aya
 // Unit type
-open data Unit | unit
+open inductive Unit | unit
 
 // A type family
 def FromJust (x : Maybe A) : Type
@@ -240,7 +237,7 @@ In Haskell, you need to use some language extensions alongside some scary keywor
 These functions are available in constructors, too:
 
 ```aya
-data Example (A : Type)
+inductive Example (A : Type)
 | cons (x : Maybe A) (FromJust x)
 ```
 
@@ -262,7 +259,7 @@ infixr :<
 In Aya, we have a better syntax:
 
 ```aya
-open data Vec (n : Nat) (A : Type)
+open inductive Vec (n : Nat) (A : Type)
 | 0, A => nil
 | suc n, A => infixr :< A (Vec n A)
 ```
@@ -281,7 +278,6 @@ tighter :<
 
 Imagine how much work this is in Haskell.
 
-<!--
 There is one more bonus: in Aya, you may modify the definition of `<+>` to be:
 
 ```
@@ -291,9 +287,18 @@ def overlap infixl <+> Nat Nat : Nat
 | suc m, n => suc (m <+> n)
 ```
 
-Then we may add the following clause to `++`:
+It says we not only compute `0 + n = n`, but when the first parameter is neither `0` nor `suc`,
+we may take a look at the second parameter and seek for other potential computations.
+This is completely useless at runtime, but very good for type checking.
+For instance, we may want a `Vec`{} of size `n`, and what we have is some `Vec`{} of size `n + 0`.
+Then having `n + 0` to directly reduce to `n` is very useful,
+otherwise we will need to write a conversion function that does nothing but changes the type,
+or use `unsafeCoerce`.
+
+With `n + 0 = n`, we may add the following clause to `++`:
 
 ```
 | xs, nil => xs
 ```
--->
+
+This makes `++` compute on more cases too.

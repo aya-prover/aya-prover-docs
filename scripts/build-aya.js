@@ -11,6 +11,8 @@ const fs = require('fs');
 const path = require('path');
 const child_process = require('child_process');
 
+console.log(child_process.execSync(ayaProg + " --version").toString());
+
 // callback : (file: string) -> void
 function walk(dir, callback) {
   const files = fs.readdirSync(dir);

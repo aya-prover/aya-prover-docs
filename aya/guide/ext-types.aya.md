@@ -159,7 +159,7 @@ There is a higher inductive type that is essentially the same as the
 interval type:
 
 ```aya
-open data Interval
+open inductive Interval
 | left | right
 | line : left = right
 ```

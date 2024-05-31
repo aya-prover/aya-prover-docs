@@ -1,4 +1,4 @@
-# Motivating Aya features: an incomplete story
+# Proof assistants' user tutorial
 
 Great. I expect you to have basic experience with interactive theorem proving.
 This is another Aya tutorial for interactive theorem prover users.
@@ -10,41 +10,39 @@ I hope those are sufficiently intuitive, or you can look up [this tutorial](hask
 Here's a little prelude, which you do not need to understand now.
 
 ```aya
-prim I prim coe
-prim intervalInv
-inline def ~ => intervalInv
+prim I prim coe prim Path
 variable A B : Type
-def infix = (a b : A) => [| i |] A { i := b | ~ i := a }
+def infix = (a b : A) => Path (\i => A) a b
 def refl {a : A} : a = a => fn i => a
 
-open data Nat
+open inductive Nat
 | zero
 | suc Nat
 ```
 
-## A journey begins
+## Function extensionality
 
-You went to a website and a random person has asked the following question:
+Consider the following code:
 
 ```aya
-open data Bool | true | false
+open inductive Bool | true | false
 def not Bool : Bool
 | true => false
 | false => true
 
 def id (x : Bool) => x
 
-def Goal => (fn x => not (not x)) = id
+def Goal => id = (fn x => not (not x))
 
-// And yes, below is the syntax for typed holes in Aya:
+// {??} is the syntax for typed holes in Aya:
 // def question : Goal => {??}
 ```
 
-You realize that there is no way to prove it in your type theory.
+There is no way to prove it in Martin-Löf type theory or Calculus of Constructions.
 However, you are very smart and realized you can instead show the following:
 
 ```aya
-def Goal' (x : Bool) => not (not x) = id x
+def Goal' (x : Bool) => id x = not (not x)
 ```
 
 This is pretty much the same theorem!
@@ -59,7 +57,7 @@ original, unless "function extensionality" is a theorem in your type theory.
 
 To have function extensionality as a theorem, you came across two distinct
 type theories: observational type theory and cubical type theory.
-Aya chose the latter (for now).
+Aya chose the latter.
 
 ## Cubical
 
@@ -71,6 +69,8 @@ def funExt (f g : A -> B) (p : ∀ a -> f a = g a) : f = g
 ```
 
 This is because Aya has a "cubical" equality type that is not inductively defined.
+An equality `a = b` for `a, b : A` is really just a function `I -> A` where `I` is a special type
+carrying two values around.
 We may also prove the action-on-path theorem, commonly known as `cong`, but
 renamed to `pmap`{} to avoid a potential future naming clash:
 
@@ -79,10 +79,10 @@ def pmap (f : A -> B) {a b : A} (p : a = b) : f a = f b
    => fn i => f (p i)
 ```
 
-We may also invert a path:
+We may also invert a path using more advanced primitives:
 
 ```aya
-def sym {a b : A} (p : a = b) : b = a => fn i => p (~ i)
+def pinv {a b : A} (p : a = b) : b = a => coe 0 1 (\i => p i = a) refl
 ```
 
 However, we cannot yet define transitivity of equality because we do not have the
@@ -107,9 +107,8 @@ some simple types such as natural numbers or sized vectors.
 These are left as exercises, and you are encouraged to try yourself if you are not
 very sure about how it feels to prove things in Aya.
 
-## Jesper's master thesis
+## Overlapping and Order-independent Pattern Matching
 
-Here's a bonus feature.
 Remember the `+-comm` proof that you need two lemmas?
 It is standard to define `+` in the following way:
 
@@ -138,9 +137,9 @@ This makes all of them definitional equality.
 So, `+-comm`{} can be simplified to just one pattern matching:
 
 ```aya
-def +-comm (a b : Nat) : a + b = b + a
-| 0, _ => refl
-| suc _, _ => pmap suc (+-comm _ _)
+def +-comm (a b : Nat) : a + b = b + a elim a
+| 0 => refl
+| suc _ => pmap suc (+-comm _ _)
 ```
 
 ## Heterogeneous equality
@@ -153,7 +152,7 @@ We first need to define sized vectors and the append operation:
 ```aya
 variable n m o : Nat
 // Definitions
-open data Vec (n : Nat) (A : Type)
+open inductive Vec (n : Nat) (A : Type)
 | 0, A => nil
 | suc n, A => infixr :< A (Vec n A)
 overlap def infixr ++ (Vec n A) (Vec m A) : Vec (n + m) A
@@ -167,9 +166,9 @@ It is tempting to use the below definition:
 
 ```
 overlap def ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
-  : (xs ++ ys) ++ zs = xs ++ (ys ++ zs)
-| nil, ys, zs => refl
-| x :< xs, ys, zs => pmap (x :<) (++-assoc xs ys zs)
+  : (xs ++ ys) ++ zs = xs ++ (ys ++ zs) elim xs
+| nil => refl
+| x :< xs => pmap (x :<) (++-assoc xs ys zs)
 ```
 
 However, this definition is not well-typed:
@@ -183,9 +182,9 @@ We need to show that natural number addition is associative,
 which is the key lemma of this propositional equality:
 
 ```aya
-def +-assoc {a b c : Nat} : (a + b) + c = a + (b + c)
-| {0} => refl
-| {suc _} => pmap suc +-assoc
+def +-assoc {a b c : Nat} : (a + b) + c = a + (b + c) elim a
+| 0 => refl
+| suc _ => pmap suc +-assoc
 ```
 
 Now we can work on the proof of `++-assoc`.
@@ -210,7 +209,7 @@ But still, with this lemma it is still hard.
 Cubical provides a pleasant way of working with heterogeneous equality:
 
 ```aya
-def Path (A : I -> Type) (a : A 0) (b : A 1) => [| i |] A i { i := b | ~ i := a }
+def Path' (A : I -> Type) (a : A 0) (b : A 1) => Path A a b
 ```
 
 So if we have `X : A = B` and `a : A`, `b : B`, then `Path (\i => X i) a b` expresses the heterogeneous

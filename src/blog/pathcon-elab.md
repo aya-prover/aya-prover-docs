@@ -67,7 +67,7 @@ $$
 So for example, set truncation from HoTT looks like this:
 
 ```
-data SetTrunc (A : Type)
+inductive SetTrunc (A : Type)
 | mk : A -> SetTrunc A
 | trunc : isSet (SetTrunc A)
 ```
