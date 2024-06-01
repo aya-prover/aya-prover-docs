@@ -197,7 +197,7 @@ example def ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 ```
 
 It is harder to prove because in the induction step, one need to show that
-`cast (↑ pmap (\n => Vec n A) (+-assoc {n} {m} {o}))`{implicitArgs=false}
+`cast (↑ pmap (fn n => Vec n A) (+-assoc {n} {m} {o}))`{implicitArgs=false}
 is equivalent to the identity function in order to use the induction hypothesis.
 For the record, here's the proof:
 
@@ -268,9 +268,9 @@ Some operations on `Int`{}:
 
 ```aya
 def succ Int : Int
-| pos n => pos (S n)
+| pos n => pos (suc n)
 | neg 0 => pos 1
-| neg (S n) => neg n
+| neg (suc n) => neg n
 | zro i => pos 1
 
 def abs Int : Nat

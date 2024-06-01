@@ -281,7 +281,7 @@ Imagine how much work this is in Haskell.
 There is one more bonus: in Aya, you may modify the definition of `<+>` to be:
 
 ```
-def overlap infixl <+> Nat Nat : Nat
+overlap def infixl <+> Nat Nat : Nat
 | 0, n => n
 | n, 0 => n
 | suc m, n => suc (m <+> n)
