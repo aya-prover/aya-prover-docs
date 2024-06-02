@@ -197,20 +197,20 @@ variable A : Type
 example def id (x : A) => x
 ```
 
-<!-- Aya supports type aliases as functions. For example, we may define the type of binary
+Aya supports type aliases as functions. For example, we may define the type of binary
 operators as a function:
 
 ```aya
-// def BinOp (A : Type) => A -> A -> A
+def BinOp (A : Type) => A -> A -> A
 ```
 
 Then, we can define `<+>` as:
 
 ```aya
-// example def infixl <+> : BinOp Nat
-// | 0, n => n
-// | suc m, n => suc (m <+> n)
-``` -->
+example def infixl <+> : BinOp Nat
+| 0, n => n
+| suc m, n => suc (m <+> n)
+```
 
 ## Type families
 
