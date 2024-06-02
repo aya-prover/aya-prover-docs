@@ -5,7 +5,7 @@ and a `src` directory for source code. Here's a sample `aya.json`:
 
 ```json
 {
-  "ayaVersion": "0.30",
+  "ayaVersion": "0.31",
   // ^ The version of Aya you are using -- for compatibility checks
   "name": "<project name>",
   "version": "<project version>",

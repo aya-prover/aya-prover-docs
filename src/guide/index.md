@@ -1,9 +1,8 @@
 # The Aya Prover
 
 + [Installation Guide](install)
-+ [Tutorial for Haskellers](haskeller-tutorial) (should also work for Idris users)
-+ [Tutorial for Dependent Type users](anqur-story)
-+ [Tutorial for the "extension type"](ext-types)
++ [Tutorial for functional programmers](haskeller-tutorial) (such as ML, Haskell, or Idris users)
++ [Tutorial for dependent types or theorem prover users](prover-tutorial)
 + [Tutorial for VSCode extension](vscode-tutorial)
 + [Tutorial for the fake literate mode](fake-literate)
 
