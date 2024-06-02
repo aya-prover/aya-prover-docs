@@ -91,7 +91,7 @@ This will need some advanced proving techniques that are beyond the scope of thi
 simple tutorial, so I'll skim them. First, we need type-safe coercion:
 
 ```aya
-def cast (p : A ↑ = B) : A -> B => coe 0 1 (fn i => p i)
+def cast (p : A ↑ = B) : A -> B => ↑ coe 0 1 (fn i => p i)
 ```
 
 Then, from `q : b = c` we construct the equivalence `(a = b) = (a = c)`

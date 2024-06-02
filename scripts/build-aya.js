@@ -43,6 +43,7 @@ walk(".", (file) => {
 });
 // Put preprocessed files to src/
 process.chdir("../build-aya");
+let gitignore = "";
 walk(".", (file) => {
   console.log("Moving: " + file);
   const dest = path.resolve("../src", file);
@@ -52,4 +53,9 @@ walk(".", (file) => {
       if (err) throw err;
     });
   });
+  gitignore += file + "\n";
+});
+
+fs.writeFile("../src/.gitignore", gitignore, (err) => {
+  if (err) throw err;
 });
