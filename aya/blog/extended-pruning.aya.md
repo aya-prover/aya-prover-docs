@@ -84,7 +84,7 @@ Then, we get the following tycking problems, according to the rules of PathP:
 
 ```
 vecA : Vec (+-assoc {?a Γ 0} {?b Γ 0} {?c Γ 0} 0) Nat
-vecB : Vec (+-assoc {?a Γ 1} {?b Γ 1} {?c Γ 1} 0) Nat
+vecB : Vec (+-assoc {?a Γ 1} {?b Γ 1} {?c Γ 1} 1) Nat
 ```
 
 Look at the spines of all of these metavariables. None of them are in pattern fragment.
