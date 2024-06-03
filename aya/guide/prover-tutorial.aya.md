@@ -13,7 +13,6 @@ Here's a little prelude, which you do not need to understand now.
 prim I prim coe prim Path
 variable A B : Type
 def infix = (a b : A) => Path (\i => A) a b
-def refl {a : A} : a = a => fn i => a
 
 open inductive Nat
 | zero
@@ -70,8 +69,25 @@ def funExt (f g : A -> B) (p : ∀ a -> f a = g a) : f = g
 
 This is because Aya has a "cubical" equality type that is not inductively defined.
 An equality `a = b` for `a, b : A` is really just a function `I -> A`{} where `I`{}
-is a special type carrying two values around (there's supposed to be a short
-introduction to cubical ideas here, but I don't have time to write that out yet).
+is a special type that has two closed instances `0` and `1`, but there is not a
+pattern matching operation that distinguishes them. Then, for `f : I -> A`,
+the corresponding equality type is `f 0 = f 1`.
+By this definition, we can "prove" reflexivity by creating a constant function:
+
+```aya
+def refl {a : A} : a = a => fn i => a
+```
+
+And to show that `f = g`, it suffices to construct a function `q : I -> (A -> B)` such
+that `q 0 = f` and `q 1 = g`. This is true for the proof above:
+
+```
+  (fn i a => p a i) 0    β-reduce
+= fn a => p a 0          p a : f a = g a
+= fn a => f a            η-reduce
+= f
+```
+
 We may also prove the action-on-path theorem, commonly known as `cong`, but
 renamed to `pmap`{} to avoid a potential future naming clash:
 
@@ -80,6 +96,7 @@ def pmap (f : A -> B) {a b : A} (p : a = b) : f a = f b
    => fn i => f (p i)
 ```
 
+Checking the above definition is left as an exercise.
 We may also invert a path using more advanced primitives:
 
 ```aya
@@ -238,7 +255,10 @@ open inductive Interval
 ```
 
 This is an uninteresting quotient type, that is basically `Bool`{} but saying its two values are equal,
-so it's really just `Unit`.
+so it's really just `Unit`. The type of `line` will be translated into `I -> Interval`{}
+together with the judgmental equality that `line 0`{} is `left`{} and `line 1`{} is `right`{}.
+Every time we do pattern matching, we need to make sure it preserves these judgmental equalities.
+
 What's interesting about this type, is that its elimination implies function extensionality:
 
 ```aya
@@ -280,4 +300,6 @@ def abs Int : Nat
 | zro _ => 0
 ```
 
-TODO: explain
+The `succ`{} operator has the first three clauses straightforward, and the last one is a proof
+of `succ (neg 0)`{} equals `succ (pos 0)`{}, as we should preserve the judgmental equality
+in the type of `zro`{}. We need to do the same for `abs`{}.

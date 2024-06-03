@@ -163,3 +163,10 @@ Info: Solving equation(s) with not very general solution(s)
 ```
 
 The inline equations are the type checking problems that Aya did something bad to solve.
+
+Conor McBride told me pattern unification is a good algorithm, but the problem of interest
+might not be what we think it is. It is good for _undergraduate induction_, i.e. the
+object being induct on is a variable, and the _motive_ of such induction is pattern.
+This is an enlightening perspective!
+But now that we have more problems, I think we might want to extend it.
+Just think about how many people use `--lossy-unification` in Agda.

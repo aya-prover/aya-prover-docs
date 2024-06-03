@@ -53,5 +53,6 @@ levels to address the issue, but I think it does not solve the essential problem
 that I have to lookup the numbers (of existing operator precedences)
 every time I write a new operator.
 
-In the future, we plan to support mixfix operators as in Agda (the current framework can support mixfix easily,
+In the future, we plan to support mixfix operators as in Agda
+(the current framework can support mixfix easily,
 but abusing mixfix notations can harm readability).
