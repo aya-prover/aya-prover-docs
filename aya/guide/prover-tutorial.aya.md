@@ -69,8 +69,9 @@ def funExt (f g : A -> B) (p : ∀ a -> f a = g a) : f = g
 ```
 
 This is because Aya has a "cubical" equality type that is not inductively defined.
-An equality `a = b` for `a, b : A` is really just a function `I -> A` where `I` is a special type
-carrying two values around.
+An equality `a = b` for `a, b : A` is really just a function `I -> A`{} where `I`{}
+is a special type carrying two values around (there's supposed to be a short
+introduction to cubical ideas here, but I don't have time to write that out yet).
 We may also prove the action-on-path theorem, commonly known as `cong`, but
 renamed to `pmap`{} to avoid a potential future naming clash:
 

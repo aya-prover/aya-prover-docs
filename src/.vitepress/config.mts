@@ -42,6 +42,7 @@ export default defineConfig({
       {
         text: 'Blog',
         items: [
+          { text: 'Extended Pruning', link: '/blog/extended-pruning' },
           { text: 'Farewell, Univalence', link: '/blog/bye-hott' },
           { text: 'Inductive Props', link: '/blog/ind-prop' },
           { text: 'Def. projection in classes', link: '/blog/class-defeq' },
