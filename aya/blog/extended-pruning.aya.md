@@ -1,7 +1,7 @@
 # Extended pruning for pattern unification
 
 The vanilla pattern unification is very limited.
-Consider
+Consider:
 
 ```aya-hidden
 prim I prim coe prim Path
@@ -21,7 +21,6 @@ tighter =
 def pmap (f : A -> B) {a b : A} (p : a = b) : f a = f b
    => fn i => f (p i)
 variable n m o : Nat
-variable i : I
 // Definitions
 open inductive Vec (n : Nat) (A : Type)
 | 0, A => nil
@@ -39,16 +38,16 @@ def ++-assoc-type (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 ```
 
 ```aya
- PathP (fn i => Vec (+-assoc i) A)
-      (xs ++ (ys ++ zs))
+ Path (fn i => Vec (+-assoc i) A)
       ((xs ++ ys) ++ zs)
+      (xs ++ (ys ++ zs))
 ```
 
 This is the equality between two sized vectors: `(xs ++ (ys ++ zs))` and `((xs ++ ys) ++ zs)`,
 the left hand side has type `Vec (xs.size ++ (ys.size ++ zs.size)) A`,
 and the right hand side has type `Vec ((xs.size ++ ys.size) ++ zs.size)`.
 
-So, the equality type is heterogeneous, and I introduce a type `Vec (+-assoc i) A`{} for it, where `+-assoc`{} is the associativity.
+So, the equality type is heterogeneous, and I introduce a type `Vec (+-assoc i) A` for it, where `+-assoc`{} is the associativity.
 
 So this should type check, right? But pattern unification fails! I've left the two sides of `+-assoc`{} implicit,
 so I'm supposed to infer what numbers' associativity I care about, using pattern unification.
@@ -96,5 +95,71 @@ mode of solving metas when your equations rely essentially on non-pattern equati
 but I feel it has defeated the point of finding the most general solution,
 which I used to believe to be the purpose of pattern unification....
 
+## Case Study
+
 Right now Aya will try to prune these non-pattern arguments out and try to solve them.
 This obviously generates non-unique solutions, but I think it will be useful in practice.
+
+In Agda, the following code is in the library:
+
+```
+++-assoc : ∀ {m n k} (xs : Vec A m) (ys : Vec A n) (zs : Vec A k) →
+          PathP (λ i → Vec A (+-assoc m n k (~ i)))
+          ((xs ++ ys) ++ zs) (xs ++ ys ++ zs)
+++-assoc {m = zero} [] ys zs = refl
+++-assoc {m = suc m} (x ∷ xs) ys zs i = x ∷ ++-assoc xs ys zs i
+```
+
+However, if we replace the `m` with `_`, Agda will fail with the following error:
+
+```
+Failed to solve the following constraints:
+  _41 (xs = (x ∷ xs)) (ys = ys) (zs = zs) = x ∷ ++-assoc xs ys zs i1
+    : Vec A
+      (+-assoc (_m_39 (xs = (x ∷ xs)) (ys = ys) (zs = zs) (i = i1)) n k
+       (~ i1))
+    (blocked on any(_41, _57))
+  _40 (xs = (x ∷ xs)) (ys = ys) (zs = zs) = x ∷ ++-assoc xs ys zs i0
+    : Vec A
+      (+-assoc (_m_39 (xs = (x ∷ xs)) (ys = ys) (zs = zs) (i = i0)) n k
+       (~ i0))
+    (blocked on any(_40, _57))
+  +-assoc (_m_39 (xs = xs) (ys = ys) (zs = zs) (i = i)) n k (~ i)
+    = _n_49
+    : ℕ
+    (blocked on _n_49)
+  +-assoc (_m_39 (xs = (x ∷ xs)) (ys = ys) (zs = zs) (i = i)) n k
+  (~ i)
+    = ℕ.suc _n_49
+    : ℕ
+    (blocked on _m_39)
+  _40 (xs = []) (ys = ys) (zs = zs)
+    = _41 (xs = []) (ys = ys) (zs = zs)
+    : _x.A_43
+    (blocked on any(_40, _41))
+  _x.A_43
+    = Vec A
+      (+-assoc (_m_39 (xs = []) (ys = ys) (zs = zs) (i = i)) n k (~ i))
+    : Type
+    (blocked on _x.A_43)
+  _m_39 (i = i0) = m : ℕ (blocked on _m_39)
+  _m_39 (i = i1) + (n + k) = m + (n + k) : ℕ (blocked on _m_39)
+```
+
+In Aya, this will raise the following warning:
+
+```
+  6 │       def ++-assoc-type (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
+  7 │         => Path (fn i => Vec (+-assoc i) A)
+  8 │         (xs ++ (ys ++ zs))
+    │          ╰──────────────╯ ?a n A m o xs ys zs 0 >= n, ?b n A m o xs ys zs 0 >= m,
+                                ?c n A m o xs ys zs 0 >= o
+  9 │         ((xs ++ ys) ++ zs)
+    │          ╰──────────────╯
+    │          ╰──────────────╯ ?a n A m o xs ys zs 1 >= n, ?b n A m o xs ys zs 1 >= m,
+                                ?c n A m o xs ys zs 1 >= o
+
+Info: Solving equation(s) with not very general solution(s)
+```
+
+The inline equations are the type checking problems that Aya did something bad to solve.
