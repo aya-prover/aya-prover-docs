@@ -67,16 +67,27 @@ def funExt (f g : A -> B) (p : ∀ a -> f a = g a) : f = g
    => fn i a => p a i
 ```
 
-This is because Aya has a "cubical" equality type that is not inductively defined.
-An equality `a = b` for `a, b : A` is really just a function `I -> A`{} where `I`{}
-is a special type that has two closed instances `0` and `1`, but there is not a
-pattern matching operation that distinguishes them. Then, for `f : I -> A`,
-the corresponding equality type is `f 0 = f 1`.
+Aya has a "cubical" equality type that is not inductively defined.
+An equality `a = b` for `a, b : A` is really just a function `I -> A`{} (as we can see
+from the proof construction, for `f = g` we prove it by a lambda abstraction) where:
+
+- `I`{} is a special type that has two closed instances `0` and `1`,
+  and we think of there being a propositional equality between `0` and `1`,
+  and there is no pattern matching operation that distinguishes them.
+  So, every function that maps out of `I`{} must _preserve_ this judgmental equality.
+- For `f : I -> A`, the corresponding equality type is `f 0 = f 1`.
+  Hypothetically, let `f` be the identity function, and we get a propositional equality
+  between `0` and `1`, but for technical reasons we don't talk about equality between
+  `0` and `1` directly.
+
 By this definition, we can "prove" reflexivity by creating a constant function:
 
 ```aya
 def refl {a : A} : a = a => fn i => a
 ```
+
+For `f = fn i => a`, we need to verify if `f 0` equals the left-hand side of the equality
+and `f 1` equals the right-hand side, which are both true.
 
 And to show that `f = g`, it suffices to construct a function `q : I -> (A -> B)` such
 that `q 0 = f` and `q 1 = g`. This is true for the proof above:
@@ -97,22 +108,27 @@ def pmap (f : A -> B) {a b : A} (p : a = b) : f a = f b
 ```
 
 Checking the above definition is left as an exercise.
-We may also invert a path using more advanced primitives:
 
-```aya
-def pinv {a b : A} (p : a = b) : b = a => coe 0 1 (\i => p i = a) refl
-```
-
-However, we cannot yet define transitivity of equality because we do not have the
-traditional elimination rule of the equality type -- the `J` rule.
+However, we cannot yet define transitivity/symmetry of equality because we do not
+have the traditional elimination rule of the equality type -- the `J` rule.
 This will need some advanced proving techniques that are beyond the scope of this
-simple tutorial, so I'll skim them. First, we need type-safe coercion:
+simple tutorial, so I'll skim them.
+
+We may define the type-safe coercion using it,
+and this will help us prove the two lemmas about equality:
 
 ```aya
 def cast (p : A ↑ = B) : A -> B => ↑ coe 0 1 (fn i => p i)
 ```
 
-Then, from `q : b = c` we construct the equivalence `(a = b) = (a = c)`
+Then, from `p : a = b` we construct the equivalence `(a = a) = (b = a)`
+and coerce along this equivalence:
+
+```aya
+def pinv {a b : A} (p : a = b) : b = a => cast (\i => p i = a) refl
+```
+
+From `q : b = c` we construct the equivalence `(a = b) = (a = c)`
 and coerce along this equivalence:
 
 ```aya
@@ -256,7 +272,8 @@ open inductive Interval
 
 This is an uninteresting quotient type, that is basically `Bool`{} but saying its two values are equal,
 so it's really just `Unit`. The type of `line` will be translated into `I -> Interval`{}
-together with the judgmental equality that `line 0`{} is `left`{} and `line 1`{} is `right`{}.
+together with the judgmental equality that `line 0`{} is `left`{} and `line 1`{} is `right`{},
+basically a desugaring of the equality with additional features.
 Every time we do pattern matching, we need to make sure it preserves these judgmental equalities.
 
 What's interesting about this type, is that its elimination implies function extensionality:
