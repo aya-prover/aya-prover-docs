@@ -42,6 +42,7 @@ export default defineConfig({
       {
         text: 'Blog',
         items: [
+          { text: 'TT in TT using QIIT', link: '/blog/tt-in-tt-qiit' },
           { text: 'Extended Pruning', link: '/blog/extended-pruning' },
           { text: 'Farewell, Univalence', link: '/blog/bye-hott' },
           { text: 'Inductive Props', link: '/blog/ind-prop' },
