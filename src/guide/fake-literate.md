@@ -4,7 +4,6 @@ The Aya compiler generates styled (e.g. with colors and text attributes)
 code snippets for many targets, like HTML, LaTeX, etc.,
 and it's tempting to use the same tool but for different languages.
 This is what the _fake literate_ mode is for.
-Right now it only targets LaTeX, but it can be extended to other languages.
 Let me know if you want other backend supports.
 
 To start, install the latest version of Aya, put the following code in a file named `hello.flcl`:

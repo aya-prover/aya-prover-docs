@@ -158,7 +158,7 @@ export const readings: Publications = [
   },
 
   {
-    type: 'Univalent Type Theory',
+    type: 'Equality in Type Theory',
     items: [
       {
         title: 'Separating Path and Identity Types in Presheaf Models of Univalent Type Theory',

@@ -16,21 +16,15 @@ If you chose the jlink version, the `bin` folder contains the executable scripts
 
 Aya is available for Windows, Linux, and macOS, as listed below.
 
-| Platform | Architecture | JLink                    | Native               |
-|----------|--------------|--------------------------|----------------------|
-| Windows  | x64          | [zip][win-zip-x64]       | [exe][win-exe-x64]   |
-| Linux    | x64          | [zip][linux-zip-x64]     | [exe][linux-exe-x64] |
-| macOS    | x64          | [zip][macos-zip-x64]     | [exe][macos-exe-x64] |
-| Windows  | aarch64      | [zip][win-zip-aarch64]   | Unavailable yet      |
-| Linux    | aarch64      | [zip][linux-zip-aarch64] | Unavailable yet      |
-| macOS    | aarch64      | [zip][macos-zip-aarch64] | Unavailable yet      |
+|         | x64                  | aarch64                  |
+|         |--------------------==|--------------------------|
+| Windows | [zip][win-zip-x64]   | [zip][win-zip-aarch64]   |
+| Linux   | [zip][linux-zip-x64] | [zip][linux-zip-aarch64] |
+| macOS   | [zip][macos-zip-x64] | [zip][macos-zip-aarch64] |
 
 [win-zip-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_windows-x64.zip
-[win-exe-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_native_windows-x64.exe
 [linux-zip-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_linux-x64.zip
-[linux-exe-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_native_linux-x64
 [macos-zip-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_macos-x64.zip
-[macos-exe-x64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_native_macos-x64
 
 [win-zip-aarch64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_windows-aarch64.zip
 [linux-zip-aarch64]: https://github.com/aya-prover/aya-dev/releases/download/nightly-build/aya-prover_jlink_linux-aarch64.zip
@@ -81,8 +75,8 @@ You can find the complete example [here][aya-action-example].
 Very cool! Now you can try the prebuilt jars (much smaller and platform-independent)
 or build Aya from source.
 
-We will always be using the latest release of Java.
-Not that we do not stay on LTS releases.
+We will (hopefully) always be using the latest release of Java, rather than LTS,
+unless there are breaking changes on the byte code format.
 
 ### Prebuilt binary
 

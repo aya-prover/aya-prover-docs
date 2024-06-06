@@ -47,7 +47,7 @@ export default defineConfig({
           { text: 'Farewell, Univalence', link: '/blog/bye-hott' },
           { text: 'Inductive Props', link: '/blog/ind-prop' },
           { text: 'Def. projection in classes', link: '/blog/class-defeq' },
-          { text: 'Path constructor elaboration', link: '/blog/pathcon-elab' },
+          { text: 'Path cons. elaboration', link: '/blog/pathcon-elab' },
           { text: 'Path type elaboration', link: '/blog/path-elab' },
           { text: 'Binary operators', link: '/blog/binops' },
           { text: 'Index unification', link: '/blog/index-unification' },

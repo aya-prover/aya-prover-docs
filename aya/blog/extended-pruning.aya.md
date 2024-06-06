@@ -1,10 +1,15 @@
 # Extended pruning for pattern unification
 
+```aya
+prim I
+prim Path (A : I -> Type) (a : A 0) (b : A 1) : Type
+```
+
 The vanilla pattern unification is very limited.
 Consider:
 
 ```aya-hidden
-prim I prim coe prim Path
+prim coe
 variable A B : Type
 def infix = (a b : A) => Path (\i => A) a b
 def refl {a : A} : a = a => fn i => a
@@ -80,11 +85,11 @@ Note that the `i : I` binding is in-scope. So the metavariables with their spine
 Γ ­⊢ Path (fn i => Vec (+-assoc {?a Γ i} {?b Γ i} {?c Γ i} i) Nat) vecA vecB
 ```
 
-Then, we get the following tycking problems, according to the rules of PathP:
+Then, we get the following tycking problems, according to the rules of `Path`{}:
 
 ```
 vecA : Vec (+-assoc {?a Γ 0} {?b Γ 0} {?c Γ 0} 0) Nat
-vecB : Vec (+-assoc {?a Γ 1} {?b Γ 1} {?c Γ 1} 0) Nat
+vecB : Vec (+-assoc {?a Γ 1} {?b Γ 1} {?c Γ 1} 1) Nat
 ```
 
 Look at the spines of all of these metavariables. None of them are in pattern fragment.
