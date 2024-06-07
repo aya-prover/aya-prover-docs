@@ -34,7 +34,7 @@ An instance of the type `Con`{} corresponds to the $Γ$ in the judgment $Γ~\tex
 $$
 \cfrac{}{·~\text{ctx}}
 \quad
-\cfrac{Γ~\text{ctx} \quad Γ⊢A~\text{type}}{Γ\mathrel{▷}A~\text{ctx}}
+\cfrac{Γ~\text{ctx} \quad Γ⊢A~\text{type}}{Γ \vartriangleright A~\text{ctx}}
 $$
 
 It uses the judgment $Γ⊢A~\text{type}$, which is defined below.
@@ -100,6 +100,8 @@ open inductive infix << (Γ : Con) (Δ : Con) : Type
 | _, • => εη {δ : Γ << •} : δ = ε
 ```
 
+An instance of type `Γ << Δ` corresponds to the $σ$ in the substitution typing $Γ ⊢ σ : Δ$.
+
 ## Terms
 
 ```aya
@@ -118,3 +120,5 @@ open inductive Tm (Γ : Con) (Ty Γ) : Type
     in ford (transport (Tm _) (SubΠ σ) (sub (λ t)))
      = ford (λ (sub t))
 ```
+
+An instance of type `Tm Γ A` corresponds to the $t$ in the judgment $Γ⊢t:A$.
