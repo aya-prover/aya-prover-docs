@@ -2,7 +2,6 @@
 layout: home
 
 title: Aya Prover
-titleTemplate: A proof assistant designed for formalizing math and type-directed programming
 
 hero:
   name: Aya Prover

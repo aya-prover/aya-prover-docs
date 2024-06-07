@@ -17,7 +17,7 @@ If you chose the jlink version, the `bin` folder contains the executable scripts
 Aya is available for Windows, Linux, and macOS, as listed below.
 
 |         | x64                  | aarch64                  |
-|         |--------------------==|--------------------------|
+| ------- | -------------------- | ------------------------ |
 | Windows | [zip][win-zip-x64]   | [zip][win-zip-aarch64]   |
 | Linux   | [zip][linux-zip-x64] | [zip][linux-zip-aarch64] |
 | macOS   | [zip][macos-zip-x64] | [zip][macos-zip-aarch64] |

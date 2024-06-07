@@ -11,10 +11,14 @@ Aya is a programming language _and_ an interactive proof assistant designed for 
 The type system of Aya has the following highlights:
 
 + Set-level cubical features so `funExt` and quotients are available without axioms (like [Agda], [redtt], and [Arend] but not higher-dimensional),
-+ Overlapping and order-independent pattern matching,
-+ Practical functional programming features similar to [Haskell] and [Idris].
++ Overlapping and order-independent pattern matching makes simple functions compute better,
++ Practical functional programming features similar to [Haskell] and [Idris]: dependent pattern matching, typed holes, enchanted synthesis of implicit arguments.
 
-<!-- Aya is under active development. Please be patient until future information is available. -->
+The implementation of the Aya compiler has the following highlights:
+
++ Efficient type checking by JIT-compiling well-typed definitions to JVM higher-order abstract syntax, so substitution does not traverse terms,
++ Convenient interactive tools such as a language server for VSCode, a REPL, and hyperlinked document generation ([demo](../blog/tt-in-tt-qiit)),
++ Pre-compiled binary release.
 
 [Arend]: https://arend-lang.github.io
 [redtt]: https://redprl.org
