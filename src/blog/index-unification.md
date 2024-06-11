@@ -2,7 +2,7 @@
 
 [#198]: https://github.com/aya-prover/aya-dev/pull/198
 
-Aya implements a version of index unification algorithm that allows emission of obvious patterns. Here's an example.
+Aya implements a version of index unification algorithm that allows omission of obvious patterns. Here's an example.
 Consider the famous "sized-vector" `Vec (n : Nat) (A : Type)` definition,
 and we can perform some pattern matching:
 
