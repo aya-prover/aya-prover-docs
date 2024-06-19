@@ -278,6 +278,8 @@ tighter :<
 
 Imagine how much work this is in Haskell.
 
+## Overlapping patterns
+
 There is one more bonus: in Aya, you may modify the definition of `<+>` to be:
 
 ```
@@ -295,10 +297,14 @@ Then having `n + 0` to directly reduce to `n` is very useful,
 otherwise we will need to write a conversion function that does nothing but changes the type,
 or use `unsafeCoerce`.
 
-With `n + 0 = n`, we may add the following clause to `++`:
+With `n + 0 = n` judgmentally, we now have more possibilities.
+For instance, we can make `xs ++ nil = xs`. This involves in two steps: we first turni `++` into
+a `overlap def`, then we add the following clause to `++`:
 
 ```
 | xs, nil => xs
 ```
 
 This makes `++` compute on more cases too.
+
+For more information about this feature, checkout the [tutorial for proof assistant users](prover-tutorial).
