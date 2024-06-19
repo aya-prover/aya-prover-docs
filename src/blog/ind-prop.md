@@ -1,4 +1,4 @@
-# Inductive Prop are so wrong!
+# Impredicative Props are hard
 
 Throughout this blog post, I will use the term `Prop` to mean the type of propositions,
 which _does not_ have to be strict, but has the property that it cannot eliminate to `Type`.

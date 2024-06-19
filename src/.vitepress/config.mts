@@ -45,7 +45,7 @@ export default defineConfig({
           { text: 'TT in TT using QIIT', link: '/blog/tt-in-tt-qiit' },
           { text: 'Extended Pruning', link: '/blog/extended-pruning' },
           { text: 'Farewell, Univalence', link: '/blog/bye-hott' },
-          { text: 'Inductive Props', link: '/blog/ind-prop' },
+          { text: 'Impredicative Props', link: '/blog/ind-prop' },
           { text: 'Def. projection in classes', link: '/blog/class-defeq' },
           { text: 'Path cons. elaboration', link: '/blog/pathcon-elab' },
           { text: 'Path type elaboration', link: '/blog/path-elab' },
