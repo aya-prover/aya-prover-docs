@@ -28,7 +28,7 @@
     "@types/markdown-it-footnote": "^3.0.4",
     "@vitejs/plugin-vue-jsx": "^4.0.0",
     "vitepress": "1.2.3",
-    "vue": "^3.4.27"
+    "vue": "^3.4.29"
   },
   "pnpm": {
     "overrides": {

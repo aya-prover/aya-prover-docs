@@ -271,10 +271,34 @@ open inductive Interval
 ```
 
 This is an uninteresting quotient type, that is basically `Bool`{} but saying its two values are equal,
-so it's really just `Unit`. The type of `line` will be translated into `I -> Interval`{}
-together with the judgmental equality that `line 0`{} is `left`{} and `line 1`{} is `right`{},
-basically a desugaring of the equality with additional features.
-Every time we do pattern matching, we need to make sure it preserves these judgmental equalities.
+so it's really just a unit type, with its unique element being the equivalence class of `left`{} and `right`{}.
+
+If you're familiar with a proof assistant with an intensional equality like
+Coq/Agda/Lean/etc., you might find this surprising because a unit type shall not have two distinct elements,
+and an equality shall not be stated between two distinct constructors. How does this work in Aya?
+
+Actually, in these systems, the equality is defined _inductively_, and it only has one constructor -- `refl`.
+This is not how equality is defined in Aya, so we can cook some interesting equality proofs into it,
+which includes these equality-looking constructors.
+
+1. The type of `line` will be translated into `I -> Interval`{}
+   together with the judgmental equality that `line 0`{} is `left`{} and `line 1`{} is `right`{},
+   basically a desugaring of the equality with additional features.
+   This makes `line` a valid constructor in normal type theory: it takes some parameters and returns `Interval`{}.
+2. These judgmental equalities need to be preserved by the elimination rule of `Interval`{}.
+   Here is an example elimination:
+
+```aya
+example def Interval-elim {a b : A} {p : a = b} (i : Interval) : A elim i
+| left => a
+| right => b
+| line j => p j
+```
+
+Note that the term `pmap Interval-elim line`, which reduces to `p`,
+has type `Interval-elim left = Interval-elim right`,
+so we need to check if `p 0` equals `Interval-elim left`, and `p 1` equals `Interval-elim right`.
+This is a _confluence check_ that ensures the elimination is well-defined.
 
 What's interesting about this type, is that its elimination implies function extensionality:
 
