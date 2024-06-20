@@ -75,6 +75,9 @@ to ban this rule. So, how hard is it to patch the termination checker?
 
 Coq and Lean have a similar problem, but they are generating eliminators for inductive definitions,
 so they can generate the correct eliminator for `Prop`, instead of patching the termination checker.
+Then, Coq carefully implements a comparison function for size-decreasing arguments (this means
+eliminators are not the "most primitive" thing in Coq, but the termination checker is also part of it.
+I got this piece of information from Lysxia and Meven Lennon-Bertrand).
 In Coq, the eliminator for `Bad` is
 
 ```
@@ -84,7 +87,6 @@ Bad_ind : forall P : Prop,
 ```
 
 Note that there is no recursive arguments, so there is no recursion allowed.
-There is no need to patch the termination checker in Coq.
 
 Now, this sounds like just adding some `if` statements to the termination checker,
 but the situation is actually worse. In Agda, metavariables are pervasive,
