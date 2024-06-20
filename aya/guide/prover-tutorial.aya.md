@@ -10,7 +10,9 @@ I hope those are sufficiently intuitive, or you can look up [this tutorial](hask
 Here's a little prelude, which you do not need to understand now.
 
 ```aya
-prim I prim coe prim Path
+prim I
+prim coe (r s : I) (A : I -> Type) : A r -> A s
+prim Path
 variable A B : Type
 def infix = (a b : A) => Path (\i => A) a b
 
@@ -176,6 +178,9 @@ def +-comm (a b : Nat) : a + b = b + a elim a
 | suc _ => pmap suc (+-comm _ _)
 ```
 
+Note that we are using the `elim` keyword, which describes the variables
+that the function body is pattern matching on.
+
 ## Heterogeneous equality
 
 When working with indexed families, you may want to have heterogeneous equality
@@ -223,15 +228,29 @@ def +-assoc {a b c : Nat} : (a + b) + c = a + (b + c) elim a
 
 Now we can work on the proof of `++-assoc`.
 Here's a lame definition that is well-typed in pre-cubical type theory,
-and is also hard to prove -- we `cast`{} one side of the equation to be other side:
+and is also hard to prove -- we `cast`{} one side of the equation to be other side.
+So instead of:
+
+```
+xs ++ (ys ++ zs) = (xs ++ ys) ++ zs
+```
+
+We show:
+
+```
+f (xs ++ (ys ++ zs)) = (xs ++ ys) ++ zs
+```
+
+Where `f` is a function that changes the type of the vector, implemented using `cast`{}.
+The definition looks like this:
 
 ```aya
 example def ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
-  => cast (↑ pmap (fn n => Vec n A) +-assoc) ((xs ++ ys) ++ zs) = xs ++ (ys ++ zs)
+  => cast (pmap (fn n => Vec n A) +-assoc) ((xs ++ ys) ++ zs) = xs ++ (ys ++ zs)
 ```
 
 It is harder to prove because in the induction step, one need to show that
-`cast (↑ pmap (fn n => Vec n A) (+-assoc {n} {m} {o}))`{implicitArgs=false}
+`cast (pmap (fn n => Vec n A) (+-assoc {n} {m} {o}))`{implicitArgs=false}
 is equivalent to the identity function in order to use the induction hypothesis.
 For the record, here's the proof:
 
