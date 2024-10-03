@@ -9,7 +9,7 @@ export default defineConfig({
   head: [
     ['link', {
       rel: 'stylesheet',
-      href: "https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css",
+      href: "https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css",
       crossorigin: "anonymous",
     }],
     ['link', {
@@ -42,6 +42,7 @@ export default defineConfig({
       {
         text: 'Blog',
         items: [
+          // { text: 'Nameless classes', link: '/blog/nameless-classes' },
           { text: 'TT in TT using QIIT', link: '/blog/tt-in-tt-qiit' },
           { text: 'Extended Pruning', link: '/blog/extended-pruning' },
           { text: 'Farewell, Univalence', link: '/blog/bye-hott' },
