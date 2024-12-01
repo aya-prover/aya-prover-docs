@@ -75,44 +75,6 @@ const favonia: Author = {
 
 export const readings: Publications = [
   {
-    type: 'General Type Theory',
-    items: [
-      {
-        title: 'Observational Equality: Now for Good',
-        venue: 'POPL 2022',
-        authors: [loic, tabareau],
-        links: [
-          ['doi', '10.1145/3498693'],
-          ['conference', 'https://dl.acm.org/doi/pdf/10.1145/3498693']
-        ],
-      },
-      {
-        title: 'Copatterns: programming infinite structures by observations',
-        authors: [aa,
-          { name: 'Brigitte Pientka' },
-          { name: 'David Thibodeau' },
-          { name: 'Anton Setzer' }
-        ],
-        venue: 'POPL 2013',
-        links: [
-          ['doi', '10.1145/2480359.2429075'],
-          ['online', 'https://www.cse.chalmers.se/~abela/popl13.pdf']
-        ]
-      },
-      {
-        title: 'Staged Compilation with Two-Level Type Theory',
-        authors: [akJR],
-        venue: 'ICFP 2022',
-        links: [
-          ['github', 'AndrasKovacs/staged'],
-          ['online', 'https://andraskovacs.github.io/pdfs/2ltt.pdf'],
-          ['doi', '10.1145/3547641'],
-        ]
-      }
-    ],
-  },
-
-  {
     type: 'Universes',
     items: [
       {
@@ -158,7 +120,7 @@ export const readings: Publications = [
   },
 
   {
-    type: 'Equality in Type Theory',
+    type: 'Equality and Higher/Quotient Inductive Types',
     items: [
       {
         title: 'Separating Path and Identity Types in Presheaf Models of Univalent Type Theory',
@@ -187,6 +149,15 @@ export const readings: Publications = [
         }],
         links: [
           ['online', 'https://lirias.kuleuven.be/retrieve/581985']
+        ],
+      },
+      {
+        title: 'Observational Equality: Now for Good',
+        venue: 'POPL 2022',
+        authors: [loic, tabareau],
+        links: [
+          ['doi', '10.1145/3498693'],
+          ['conference', 'https://dl.acm.org/doi/pdf/10.1145/3498693']
         ],
       }
     ]
@@ -297,7 +268,23 @@ export const readings: Publications = [
   },
 
   {
-    type: 'Implementation',
+    type: 'Compilation',
+    items: [
+      {
+        title: 'Staged Compilation with Two-Level Type Theory',
+        authors: [akJR],
+        venue: 'ICFP 2022',
+        links: [
+          ['github', 'AndrasKovacs/staged'],
+          ['online', 'https://andraskovacs.github.io/pdfs/2ltt.pdf'],
+          ['doi', '10.1145/3547641'],
+        ]
+      }
+    ]
+  },
+
+  {
+    type: 'Unification, Implicits, and Constraints',
     items: [
       {
         title: 'A Categorical Perspective on Pattern Unification',
@@ -327,6 +314,25 @@ export const readings: Publications = [
         links: [
           ['doi', '10.1145/1577824.1577832'],
           ['online', 'https://www.cs.cmu.edu/~jcreed/papers/csl08-hocs.pdf']
+        ]
+      }
+    ]
+  },
+
+  {
+    type: 'Pattern Matching',
+    items: [
+      {
+        title: 'Copatterns: programming infinite structures by observations',
+        authors: [aa,
+          { name: 'Brigitte Pientka' },
+          { name: 'David Thibodeau' },
+          { name: 'Anton Setzer' }
+        ],
+        venue: 'POPL 2013',
+        links: [
+          ['doi', '10.1145/2480359.2429075'],
+          ['online', 'https://www.cse.chalmers.se/~abela/popl13.pdf']
         ]
       },
       {
