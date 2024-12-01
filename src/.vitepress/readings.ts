@@ -72,6 +72,10 @@ const favonia: Author = {
   name: 'Kuen-Bang Hou (Favonia)',
   link: 'https://favonia.org',
 };
+const benjaminGregoire: Author = {
+  name: 'Benjamin Grégoire',
+  link: 'https://www-sop.inria.fr/members/Benjamin.Gregoire',
+}
 
 const universes: PublicationItem[] = [
   {
@@ -109,7 +113,7 @@ const universes: PublicationItem[] = [
     authors: [tabareau, loic],
     venue: 'POPL 2023',
     links: [
-      ['online', 'https://hal.inria.fr/hal-03857705'],
+      ['hal', 'hal-03857705'],
       ['doi', '10.1145/3571739']
     ]
   },
@@ -159,7 +163,6 @@ const equality: PublicationItem[] = [
     authors: [loic, tabareau],
     links: [
       ['doi', '10.1145/3498693'],
-      ['conference', 'https://dl.acm.org/doi/pdf/10.1145/3498693']
     ],
   }
 ]
@@ -277,15 +280,27 @@ const compilation: PublicationItem[] = [
     ]
   },
   {
-    title: 'Full reduction at full throttle',
+    title: 'Full Reduction at Full Throttle',
     authors: [
       { name: 'Mathieu Boespflug' },
-      { name: 'Maxime Dénès' }, { name: 'Benjamin Grégoire' }
+      { name: 'Maxime Dénès' },
+      benjaminGregoire
     ],
     venue: 'CPP 2011',
     links: [
-      ['online', 'https://inria.hal.science/hal-00650940/file/full_throttle.pdf'],
+      ['hal', 'hal-00650940'],
       ['doi', '10.1007/978-3-642-25379-9_26']
+    ]
+  },
+  {
+    title: 'A Compiled Implementation of Strong Reduction',
+    authors: [
+      benjaminGregoire,
+      { name: 'Xavier Leroy' },
+    ],
+    venue: 'ICFP 2002',
+    links: [
+      ['doi', '10.1145/581478.581501'],
     ]
   }
 ]
@@ -375,7 +390,7 @@ export const readings: Publications = [
   },
 
   {
-    type: 'Compilation',
+    type: 'Compilation and Code Generation',
     items: compilation
   },
 

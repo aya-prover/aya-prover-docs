@@ -23,12 +23,12 @@ export default defineComponent({
         name: 'doi',
         link: (s: string) => `https://doi.org/${s}`,
       },
+      hal: {
+        name: 'hal',
+        link: (s: string) => `https://inria.hal.science/${s}`,
+      },
       online: {
         name: 'online',
-        link: (s: string) => s,
-      },
-      conference: {
-        name: 'conference version',
         link: (s: string) => s,
       },
       slides: {
@@ -65,12 +65,12 @@ export default defineComponent({
           </div>
           {item.venue ? <div class="pubs-venue">{item.venue}</div> : null}
           <div>
-            {item.links.map(link => (<a
+            {interleave(item.links.map(link => (<a
               class="pubs-link"
               href={this.formattedLink(link[0], link[1])}
             > {this.getLinkName(link[0])}
             </a>
-            ))}
+            )), <span> | </span>)}
           </div>
         </li>
         ))}
