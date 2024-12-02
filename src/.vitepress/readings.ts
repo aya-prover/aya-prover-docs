@@ -78,7 +78,15 @@ const benjaminGregoire: Author = {
 }
 const brigittePientka: Author = {
   name: 'Brigitte Pientka',
-  link: 'https://www.cs.mcgill.ca/~bpientka/',
+  link: 'https://www.cs.mcgill.ca/~bpientka',
+}
+const altenkirch: Author = {
+  name: 'Thorsten Altenkirch',
+  link: 'https://people.cs.nott.ac.uk/psztxa',
+}
+const jcreed: Author = {
+  name: 'Jason Reed',
+  link: 'http://jcreed.org',
 }
 
 const universes: PublicationItem[] = [
@@ -151,6 +159,15 @@ const equality: PublicationItem[] = [
       ['arxiv', '1902.00297'],
       ['doi', '10.23638/LMCS-16(1:10)2020']
     ],
+  },
+  {
+    title: 'Type Theory in Type Theory using Quotient Inductive Types',
+    authors: [altenkirch, akaposi],
+    venue: 'POPL 2016',
+    links: [
+      ['doi', '10.1145/2837614.2837638'],
+      ['online', 'https://people.cs.nott.ac.uk/psztxa/publ/tt-in-tt.pdf']
+    ]
   },
   {
     title: 'Contributions to Multimode and Presheaf Type Theory',
@@ -331,9 +348,7 @@ const implicits: PublicationItem[] = [
   },
   {
     title: 'Higher-Order Constraint Simplification In Dependent Type Theory',
-    authors: [{
-      name: 'Jason Reed',
-    }],
+    authors: [jcreed],
     venue: 'LFMTP 2009',
     links: [
       ['doi', '10.1145/1577824.1577832'],
