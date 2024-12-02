@@ -76,6 +76,10 @@ const benjaminGregoire: Author = {
   name: 'Benjamin Grégoire',
   link: 'https://www-sop.inria.fr/members/Benjamin.Gregoire',
 }
+const brigittePientka: Author = {
+  name: 'Brigitte Pientka',
+  link: 'https://www.cs.mcgill.ca/~bpientka/',
+}
 
 const universes: PublicationItem[] = [
   {
@@ -335,6 +339,18 @@ const implicits: PublicationItem[] = [
       ['doi', '10.1145/1577824.1577832'],
       ['online', 'https://www.cs.cmu.edu/~jcreed/papers/csl08-hocs.pdf']
     ]
+  },
+  {
+    title: 'Getting into the Flow: Towards Better Type Error Messages for Constraint-Based Type Inference',
+    authors: [
+      { name: 'Ishan Bhanuka' },
+      { name: 'Lionel Parreaux' },
+      { name: 'David Binder' },
+      { name: 'Jonathan Immanuel Brachthäuser' }
+    ],
+    links: [
+      ['doi', '10.1145/3622812']
+    ]
   }
 ]
 
@@ -342,7 +358,7 @@ const patterns: PublicationItem[] = [
   {
     title: 'Copatterns: programming infinite structures by observations',
     authors: [aa,
-      { name: 'Brigitte Pientka' },
+      brigittePientka,
       { name: 'David Thibodeau' },
       { name: 'Anton Setzer' }
     ],
