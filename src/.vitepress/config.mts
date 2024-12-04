@@ -5,7 +5,7 @@ import useJsx from '@vitejs/plugin-vue-jsx';
 
 export default defineConfig({
   title: 'Aya Prover',
-  description: '',
+  description: 'Website for the Aya theorem prover',
   head: [
     ['link', {
       rel: 'stylesheet',
