@@ -36,17 +36,19 @@ def id (x : Bool) => x
 def Goal => id = (fn x => not (not x))
 
 // {??} is the syntax for typed holes in Aya:
-// def question : Goal => {??}
+def question : Goal => {??}
 ```
 
-There is no way to prove it in Martin-Löf type theory or Calculus of Constructions.
+There is no way to prove it in Martin-Löf type theory or Calculus of Constructions,
+because by canonicity of these type theories, the normal form of `question`{} must be
+the constructor of its type, which is reflexivity, but the goal is not reflexive.
 However, you are very smart and realized you can instead show the following:
 
 ```aya
 def Goal' (x : Bool) => id x = not (not x)
 ```
 
-This is pretty much the same theorem!
+This is pretty much the same theorem, and can be proved by case analysis on `x`!
 
 Now, suppose we need to show a propositional equality between two records.
 This means we have to show they're memberwise equal.

@@ -13,7 +13,9 @@ true by definition.
 
 In case of cubical, this is automatic, due to how path types are defined.
 
-The reference for XTT can be found in the paper _A Cubical Language for Bishop Sets_ by
+[related papers]: /guide/readings
+
+The reference for XTT can be found (both linked in [related papers]) in the paper _A Cubical Language for Bishop Sets_ by
 Sterling, Angiuli, and Gratzer. This paper has a previous version which has a universe hierarchy,
 called _Cubical Syntax for Reflection-Free Extensional Equality_, by the same authors.
 
