@@ -48,10 +48,13 @@ inductive TermV2 : Type
 | lam (body : ClosureV2)
 | app (fun : TermV2) (arg : TermV2)
 
-def substV2 (t : ClosureV2) (s : TermV2) : TermV2 => {??}
+def applyV2 (t : ClosureV2) (s : TermV2) : TermV2 => {??}
 ```
 
-We can view HOAS as essentially a different implementation of closures,
+By designing the term structure like this, it is clear that which terms are meant to be applied.
+In the implementation of `applyV2`{}, we traverse `t` and build a new term based on `t`.
+
+HOAS implements closures and substitution differently,
 which instead of traversing and replacing `TermV2::bound`{} with a term,
 it constructs terms directly by using a function in the meta-level language
 (the definition below is accepted because Aya doesn't yet have a positivity checker):
@@ -73,11 +76,27 @@ resolve the names in it, desugar it, and then type check it before producing a t
 This means we do not know the body of the closure at the compile time. Also, the terms during type checking are _mutable_:
 
 1.  We have _local type inference_ (also known as _solving metavariables_), which involves in creating unknown terms
-   and replace them with known terms later. This means we also need to _traverse_ and _mutate_ the terms, which is unrealistic for HOAS.
+   and replace them with known terms later. This means we also need to _traverse_ and _mutate_ the terms, which is unrealistic for HOAS (this can be done in a very slow way).
 2. We support type checking _recursive_ functions. When checking the body of a recursive function, the recursive calls cannot be unfolded
    because the body is not yet constructed, and before termination check we cannot really know if unfolding such definitions is a good idea.
    But once the type checking finishes, these self-references will become unfoldable. So, at least something needs to be modified -- either
    the terms or the evaluation context.
+
+Some may argue that one can mutate HOAS by implementing a function like this:
+
+```hs
+transformTerm :: Term -> Term
+transformClosure :: Closure -> Closure
+-- body :: Term -> Term
+transformClosure (mkClosure body) = mkClosure (\t ->
+   transformTerm (body t))
+```
+
+This is a very bad idea, because it will run `transformTerm` every time the closure is applied, while for locally nameless approach, the transformation is done only once.
+This is caused by the fact that the meta-level language does not have computation under
+binders, so `transformTerm (body t)` does not compute for `body`.
+If the meta-level language has some symbolic computation abilities, then this approach is slightly more reasonable,
+but in practice a meta-level language with such abilities is not as efficient.
 
 To solve this problem, Aya introduces a _hybrid_ approach.
 
@@ -102,13 +121,14 @@ def applyV4 (t : ClosureV4) (s : TermV4) : TermV4 elim t
 | mkLn body => substV4 body s
 ```
 
-During type checking, we use the locally nameless representation, so we have the freedom to mutate them,
-and after finish type checking a cluster of definitions, we generate the code for the HOAS function bodies,
-and then we dynamically compile these functions and replace the closures with the compiled functions.
+During type checking, we use the locally nameless representation `mkLn`{}, so we have the freedom to mutate them and transform as we wish.
+When type checking is done for a cluster of definitions, and the terms are finalized, we generate the meta-level code for the HOAS function bodies,
+and then we dynamically compile these functions and replace the implementation of closures with the compiled functions in the `mkJit` variant.
 
 This process is very similar to JIT-compilation in the usual sense, but slightly different:
-since the terms are used for type checking, we have to preserve all the typing information at runtime,
-and the JIT-compiled code should deal with open terms. These can be handled well using HOAS.
+since the terms are used for type checking, we have to preserve all the type information at runtime,
+and the JIT-compiled code should deal with open terms.
+These are not present in the traditional JIT compilation, but with HOAS it's very easy to do.
 The dynamic compilation is based on the class loading mechanism of the JVM,
 therefore we refer to this process as _JJH_ (JVM JIT HOAS). All three components are essential to the approach!
 
@@ -146,8 +166,8 @@ and the prior work on `vm_compute` is described in _A Compiled Implementation of
 Both papers can be found in [related papers](/guide/readings).
 
 Aya reuses JVM, a highly optimized VM with two JIT compilers that produce machine code,
-and has HOAS built-in to the core language, so there is no need of reading back -- the result of compilation is in our core
-language rather than a separately defined language. This also makes it less error-prone because a bug in the compiled code is
+and has HOAS built-in to the core language, so there is no need of reading back -- the result of compilation is directly used in our core
+language rather than a separately defined language. This also makes it less errorprone because a bug in the compiled code is
 a bug in the core language, which is well-understood and well-tested.
 But then the correctness (mainly type safety) of the core language relies on the correctness of the JJH compiler,
 which we do not intend to formally verify, but we believe (with reasonable confidence due to the amount of testing) that it is correct.
@@ -163,5 +183,6 @@ In the first _Workshop on Implementations of Type Systems_ (WITS), I had the pri
 ongoing work on Lean4 that JIT-compiles tactics to native code. They will have a similar advantage to JJH, but it only works on
 tactics rather than the whole language.
 
-When I was at the workshop, I was very jealous of the Lean team to have the manpower and resource to do such a thing,
-but now I am satisfied ♪(≧∀≦)ゞ.
+When I was at the workshop, I was very jealous of the Lean team to have the manpower and resource to do such a thing --
+I have been dreaming to do it for a long time (inspired by the work by András Kovács and Minghao Liu on `mlang`).
+But look at what we've done now! I am satisfied ♪(≧∀≦)ゞ.
