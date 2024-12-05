@@ -43,6 +43,7 @@ export default defineConfig({
         text: 'Blog',
         items: [
           // { text: 'Nameless classes', link: '/blog/nameless-classes' },
+          { text: 'JVM JIT HOAS compiler', link: '/blog/jit-compile' },
           { text: 'TT in TT using QIIT', link: '/blog/tt-in-tt-qiit' },
           { text: 'Extended Pruning', link: '/blog/extended-pruning' },
           { text: 'Farewell, Univalence', link: '/blog/bye-hott' },
