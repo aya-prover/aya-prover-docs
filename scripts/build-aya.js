@@ -36,13 +36,15 @@ process.chdir("aya");
 // For each file, we call aya compiler
 walk(".", (file) => {
   console.log("Compiling: " + file);
+  const cmd = ayaProg + " " + opts + " " + file;
   try {
-    child_process.execSync(ayaProg + " " + opts + " " + file, (err) => {
+    child_process.execSync(cmd, (err) => {
       if (err) throw err;
     });
   } catch (err) {
     // Aya returns 1 in case of holes, it is not necessarily an error.
     // We need to manually look at compile errors, but it's quite easy.
+    console.log(`The command failed, make sure to check it manually:\n${cmd}`);
    }
   });
 // Put preprocessed files to src/

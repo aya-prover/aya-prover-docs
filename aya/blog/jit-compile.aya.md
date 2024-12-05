@@ -17,10 +17,10 @@ the object level language will have lambda expressions, and the representation o
 will be very important for the performance of the interpreter.
 To implement closures, we need to represent binders and variable references, and implement a substitution operation.
 
-[several ways]: https://jesper.sikanda.be/posts/1001-syntax-representations.html
-
-This is a relatively well-known and well-studied problem, and there are [several ways] (allow me to delegate the introduction
-of this subject to Jesper's blog) to implement it. In the context of Aya we are interested in the locally nameless (LN)
+This is a relatively well-known and well-studied problem, and there are
+[several ways](https://jesper.sikanda.be/posts/1001-syntax-representations.html)
+(allow me to delegate the introduction of this subject to Jesper's blog) to implement it.
+In the context of Aya we are interested in the locally nameless (LN)
 representation and HOAS, and I'll assume brief familiarity with these concepts.
 
 Consider STLC, the syntax can be defined as the following type, assuming an appropriate type `UID`{}:
@@ -88,7 +88,7 @@ one for HOAS, and one for any first-order syntax such as locally nameless.
 Then, we define substitution on both variants.
 
 ```aya
-inductive ClosureV4 : Type
+open inductive ClosureV4 : Type
 | mkJit (body : TermV4 -> TermV4)
 | mkLn (body : TermV4)
 
@@ -96,7 +96,8 @@ inductive ClosureV4 : Type
 // replacing the outermost bound variable in `t` with `s`.
 def substV4 (t : TermV4) (s : TermV4) : TermV4 => {??}
 
-def applyV4 (t : ClosureV4) (s : TermV4) : TermV4
+// `elim t` means we only intend to pattern match on `t`.
+def applyV4 (t : ClosureV4) (s : TermV4) : TermV4 elim t
 | mkJit body => body s
 | mkLn body => substV4 body s
 ```
