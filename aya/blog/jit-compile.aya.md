@@ -34,7 +34,7 @@ inductive TermV1 : Type
 ```
 
 The important constructor to consider here is `TermV1::lam`{},
-whose body will allow the use of bound variables. If a term is completely outside of a `TermV1::lam`{},
+whose body will allow the use of bound variables. If a term is completely outside a `TermV1::lam`{},
 it will make no sense. The substitution operation is only performed on bodies of lambdas,
 by replacing a De Bruijn index with a term. It might make sense to use types to enforce that:
 
@@ -74,12 +74,12 @@ This means we do not know the body of the closure at the compile time. Also, the
 
 1.  We have _local type inference_ (also known as _solving metavariables_), which involves in creating unknown terms
    and replace them with known terms later. This means we also need to _traverse_ and _mutate_ the terms, which is unrealistic for HOAS.
-2. We suppor type checking _recursive_ functions. When checking the body of a recursive function, the recursive calls cannot be unfolded
+2. We support type checking _recursive_ functions. When checking the body of a recursive function, the recursive calls cannot be unfolded
    because the body is not yet constructed, and before termination check we cannot really know if unfolding such definitions is a good idea.
    But once the type checking finishes, these self-references will become unfoldable. So, at least something needs to be modified -- either
    the terms or the evaluation context.
 
-To solve this problem, Aya  introduces a _hybrid_ approach.
+To solve this problem, Aya introduces a _hybrid_ approach.
 
 ## Combining HOAS and Locally Nameless
 
@@ -110,7 +110,7 @@ This process is very similar to JIT-compilation in the usual sense, but slightly
 since the terms are used for type checking, we have to preserve all the typing information at runtime,
 and the JIT-compiled code should deal with open terms. These can be handled well using HOAS.
 The dynamic compilation is based on the class loading mechanism of the JVM,
-therefore we refer to this process as _JJH_ (JVM JIT HOAS). All of the three components are essential to the approach!
+therefore we refer to this process as _JJH_ (JVM JIT HOAS). All three components are essential to the approach!
 
 To support locally nameless we have to also include `TermV4::bound`{}:
 
@@ -122,8 +122,8 @@ inductive TermV4 : Type
 | app (fun : TermV4) (arg : TermV4)
 ```
 
-In fact we can extend it with more constructors with closures, and it is very clear how the binders work just by looking at
-the term structure:
+In fact, we can extend it with more constructors with closures,
+and it is very clear how the binders work just by looking at the term structure:
 
 ```aya
 | pi (domain : TermV4) (codomain : ClosureV4)
@@ -143,9 +143,10 @@ the abstract machine, and reading back the result is not necessary.
 The native code generation is known to be faster than the VM-based approaches,
 as described in the paper _Full Reduction at Full Throttle_,
 and the prior work on `vm_compute` is described in _A Compiled Implementation of Strong Reduction_.
+Both papers can be found in [related papers](/guide/readings).
 
 Aya reuses JVM, a highly optimized VM with two JIT compilers that produce machine code,
-and has HOAS built-in to the core language, so there is not need of reading back -- the result of compilation is in our core
+and has HOAS built-in to the core language, so there is no need of reading back -- the result of compilation is in our core
 language rather than a separately defined language. This also makes it less error-prone because a bug in the compiled code is
 a bug in the core language, which is well-understood and well-tested.
 But then the correctness (mainly type safety) of the core language relies on the correctness of the JJH compiler,

@@ -1,6 +1,7 @@
 # Type Theory in Type Theory using Quotient Inductive Types
 
-[Link](https://www.cs.nott.ac.uk/~psztxa/publ/tt-in-tt.pdf) to the paper.
+[Link](https://www.cs.nott.ac.uk/~psztxa/publ/tt-in-tt.pdf) to the original paper
+(which can also be found in [related papers](/guide/readings)).
 
 Here's a self-contained full definition.
 
