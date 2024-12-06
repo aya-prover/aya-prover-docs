@@ -92,13 +92,14 @@ transformClosure (mkClosure body) = mkClosure (\t ->
    transformTerm (body t))
 ```
 
-This is a very bad idea, because it will run `transformTerm` every time the closure is applied, while for locally nameless approach, the transformation is done only once.
+This is a very bad idea, because it will run `transformTerm` every time the closure is applied,
+while for locally nameless approach, the transformation is done only once.
 This is caused by the fact that the meta-level language does not have computation under
 binders, so `transformTerm (body t)` does not compute for `body`.
 If the meta-level language has some symbolic computation abilities, then this approach is slightly more reasonable,
 but in practice a meta-level language with such abilities is not as efficient.
 
-To solve this problem, Aya introduces a _hybrid_ approach.
+We want the benefits of both methods. To do so, Aya introduces a _hybrid_ approach.
 
 ## Combining HOAS and Locally Nameless
 
