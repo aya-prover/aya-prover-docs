@@ -5,3 +5,12 @@ VSCode
 unqualify
 extensionality
 impredicative
+HOAS
+Coq
+metavariables
+desugar
+unfoldable
+codomain
+Bruijn
+Agda
+mixfix

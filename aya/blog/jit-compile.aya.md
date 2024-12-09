@@ -168,7 +168,7 @@ Both papers can be found in [related papers](/guide/readings).
 
 Aya reuses JVM, a highly optimized VM with two JIT compilers that produce machine code,
 and has HOAS built-in to the core language, so there is no need of reading back -- the result of compilation is directly used in our core
-language rather than a separately defined language. This also makes it less errorprone because a bug in the compiled code is
+language rather than a separately defined language. This also makes it less error-prone because a bug in the compiled code is
 a bug in the core language, which is well-understood and well-tested.
 But then the correctness (mainly type safety) of the core language relies on the correctness of the JJH compiler,
 which we do not intend to formally verify, but we believe (with reasonable confidence due to the amount of testing) that it is correct.

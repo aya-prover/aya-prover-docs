@@ -61,11 +61,13 @@ open inductive Ty (Γ : Con) : Type
 The `ext`{} operator corresponds to the ↑ operator in the paper:
 
 ```aya
-def ext {Γ Δ : Con} (δ : Γ << Δ) (A : Ty Δ) : Γ ▷ Subst A δ << Δ ▷ A =>
+variable Γ Δ : Con
+def ext (δ : Γ << Δ) (A : Ty Δ) : Γ ▷ Subst A δ << Δ ▷ A =>
   δ ∘ π₁ (id refl) ∷ transport (Tm _) SubAss (π₂ (id refl))
 ```
 
-An instance of the type `Ty Γ` corresponds to the $A$ in the judgment $Γ⊢A~\text{type}$. The constructor `U`{} corresponds to the following rule:
+An instance of the type `Ty Γ`{} corresponds to the $A$ in the judgment $Γ⊢A~\text{type}$.
+The constructor `U`{} corresponds to the following rule:
 
 $$
 \cfrac{}{Γ⊢\mathcal{U}~\text{type}}
@@ -101,7 +103,7 @@ open inductive infix << (Γ : Con) (Δ : Con) : Type
 | _, • => εη {δ : Γ << •} : δ = ε
 ```
 
-An instance of type `Γ << Δ` corresponds to the $σ$ in the substitution typing $Γ ⊢ σ : Δ$.
+An instance of type `Γ << Δ`{} corresponds to the $σ$ in the substitution typing $Γ ⊢ σ : Δ$.
 
 ## Terms
 
