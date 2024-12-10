@@ -23,6 +23,7 @@
     --Aya-Field: #a021ef;
     --Aya-PlainText: var(--vp-c-text-1);
     --Aya-HoverBg: #edebfc;
+    --Aya-Comment: #6f6f6f;
 }
 
 .dark {
@@ -36,6 +37,7 @@
     --Aya-Field: #d2a8ff;
     --Aya-PlainText: var(--vp-c-text-1);
     --Aya-HoverBg: #344134;
+    --Aya-Comment: #8f8f8f;
 }
 
 /* Overwrite the hover background for dark mode */
@@ -69,6 +71,9 @@
 }
 .Aya .Field {
     color: var(--Aya-Field);
+}
+.Aya .Comment {
+    color: var(--Aya-Comment);
 }
 
 /**
