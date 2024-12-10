@@ -84,12 +84,13 @@ This means we do not know the body of the closure at the compile time. Also, the
 
 Some may argue that one can mutate HOAS by implementing a function like this:
 
-```hs
-transformTerm :: Term -> Term
-transformClosure :: Closure -> Closure
--- body :: Term -> Term
-transformClosure (mkClosure body) = mkClosure (\t ->
+```aya-lexer
+def transformTerm : Term -> Term
+
+def transformClosure : Closure -> Closure
+| mkClosure body => mkClosure (\t ->
    transformTerm (body t))
+// ^ body :: Term -> Term
 ```
 
 This is a very bad idea, because it will run `transformTerm` every time the closure is applied,

@@ -103,7 +103,7 @@ We do not use a number to denote precedence, but a partial order.
 This allows arbitrary insertion of new precedence level into previously defined ones.
 Say you want `<+>` to have a lower precedence than `<*>`, you can do:
 
-```
+```aya-lexer
 def infixl <+> Nat Nat : Nat
 /// .... omitted
 looser <*>
@@ -282,7 +282,7 @@ Imagine how much work this is in Haskell.
 
 There is one more bonus: in Aya, you may modify the definition of `<+>` to be:
 
-```
+```aya-lexer
 overlap def infixl <+> Nat Nat : Nat
 | 0, n => n
 | n, 0 => n
@@ -301,7 +301,7 @@ With `n + 0 = n` judgmentally, we now have more possibilities.
 For instance, we can make `xs ++ nil = xs`. This involves in two steps: we first turni `++` into
 a `overlap def`, then we add the following clause to `++`:
 
-```
+```aya-lexer
 | xs, nil => xs
 ```
 

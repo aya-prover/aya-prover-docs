@@ -205,7 +205,7 @@ tighter :< =
 
 It is tempting to use the below definition:
 
-```
+```aya-lexer
 overlap def ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
   : (xs ++ ys) ++ zs = xs ++ (ys ++ zs) elim xs
 | nil => refl
