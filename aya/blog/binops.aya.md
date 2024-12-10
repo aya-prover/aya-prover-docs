@@ -39,7 +39,7 @@ In case we found the two operators share the same priority, Aya will report an e
 When importing operators from other modules,
 we can locally specify additional associativity and precedence information:
 
-```
+```aya-lexer
 open import Primitives using (
   invol       as fixl  ~  tighter =, \/, /\,
   intervalMin as infix /\ tighter \/,
