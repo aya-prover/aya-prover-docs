@@ -24,7 +24,7 @@ Here are some code examples (implementations are omitted for simplicity):
 // Left-associative
 def infixl + (x y : Nat) : Nat => {??}
 // Left-associative, bind tighter than +
-def infixl * (x y : Nat) : Nat => {??} tighter +
+def infixl × (x y : Nat) : Nat => {??} tighter +
 // Prefix operator
 def fixl ! (x : Nat) : Nat => {??}
 // Postfix operator
@@ -32,7 +32,7 @@ def fixr ? (x : Nat) : Nat => {??}
 ```
 
 The `tighter` keyword works like this: when there are expressions like
-`a * b + c` which may either mean `(a * b) + c` or `a * (b + c)`,
+`a × b + c` which may either mean `(a × b) + c` or `a × (b + c)`,
 we will put the tighter operator in the parenthesis.
 In case we found the two operators share the same priority, Aya will report an error.
 
@@ -51,8 +51,8 @@ This should allow fine-grained control over the precedence and associativity of 
 In case there is a cycle in the graph of operator precedence, Aya will report an error.
 
 Specifying precedence of operators with a partial ordering is way better than with a number.
-In Haskell, if we already have `infix 3 +` and `infix 4 *`, and we hope to add a new operator
-which has higher precedence than `+` but lower than `*`, it's going to be impossible.
+In Haskell, if we already have `infix 3 +` and `infix 4 ×`, and we hope to add a new operator
+which has higher precedence than `+` but lower than `×`, it's going to be impossible.
 Agda introduced [float-point precedence](https://github.com/agda/agda/issues/3991)
 levels to address the issue, but I think it does not solve the essential problem:
 that I have to lookup the numbers (of existing operator precedences)
