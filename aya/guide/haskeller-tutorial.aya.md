@@ -114,7 +114,7 @@ You also have `tighter`, with the obvious meaning.
 The parameters and the return type are separated using `:`. The parameter types can
 be written directly, without `->`. Aya allow naming the parameters like this:
 
-```
+```aya-lexer
 def oh (x : Nat) : Nat
 ```
 
@@ -264,7 +264,7 @@ open inductive Vec (n : Nat) (A : Type)
 | suc n, A => infixr :< A (Vec n A)
 ```
 
-The `:<` constructor is defined as a right-associative infix operator.
+The `:<`() constructor is defined as a right-associative infix operator.
 And yes, you can define like vector append painlessly:
 
 ```aya
@@ -292,7 +292,7 @@ overlap def infixl <+> Nat Nat : Nat
 It says we not only compute `0 + n = n`, but when the first parameter is neither `0` nor `suc`,
 we may take a look at the second parameter and seek for other potential computations.
 This is completely useless at runtime, but very good for type checking.
-For instance, we may want a `Vec`{} of size `n`, and what we have is some `Vec`{} of size `n + 0`.
+For instance, we may want a `Vec`() of size `n`, and what we have is some `Vec`() of size `n + 0`.
 Then having `n + 0` to directly reduce to `n` is very useful,
 otherwise we will need to write a conversion function that does nothing but changes the type,
 or use `unsafeCoerce`.

@@ -40,7 +40,7 @@ def question : Goal => {??}
 ```
 
 There is no way to prove it in Martin-Löf type theory or Calculus of Constructions,
-because by canonicity of these type theories, the normal form of `question`{} must be
+because by canonicity of these type theories, the normal form of `question`() must be
 the constructor of its type, which is reflexivity, but the goal is not reflexive.
 However, you are very smart and realized you can instead show the following:
 
@@ -52,7 +52,7 @@ This is pretty much the same theorem, and can be proved by case analysis on `x`!
 
 Now, suppose we need to show a propositional equality between two records.
 This means we have to show they're memberwise equal.
-One record has a member `\x => not (not x)`{}, and the other has `id`{}.
+One record has a member `\x => not (not x)`(), and the other has `id`().
 This time, you cannot cheat by changing the goal type.
 You post the question on some mailing list and people are telling you that
 the alternative version of the theorem you have shown does not imply the
@@ -72,13 +72,13 @@ def funExt (f g : A -> B) (p : ∀ a -> f a = g a) : f = g
 ```
 
 Aya has a "cubical" equality type that is not inductively defined.
-An equality `a = b` for `a, b : A` is really just a function `I -> A`{} (as we can see
+An equality `a = b` for `a, b : A` is really just a function `I -> A`() (as we can see
 from the proof construction, for `f = g` we prove it by a lambda abstraction) where:
 
-- `I`{} is a special type that has two closed instances `0` and `1`,
+- `I`() is a special type that has two closed instances `0` and `1`,
   and we think of there being a propositional equality between `0` and `1`,
   and there is no pattern matching operation that distinguishes them.
-  So, every function that maps out of `I`{} must _preserve_ this judgmental equality.
+  So, every function that maps out of `I`() must _preserve_ this judgmental equality.
 - For `f : I -> A`, the corresponding equality type is `f 0 = f 1`.
   Hypothetically, let `f` be the identity function, and we get a propositional equality
   between `0` and `1`, but for technical reasons we don't talk about equality between
@@ -104,7 +104,7 @@ that `q 0 = f` and `q 1 = g`. This is true for the proof above:
 ```
 
 We may also prove the action-on-path theorem, commonly known as `cong`, but
-renamed to `pmap`{} to avoid a potential future naming clash:
+renamed to `pmap`() to avoid a potential future naming clash:
 
 ```aya
 def pmap (f : A -> B) {a b : A} (p : a = b) : f a = f b
@@ -172,7 +172,7 @@ tighter =
 ```
 
 This makes all of them definitional equality.
-So, `+-comm`{} can be simplified to just one pattern matching:
+So, `+-comm`() can be simplified to just one pattern matching:
 
 ```aya
 def +-comm (a b : Nat) : a + b = b + a elim a
@@ -214,8 +214,8 @@ overlap def ++-assoc (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 
 However, this definition is not well-typed:
 
-+ `(xs ++ ys) ++ zs` is of type `Vec ((n + m) + o) A`{}
-+ `xs ++ (ys ++ zs)` is of type `Vec (n + (m + o)) A`{}.
++ `(xs ++ ys) ++ zs` is of type `Vec ((n + m) + o) A`()
++ `xs ++ (ys ++ zs)` is of type `Vec (n + (m + o)) A`().
 
 They are not the same!
 Fortunately, we can prove that they are propositionally equal.
@@ -230,7 +230,7 @@ def +-assoc {a b c : Nat} : (a + b) + c = a + (b + c) elim a
 
 Now we can work on the proof of `++-assoc`.
 Here's a lame definition that is well-typed in pre-cubical type theory,
-and is also hard to prove -- we `cast`{} one side of the equation to be other side.
+and is also hard to prove -- we `cast`() one side of the equation to be other side.
 So instead of:
 
 ```
@@ -243,7 +243,7 @@ We show:
 f (xs ++ (ys ++ zs)) = (xs ++ ys) ++ zs
 ```
 
-Where `f` is a function that changes the type of the vector, implemented using `cast`{}.
+Where `f` is a function that changes the type of the vector, implemented using `cast`().
 The definition looks like this:
 
 ```aya
@@ -252,7 +252,7 @@ example def ++-assoc-ty (xs : Vec n A) (ys : Vec m A) (zs : Vec o A)
 ```
 
 It is harder to prove because in the induction step, one need to show that
-`cast (pmap (fn n => Vec n A) (+-assoc {n} {m} {o}))`{implicitArgs=false}
+`cast (pmap (fn n => Vec n A) (+-assoc {n} {m} {o}))`(implicitArgs:"false")
 is equivalent to the identity function in order to use the induction hypothesis.
 For the record, here's the proof:
 
@@ -291,8 +291,8 @@ open inductive Interval
 | line : left = right
 ```
 
-This is an uninteresting quotient type, that is basically `Bool`{} but saying its two values are equal,
-so it's really just a unit type, with its unique element being the equivalence class of `left`{} and `right`{}.
+This is an uninteresting quotient type, that is basically `Bool`() but saying its two values are equal,
+so it's really just a unit type, with its unique element being the equivalence class of `left`() and `right`().
 
 If you're familiar with a proof assistant with an intensional equality like
 Coq/Agda/Lean/etc., you might find this surprising because a unit type shall not have two distinct elements,
@@ -302,11 +302,11 @@ Actually, in these systems, the equality is defined _inductively_, and it only h
 This is not how equality is defined in Aya, so we can cook some interesting equality proofs into it,
 which includes these equality-looking constructors.
 
-1. The type of `line` will be translated into `I -> Interval`{}
-   together with the judgmental equality that `line 0`{} is `left`{} and `line 1`{} is `right`{},
+1. The type of `line` will be translated into `I -> Interval`()
+   together with the judgmental equality that `line 0`() is `left`() and `line 1`() is `right`(),
    basically a desugaring of the equality with additional features.
-   This makes `line` a valid constructor in normal type theory: it takes some parameters and returns `Interval`{}.
-2. These judgmental equalities need to be preserved by the elimination rule of `Interval`{}.
+   This makes `line` a valid constructor in normal type theory: it takes some parameters and returns `Interval`().
+2. These judgmental equalities need to be preserved by the elimination rule of `Interval`().
    Here is an example elimination:
 
 ```aya
@@ -335,7 +335,7 @@ example def funExt' (f g : A -> B) (p : ∀ a -> f a = g a) : f = g =>
   pmap (lemma f g p) (fn i => line i)
 ```
 
-Note that even though we are using equation combinators like `pmap`{} which
+Note that even though we are using equation combinators like `pmap`() which
 are implemented using path application and abstraction,
 it is not considered cheating because these are already theorems in MLTT anyway.
 
@@ -347,7 +347,7 @@ open inductive Int
 | zro : pos 0 = neg 0
 ```
 
-Some operations on `Int`{}:
+Some operations on `Int`():
 
 ```aya
 def succ Int : Int
@@ -362,6 +362,6 @@ def abs Int : Nat
 | zro _ => 0
 ```
 
-The `succ`{} operator has the first three clauses straightforward, and the last one is a proof
-of `succ (neg 0)`{} equals `succ (pos 0)`{}, as we should preserve the judgmental equality
-in the type of `zro`{}. We need to do the same for `abs`{}.
+The `succ`() operator has the first three clauses straightforward, and the last one is a proof
+of `succ (neg 0)`() equals `succ (pos 0)`(), as we should preserve the judgmental equality
+in the type of `zro`(). We need to do the same for `abs`().

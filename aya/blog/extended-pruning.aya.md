@@ -52,20 +52,20 @@ This is the equality between two sized vectors: `(xs ++ (ys ++ zs))` and `((xs +
 the left hand side has type `Vec (xs.size ++ (ys.size ++ zs.size)) A`,
 and the right hand side has type `Vec ((xs.size ++ ys.size) ++ zs.size)`.
 
-So, the equality type is heterogeneous, and I introduce a type `Vec (+-assoc i) A` for it, where `+-assoc`{} is the associativity.
+So, the equality type is heterogeneous, and I introduce a type `Vec (+-assoc i) A` for it, where `+-assoc`() is the associativity.
 
-So this should type check, right? But pattern unification fails! I've left the two sides of `+-assoc`{} implicit,
+So this should type check, right? But pattern unification fails! I've left the two sides of `+-assoc`() implicit,
 so I'm supposed to infer what numbers' associativity I care about, using pattern unification.
 
 Then, pattern unification _fails_ because the constraints are generated from cubical boundaries,
 where the "interval" variable is substituted to its sides. So, we have this type
-(the `Path`{} is called `PathP` in Agda):
+(the `Path`() is called `PathP` in Agda):
 
 ```
 Γ ­⊢ Path (fn i => Vec (+-assoc i) Nat) vecA vecB
 ```
 
-Note the type of `+-assoc`{} is `+-assoc`{show=type}.
+Note the type of `+-assoc`() is `+-assoc`(show:"type").
 
 So elaboration inserts metavariables:
 
@@ -85,7 +85,7 @@ Note that the `i : I` binding is in-scope. So the metavariables with their spine
 Γ ­⊢ Path (fn i => Vec (+-assoc {?a Γ i} {?b Γ i} {?c Γ i} i) Nat) vecA vecB
 ```
 
-Then, we get the following tycking problems, according to the rules of `Path`{}:
+Then, we get the following tycking problems, according to the rules of `Path`():
 
 ```
 vecA : Vec (+-assoc {?a Γ 0} {?b Γ 0} {?c Γ 0} 0) Nat

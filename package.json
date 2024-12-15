@@ -21,7 +21,7 @@
   },
   "homepage": "https://github.com/aya-prover/aya-prover-docs#readme",
   "dependencies": {
-    "@vscode/markdown-it-katex": "^1.1.0",
+    "@vscode/markdown-it-katex": "^1.1.1",
     "markdown-it-footnote": "^4.0.0"
   },
   "devDependencies": {

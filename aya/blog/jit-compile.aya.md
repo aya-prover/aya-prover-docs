@@ -23,7 +23,7 @@ This is a relatively well-known and well-studied problem, and there are
 In the context of Aya we are interested in the locally nameless (LN)
 representation and HOAS, and I'll assume brief familiarity with these concepts.
 
-Consider STLC, the syntax can be defined as the following type, assuming an appropriate type `UID`{}:
+Consider STLC, the syntax can be defined as the following type, assuming an appropriate type `UID`():
 
 ```aya
 inductive TermV1 : Type
@@ -33,8 +33,8 @@ inductive TermV1 : Type
 | app (fun : TermV1) (arg : TermV1)
 ```
 
-The important constructor to consider here is `TermV1::lam`{},
-whose body will allow the use of bound variables. If a term is completely outside a `TermV1::lam`{},
+The important constructor to consider here is `TermV1::lam`(),
+whose body will allow the use of bound variables. If a term is completely outside a `TermV1::lam`(),
 it will make no sense. The substitution operation is only performed on bodies of lambdas,
 by replacing a De Bruijn index with a term. It might make sense to use types to enforce that:
 
@@ -52,10 +52,10 @@ def applyV2 (t : ClosureV2) (s : TermV2) : TermV2 => {??}
 ```
 
 By designing the term structure like this, it is clear that which terms are meant to be applied.
-In the implementation of `applyV2`{}, we traverse `t` and build a new term based on `t`.
+In the implementation of `applyV2`(), we traverse `t` and build a new term based on `t`.
 
 HOAS implements closures and substitution differently,
-which instead of traversing and replacing `TermV2::bound`{} with a term,
+which instead of traversing and replacing `TermV2::bound`() with a term,
 it constructs terms directly by using a function in the meta-level language
 (the definition below is accepted because Aya doesn't yet have a positivity checker):
 
@@ -123,7 +123,7 @@ def applyV4 (t : ClosureV4) (s : TermV4) : TermV4 elim t
 | mkLn body => substV4 body s
 ```
 
-During type checking, we use the locally nameless representation `mkLn`{}, so we have the freedom to mutate them and transform as we wish.
+During type checking, we use the locally nameless representation `mkLn`(), so we have the freedom to mutate them and transform as we wish.
 When type checking is done for a cluster of definitions, and the terms are finalized, we generate the meta-level code for the HOAS function bodies,
 and then we dynamically compile these functions and replace the implementation of closures with the compiled functions in the `mkJit` variant.
 
@@ -134,7 +134,7 @@ These are not present in the traditional JIT compilation, but with HOAS it's ver
 The dynamic compilation is based on the class loading mechanism of the JVM,
 therefore we refer to this process as _JJH_ (JVM JIT HOAS). All three components are essential to the approach!
 
-To support locally nameless we have to also include `TermV4::bound`{}:
+To support locally nameless we have to also include `TermV4::bound`():
 
 ```aya
 inductive TermV4 : Type

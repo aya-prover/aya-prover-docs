@@ -30,7 +30,7 @@ open inductive Con : Type
 | infix ▷ (Γ : Con) (Ty Γ)
 ```
 
-An instance of the type `Con`{} corresponds to the $Γ$ in the judgment $Γ~\text{ctx}$, and these constructors correspond (on-the-nose) to:
+An instance of the type `Con`() corresponds to the $Γ$ in the judgment $Γ~\text{ctx}$, and these constructors correspond (on-the-nose) to:
 
 $$
 \cfrac{}{·~\text{ctx}}
@@ -58,7 +58,7 @@ open inductive Ty (Γ : Con) : Type
   : Subst (Π A B) σ = Π (Subst A σ) (Subst B (ext σ A))
 ```
 
-The `ext`{} operator corresponds to the ↑ operator in the paper:
+The `ext`() operator corresponds to the ↑ operator in the paper:
 
 ```aya
 variable Γ Δ : Con
@@ -66,15 +66,15 @@ def ext (δ : Γ << Δ) (A : Ty Δ) : Γ ▷ Subst A δ << Δ ▷ A =>
   δ ∘ π₁ (id refl) ∷ transport (Tm _) SubAss (π₂ (id refl))
 ```
 
-An instance of the type `Ty Γ`{} corresponds to the $A$ in the judgment $Γ⊢A~\text{type}$.
-The constructor `U`{} corresponds to the following rule:
+An instance of the type `Ty Γ`() corresponds to the $A$ in the judgment $Γ⊢A~\text{type}$.
+The constructor `U`() corresponds to the following rule:
 
 $$
 \cfrac{}{Γ⊢\mathcal{U}~\text{type}}
 $$
 
-I believe you already know how `Π`{} works.
-The constructor `El`{} computes the type corresponds to an instance of `U`{}:
+I believe you already know how `Π`() works.
+The constructor `El`() computes the type corresponds to an instance of `U`():
 
 $$
 \cfrac{Γ⊢A:\mathcal{U}}{Γ⊢\text{El}(A)~\text{type}}
@@ -103,7 +103,7 @@ open inductive infix << (Γ : Con) (Δ : Con) : Type
 | _, • => εη {δ : Γ << •} : δ = ε
 ```
 
-An instance of type `Γ << Δ`{} corresponds to the $σ$ in the substitution typing $Γ ⊢ σ : Δ$.
+An instance of type `Γ << Δ`() corresponds to the $σ$ in the substitution typing $Γ ⊢ σ : Δ$.
 
 ## Terms
 
