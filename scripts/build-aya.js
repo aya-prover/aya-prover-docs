@@ -5,6 +5,7 @@ const opts = "--pretty-ssr\
   --pretty-no-code-style\
   --pretty-stage=literate\
   --pretty-format=markdown\
+  --datetime-front-matter-key=lastUpdated\
   --pretty-dir=../build-aya";
 
 const fs = require('fs');
@@ -36,7 +37,9 @@ process.chdir("aya");
 // For each file, we call aya compiler
 walk(".", (file) => {
   console.log("Compiling: " + file);
-  const cmd = ayaProg + " " + opts + " " + file;
+  let lastUpdated = child_process.execSync(`git log -1 --pretty="format:%ci" "${file}"`).toString().trim();
+  if (lastUpdated.endsWith("00")) lastUpdated = lastUpdated.slice(0, -2);
+  const cmd = `${ayaProg} ${opts} --datetime-front-matter="${lastUpdated}" ${file}`;
   try {
     child_process.execSync(cmd, (err) => {
       if (err) throw err;
