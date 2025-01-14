@@ -9,7 +9,7 @@ export default defineConfig({
   head: [
     ['link', {
       rel: 'stylesheet',
-      href: "https://cdn.jsdelivr.net/npm/katex@0.16.18/dist/katex.min.css",
+      href: "https://cdn.jsdelivr.net/npm/katex@0.16.20/dist/katex.min.css",
       crossorigin: "anonymous",
     }],
     ['link', {
