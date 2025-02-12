@@ -26,7 +26,7 @@ We will change the following in v0.30 Aya:
 2. The impredicative `Prop` universe will be removed due to the complications it caused.
 3. The binding representation will be changed to locally nameless.
    By that we can make closed term completely serializable.
-4. We will try to implement definition-level controlling unfolding. This has a several advantages:
+4. We will try to implement definition-level controlling unfolding. This has several advantages:
    the type checking order of bodies can be inferred from the annotations,
    and we can detect more cycles instead of reporting errors due to not being able to unfold unchecked function.
 5. We wish to remove implicitness information from core terms, and keep them a feature related to function calls.
@@ -42,7 +42,7 @@ which will benefit third-party libraries who want to deal with serialized Aya te
 We will not adapt the following features from XTT:
 
 1. Partial elements are first-class citizens, i.e. they have pervasive "cubical" phases.
-   Instead we will have first class total elements and use a `Partial` type to represent partial elements.
+   Instead, we will have first class total elements and use a `Partial` type to represent partial elements.
 2. Intervals are not types. We will adapt the 2LTT-style solution from Cubical Agda, which has some universes
    to classify exo-types.
 3. The type-case operator will remain internal to the type checker.

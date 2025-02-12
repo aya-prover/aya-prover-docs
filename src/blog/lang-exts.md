@@ -23,7 +23,7 @@ or combination of flags is turned on -- `--safe`. Let's discuss it later.
 The current status of Agda libraries, that having separate cubical, HoTT library, and standard library,
 implementing the basic features individually, is a significant evidence that Agda is barely a programming language, but a collection of programming languages that share a lot in common and have good interoperability.
 Each flag that enables a certain language feature makes Agda a different language,
-and it is difficult in general to make two different language source-to-source compatible (see Kotlin-Java, Scala-Java, etc).
+and it is difficult in general to make two different language source-to-source compatible (see Kotlin-Java, Scala-Java, etc.).
 
 It is good to keep your language evolving like Agda (adding new features aggressively), and indeed Agda is **the** proof
 assistant with the richest set of language features I've known so far.
@@ -40,7 +40,7 @@ At least, we don't want this to happen to our language.
 So, we will not introduce any "feature" flags, and will have only one base library.
 Aya will be one language, its features are its features.
 If we decide on removing a feature, then we remove it from the language
-(not going to keep it as an optional flag). If we decide on adding a feature, we add it
+(not going to keep it as an optional flag). If we decide on adding a feature, we add it,
 and it should be available without any options.
 
 It should still be encouraged to add some fancy, experimental features, but I think
@@ -52,7 +52,7 @@ For example, it is very easy to allow type-in-type in the type checker -- we jus
 This is useful when the level solver prevents us from experimenting something classical using our
 language features but unfortunately the level solver is just unhappy with something minor.
 We can also like tweak the conversion checking algorithm we use, like we can use a simpler one that
-only solves first-order equations or we can enable the full-blown pattern unification algorithm.
+only solves first-order equations, or we can enable the full-blown pattern unification algorithm.
 Verbosity levels, can also be seen as such parameter, and it's extremely useful for debugging the compiler.
 So we can apply that.
 
