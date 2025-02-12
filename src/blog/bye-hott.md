@@ -41,7 +41,7 @@ which will benefit third-party libraries who want to deal with serialized Aya te
 
 We will not adapt the following features from XTT:
 
-1. Partial elements are first-class citizens, i.e. they have manifest "cubical" phases.
+1. Partial elements are first-class citizens, i.e. they have pervasive "cubical" phases.
    Instead we will have first class total elements and use a `Partial` type to represent partial elements.
 2. Intervals are not types. We will adapt the 2LTT-style solution from Cubical Agda, which has some universes
    to classify exo-types.
