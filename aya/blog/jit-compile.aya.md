@@ -1,5 +1,7 @@
 # JJH (JVM JIT HOAS) compilation for Aya
 
+Update 2025-02-12: I gave a [PLunch talk](https://www.youtube.com/watch?v=lvwygACgJFk&t) about this.
+
 In this post I'd like to introduce the _JJH_ compilation architecture of the new Aya type checker,
 which is based on the JIT (Just-In-Time) compilation on the Java VM for closures implemented using HOAS (Higher-Order Abstract Syntax).
 I'll explain.
@@ -75,7 +77,7 @@ time of the interpreter -- an assumption that is usually false. In practice, we 
 resolve the names in it, desugar it, and then type check it before producing a term that can be interpreted.
 This means we do not know the body of the closure at the compile time. Also, the terms during type checking are _mutable_:
 
-1.  We have _local type inference_ (also known as _solving metavariables_), which involves in creating unknown terms
+1. We have _local type inference_ (also known as _solving metavariables_), which involves in creating unknown terms
    and replace them with known terms later. This means we also need to _traverse_ and _mutate_ the terms, which is unrealistic for HOAS (this can be done in a very slow way).
 2. We support type checking _recursive_ functions. When checking the body of a recursive function, the recursive calls cannot be unfolded
    because the body is not yet constructed, and before termination check we cannot really know if unfolding such definitions is a good idea.
