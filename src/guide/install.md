@@ -53,6 +53,52 @@ echo 'export PATH="$AYA_PREFIX/bin:$PATH"' >> ~/.bashrc
 source ~/.bashrc
 ```
 
+## Try/Install Aya using Nix package manager
+
+Make sure you have Nix installed with experimental features `nix-command flakes`.
+
+TODO: binary cache
+
+### Nix3 CLI
+
+Activate the devShell containing Aya:
+
+```sh
+nix shell github:aya-prover/aya-dev#aya
+```
+
+Or Install Aya in user profile:
+
+```sh
+nix profile install github:aya-prover/aya-dev#ayaPackages.standard-library
+```
+
+### Usage in flake.nix
+
+Add flake input in `flake.nix`:
+  
+```nix
+inputs.aya-dev.url = "github:aya-prover/aya-dev";
+```
+
+Then you can access Aya under `inputs.aya-dev.packages.${system}`:
+- `aya` : aya + aya-lsp
+- `aya-minimal`: aya (without standard library) + aya-lsp
+- `aya.withPackages (p: [ p.foo p.bar ])`: aya (with libraries `ayaPackages.foo` and `ayaPackages.bar`) + aya-lsp
+
+You may fetch an example `flake.nix` which provides an Aya devShell with [flake-parts](flake-parts):
+
+```sh
+nix flake init -t github:definfo/dev-templates#aya
+
+# Enter the devShell
+nix develop
+# OR auto-activate devShell within current directory
+direnv allow
+```
+
+[flake-parts]: https://flake.parts
+
 ## Use Aya in GitHub Actions
 
 If you want to use Aya in your GitHub Actions workflow, you can use [aya-prover/setup-aya][setup-aya] like
