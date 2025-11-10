@@ -7,6 +7,17 @@
 + [Tutorial for the fake literate mode](fake-literate)
 
 Aya is a programming language _and_ an interactive proof assistant designed for type-directed programming _and_ formalizing math.
+Here's a piece of Aya code that defines singly-linked lists and a map function:
+
+```aya
+open inductive List (A : Type) : Type
+| [] : List A
+| infixr :> (x : A) (xs : List A) : List A
+
+def map {A B : Type} (f : A -> B) (xs : List A) : List B elim xs
+| [] => []
+| x :> xs' => f x :> map f xs'
+```
 
 The type system of Aya has the following highlights:
 
