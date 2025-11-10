@@ -86,7 +86,7 @@ Then you can access Aya under `inputs.aya-dev.packages.${system}`:
 - `aya-minimal`: aya (without standard library) + aya-lsp
 - `aya.withPackages (p: [ p.foo p.bar ])`: aya (with libraries `ayaPackages.foo` and `ayaPackages.bar`) + aya-lsp
 
-You may fetch an example `flake.nix` which provides an Aya devShell with [flake-parts](flake-parts):
+You may fetch an example `flake.nix` which provides an Aya devShell with [flake-parts]:
 
 ```sh
 nix flake init -t github:definfo/dev-templates#aya
