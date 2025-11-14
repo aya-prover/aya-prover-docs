@@ -57,7 +57,30 @@ source ~/.bashrc
 
 Make sure you have Nix installed with experimental features `nix-command flakes`.
 
-TODO: binary cache
+NOTE: We host [our binary cache on Cachix][Cachix] to save you from compilation hell,
+which can be used by adding the following content in `nix.conf`:
+
+```conf
+substituters = https://cache.nixos.org https://aya-prover.cachix.org
+trusted-public-keys = aya-prover.cachix.org-1:BNuUD9aNZMDmYISC77aqZfzP4l9XtTHQvYwPhKO+Msg=
+```
+
+or in `flake.nix`:
+
+```nix
+nixConfig = {
+    extra-substituters = [ "https://aya-prover.cachix.org" ];
+    extra-trusted-public-keys = [ "aya-prover.cachix.org-1:BNuUD9aNZMDmYISC77aqZfzP4l9XtTHQvYwPhKO+Msg=" ];
+};
+```
+
+or through Nix CLI options:
+
+```sh
+nix <subcommand> \
+    --option extra-substituters "https://aya-prover.cachix.org" \
+    --option extra-trusted-public-keys "aya-prover.cachix.org-1:BNuUD9aNZMDmYISC77aqZfzP4l9XtTHQvYwPhKO+Msg="
+```
 
 ### Nix3 CLI
 
@@ -70,7 +93,7 @@ nix shell github:aya-prover/aya-dev#aya
 Or Install Aya in user profile:
 
 ```sh
-nix profile install github:aya-prover/aya-dev#ayaPackages.standard-library
+nix profile install github:aya-prover/aya-dev#aya
 ```
 
 ### Usage in flake.nix
@@ -82,11 +105,11 @@ inputs.aya-dev.url = "github:aya-prover/aya-dev";
 ```
 
 Then you can access Aya under `inputs.aya-dev.packages.${system}`:
-- `aya` : aya + aya-lsp
+- `aya` : aya (with standard library) + aya-lsp
 - `aya-minimal`: aya (without standard library) + aya-lsp
-- `aya.withPackages (p: [ p.foo p.bar ])`: aya (with libraries `ayaPackages.foo` and `ayaPackages.bar`) + aya-lsp
+- `aya.withPackages (p: [ p.foo p.bar ])`: aya (with libraries foo and bar) + aya-lsp
 
-You may fetch an example `flake.nix` which provides an Aya devShell with [flake-parts]:
+You may fetch an example `flake.nix` which provides an Aya devShell with [flake-parts][flake-parts]:
 
 ```sh
 nix flake init -t github:definfo/dev-templates#aya
@@ -97,6 +120,7 @@ nix develop
 direnv allow
 ```
 
+[Cachix]: https://aya-prover.cachix.org
 [flake-parts]: https://flake.parts
 
 ## Use Aya in GitHub Actions
