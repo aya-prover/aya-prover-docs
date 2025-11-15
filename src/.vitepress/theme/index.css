@@ -44,6 +44,9 @@
 .Aya a[href]:hover { background-color: var(--Aya-HoverBg) !important; }
 .Aya [href].hover-highlight { background-color: var(--Aya-HoverBg) !important; }
 
+.Aya code {
+  overflow: scroll;
+}
 .Aya a {
     color: var(--Aya-PlainText);
 }
