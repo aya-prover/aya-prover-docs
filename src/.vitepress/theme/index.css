@@ -40,13 +40,21 @@
     --Aya-Comment: #8f8f8f;
 }
 
+/* Colors for dark mode tooltips and hovers */
+:root.dark {
+    --Doc-Hover-BackgroundColor: var(--vp-c-bg-elv);
+    --Doc-Hover-TextColor: var(--vp-c-text-1);
+    --Doc-Hover-BoxShadowColor: rgba(0, 0, 0, 0.6);
+    --Doc-Tooltip-BackgroundColor: var(--vp-c-bg-elv);
+    --Doc-Tooltip-TextColor: var(--vp-c-text-1);
+    --Doc-Tooltip-BoxShadowColor: rgba(0, 0, 0, 0.75);
+    --Doc-Tooltip-BorderColor: var(--vp-c-border);
+}
+
 /* Overwrite the hover background for dark mode */
 .Aya a[href]:hover { background-color: var(--Aya-HoverBg) !important; }
 .Aya [href].hover-highlight { background-color: var(--Aya-HoverBg) !important; }
 
-pre.Aya {
-  overflow-x: auto;
-}
 .Aya a {
     color: var(--Aya-PlainText);
 }
