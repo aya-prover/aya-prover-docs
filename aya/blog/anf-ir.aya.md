@@ -214,33 +214,32 @@ __58theKid.invoke(UnaryOperator, Term) → Term
   let %1: Term := invoke __58theKid$__58theKid_fac_45aux.invoke (arg%0, arg%1, %0)
   return %1
 > :optimize-anf fac-aux
-__58theKid.invoke(UnaryOperator, Term, Term) → Term
+__58theKid$__58theKid_fac_45aux.invoke(UnaryOperator, Term, Term) → Term
   loop
     let %0: Term := null
     let %1: Term := null
     let %2: int := 0
     let %3: boolean := false
     breakable
-      let %4: Object := invoke arg%0.apply (arg%1)
+      let %4: Object := invoke arg%0.apply(arg%1)
       let %5: Term := checkcast %4 Term
       if let %6: ConCallLike := %5
-        let %7: ConDefLike := invoke %6.ref ()
+        let %7: ConDefLike := invoke %6.ref()
         let %8: _base$_base_Nat_zero := _base$_base_Nat_zero.INSTANCE
         if ref eq %7 %8
-          let %9: ImmutableSeq := invoke %6.conArgs ()
           %0 := arg%2
           %2 := 1
           break
       else
         break
-      let %6: Object := invoke arg%0.apply (arg%1)
+      let %6: Object := invoke arg%0.apply(arg%1)
       let %7: Term := checkcast %6 Term
       if let %8: ConCallLike := %7
-        let %9: ConDefLike := invoke %8.ref ()
+        let %9: ConDefLike := invoke %8.ref()
         let %10: _base$_base_Nat_suc := _base$_base_Nat_suc.INSTANCE
         if ref eq %9 %10
-          let %11: ImmutableSeq := invoke %8.conArgs ()
-          let %12: Object := invoke %11.get (0)
+          let %11: ImmutableSeq := invoke %8.conArgs()
+          let %12: Object := invoke %11.get(0)
           let %13: Term := checkcast %12 Term
           %0 := %13
           %1 := arg%2
@@ -248,19 +247,19 @@ __58theKid.invoke(UnaryOperator, Term, Term) → Term
     switch %2 amongst 3
       case 0 →
         let %4: __58theKid$__58theKid_fac_45aux := __58theKid$__58theKid_fac_45aux.INSTANCE
-        let %5: ImmutableSeq := invoke ImmutableSeq.of (arg%1, arg%2)
+        let %5: ImmutableSeq := invoke ImmutableSeq.of(arg%1, arg%2)
         let %6: FnCall := new (%4, 0, %5)
         return %6
       case 1 → return %0
       default
         let %4: _base$_base_Nat_suc := _base$_base_Nat_suc.INSTANCE
-        let %5: IntegerTerm := invoke _base$_base_Nat.makeInteger (0)
+        let %5: IntegerTerm := invoke _base$_base_Nat.makeInteger(0)
         let %6: IntegerOps$ConRule := new (%4, %5)
-        let %7: ImmutableSeq := invoke ImmutableSeq.empty ()
-        let %8: ImmutableSeq := invoke ImmutableSeq.of (%0)
+        let %7: ImmutableSeq := invoke ImmutableSeq.empty()
+        let %8: ImmutableSeq := invoke ImmutableSeq.of(%0)
         let %9: RuleReducer$Con := new (%6, 0, %7, %8)
-        let %10: Term := invoke %9.make ()
-        let %11: Term := invoke _base$_base__42.invoke (arg%0, %1, %10)
+        let %10: Term := invoke %9.make()
+        let %11: Term := invoke _base$_base__42.invoke(arg%0, %1, %10)
         arg%1 := %0
         arg%2 := %11
         continue
