@@ -3,8 +3,17 @@
 Update 2025-02-12: I gave a [PLunch talk](https://www.youtube.com/watch?v=lvwygACgJFk&t) about this.
 
 In this post I'd like to introduce the _JJH_ compilation architecture of the new Aya type checker,
-which is based on the JIT (Just-In-Time) compilation on the Java VM for closures implemented using HOAS (Higher-Order Abstract Syntax).
+which is based on the JIT (Just-In-Time) compilation on the Java VM for closures implemented using HOAS
+(Higher-Order Approximation of Syntax).
 I'll explain.
+
+Regarding terminology, the HOAS I'm talking about is not to be confused with the HOAS
+(Higher-Order Abstract Syntax) in logical framework, which are only identical when being
+implemented and sufficiently lowered. For details, here's a [related thread][discussion].
+This article is entirely about implementation efficiency, and the difference here is not relevant.
+This is why I (jokingly) referred to it as Higher-Order *Approximation* of Syntax.
+
+[discussion]: https://types.pl/@pigworker/112112256054375321
 
 ```aya-hidden
 open inductive Nat | Zero | S Nat
