@@ -1,6 +1,6 @@
 import { h, defineComponent, PropType } from 'vue'
 import type { Publications } from '../../interface'
-import './PubStyle.css?inline'
+import './PubStyle.css'
 
 const interleave = <T,>(arr: T[], thing: T) =>
   arr.flatMap(n => [n, thing]).slice(0, -1);
@@ -51,7 +51,7 @@ export default defineComponent({
   render() {
     return (<div>{this.pubs?.map(pub => (
       <div>
-        <h3>{pub.type}</h3>
+        <h2>{pub.type}</h2>
         <ul>{pub.items.map(item => (<li>
           <div>
             <span class="pubs-title">{item.title}</span>
@@ -72,6 +72,7 @@ export default defineComponent({
             </a>
             )), <span> | </span>)}
           </div>
+          {item.comment ? <div class="pubs-comment">{item.comment}</div> : null}
         </li>
         ))}
         </ul>

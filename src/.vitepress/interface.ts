@@ -8,6 +8,7 @@ export interface PublicationItem {
   title: string
   venue?: string
   links: [string,string][]
+  comment?: string
 }
 
 export interface Publication {

@@ -13,8 +13,6 @@
 
 .pubs-link {
   font-size: 0.9em;
-  margin: 0.3em 0.3em 0.3em 0;
-  padding: 0.2em;
 }
 
 .pubs-link:hover {
@@ -25,4 +23,8 @@
   font-size: 0.95em;
   font-style: italic;
   color: gray;
+}
+
+.pubs-comment {
+  font-style: italic;
 }
