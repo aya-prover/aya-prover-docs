@@ -189,16 +189,20 @@ const equality: PublicationItem[] = [
       forward declarations.`
   },
   {
-    title: 'Contributions to Multimode and Presheaf Type Theory',
-    authors: [{
-      name: 'Andreas Nuyts',
-    }],
-    links: [
-      ['online', 'https://lirias.kuleuven.be/retrieve/581985']
+    title: 'The Münchhausen Method in Type Theory',
+    authors: [altenkirch, akaposi,
+      { name: 'Artjoms Šinkarovs' },
+      { name: 'Tamás Végh' }
     ],
-    comment: `Some results on syntax and semantics of multimodal dependent type theory.
-      Aya will eventually add native support for modalities, and this paper can be used
-      as a reference of the type theory.`
+    venue: 'TYPES 2022',
+    links: [
+      ['doi', '10.4230/LIPIcs.TYPES.2022.10'],
+    ],
+    comment: `This paper justifies very dependent types in extensional type theory
+      (or optionally in intensional type theory with transports), and motivates this
+      feature with some examples. Aya supports this with automatic inference of type
+      checking order and internal generation of forward declarations, without having
+      to introduce mutual blocks or whatever special syntax for it.`
   },
   {
     title: 'Observational Equality: Now for Good',
@@ -508,6 +512,32 @@ export const readings: Publications = [
   {
     type: 'Miscellaneous',
     items: [
+      {
+        title: 'Contributions to Multimode and Presheaf Type Theory',
+        authors: [{
+          name: 'Andreas Nuyts',
+        }],
+        links: [
+          ['online', 'https://lirias.kuleuven.be/retrieve/581985']
+        ],
+        comment: `Some results on syntax and semantics of multimodal dependent type theory.
+          Aya will eventually add native support for modalities, and this paper can be used
+          as a reference of the type theory.`
+      },
+      {
+        title: 'Tabled Typeclass Resolution',
+        authors: [
+          { name: 'Daniel Selsam' },
+          { name: 'Sebastian Ullrich' },
+          { name: 'Leonardo de Moura' }
+        ],
+        links: [
+          ['arxiv', '2001.04301']
+        ],
+        comment: `Basically teaches you how to design the cache for type class resolution,
+          to deal with multi-param typeclasses and class inheritance with large depth.
+          It concerns with complicated instance resolution with backtracking.`
+      },
       {
         title: "Coq's Vibrant Ecosystem for Verification Engineering",
         venue: 'CPP 2022',
